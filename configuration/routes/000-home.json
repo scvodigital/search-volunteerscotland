@@ -1,0 +1,97 @@
+{
+  "name": "home",
+  "pattern": "/",
+  "debug": false,
+  "metaData": {
+    "hideSearch": true,
+    "title": "Volunteer Scotland Search | Help Make a Difference through Volunteering"
+  },
+  "tasks": [
+    "context.metaData.commonTasks.authNotRequired",
+    "context.metaData.commonTasks.registeredInterestData",
+    "context.metaData.commonTasks.favouritesData",
+    "context.metaData.commonTasks.searchesData",
+    "context.metaData.commonTasks.termsMaps",
+    {
+      "name": "opportunitySupplimentary",
+      "taskModule": "elasticsearch",
+      "config": {
+        "connectionStringTemplate": "{$../data/elasticsearch-url.txt}",
+        "elasticsearchConfig": {
+          "apiVersion": "5.6"
+        },
+        "queryTemplates": [
+          {
+            "name": "recently_viewed",
+            "index": "{$../data/elasticsearch-index.txt}",
+            "type": "milo-volunteering-opportunity",
+            "template": ">context.metaData.handlebars.queries.opportunities_recently-viewed"
+          },
+          {
+            "name": "favourites_current",
+            "index": "{$../data/elasticsearch-index.txt}",
+            "type": "milo-volunteering-opportunity",
+            "template": ">context.metaData.handlebars.queries.opportunities_favourites-current"
+          },
+          {
+            "name": "home_latest",
+            "index": "{$../data/elasticsearch-index.txt}",
+            "type": "milo-volunteering-opportunity",
+            "template": ">context.metaData.handlebars.queries.opportunities_home-latest"
+          },
+          {
+            "name": "home_latest_personalised",
+            "index": "{$../data/elasticsearch-index.txt}",
+            "type": "milo-volunteering-opportunity",
+            "template": ">context.metaData.handlebars.queries.opportunities_home-latest-personalised"
+          }
+        ]
+      },
+      "renderer": "handlebars"
+    },
+    "context.metaData.commonTasks.termsMaps",
+    {
+      "name": "posts",
+      "taskModule": "elasticsearch",
+      "config": {
+        "connectionStringTemplate": "{$../data/elasticsearch-url.txt}",
+        "elasticsearchConfig": {
+          "apiVersion": "5.6"
+        },
+        "queryTemplates": [
+          {
+            "name": "tfn_latest",
+            "index": "{$../data/elasticsearch-index.txt}",
+            "type": "tfn-legacy-post-news,tfn-legacy-feature",
+            "template": ">context.metaData.handlebars.queries.posts_tfn-latest"
+          }
+        ]
+      },
+      "renderer": "handlebars"
+    },
+    {
+      "name": "destination",
+      "taskModule": "renderLayout",
+      "renderer": "handlebars",
+      "config": {
+        "logic": {
+          "if": [
+            "default"
+          ]
+        },
+        "output": "body",
+        "layouts": {
+          "default": {
+            "layout": ">context.metaData.handlebars.layouts.default",
+            "parts": {
+              "head": ">context.metaData.handlebars.templates.pages_page-head-tags",
+              "body": ">context.metaData.handlebars.templates.opportunities_home",
+              "foot": ""
+            },
+            "contentType": "text/html"
+          }
+        }
+      }
+    }
+  ]
+}

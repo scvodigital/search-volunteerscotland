@@ -1,0 +1,29 @@
+[
+{{#eachJoin @root.data.emailTypes ","}}
+{
+"from": {{{stringify (getProperty @root.context.metaData.emailSendSettings (concat this '.from'))}}},
+"h:sender": {{{stringify (getProperty @root.context.metaData.emailSendSettings (concat this '.from'))}}},
+"to": {{{stringify (default (getProperty @root.request.body (concat 'email-' this)) @root.request.body.email)}}},
+"o:tag": {{{stringify (if testEmail (concat 'test-' this) else=this)}}},
+"o:tracking": true,
+{{!-- "o:testmode": true, --}}
+"tag": {{{stringify this}}},
+"id": {{{stringify this}}},
+"connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings (concat this '.mailgunConnection'))}}},
+"subject":
+{{~#blockStringify this ~}}
+  {{~>
+  (getProperty @root.context.metaData.emailSendSettings (concat this '.subjectPartial'))
+    @root.request.body emailType=this
+  ~}}
+{{~/blockStringify}},
+"html":
+{{~#blockStringify this ~}}
+  {{~>
+  (getProperty @root.context.metaData.emailSendSettings (concat this '.bodyPartial'))
+    @root.request.body emailType=this
+  ~}}
+{{~/blockStringify}}
+}
+{{/eachJoin}}
+]

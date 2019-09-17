@@ -1,0 +1,43 @@
+<div id="detailed-results-container" class="container-content content-register-interest">
+  <h1 class="mdc-typography--headline4 v-margin-full">
+    Registered interest
+  </h1>
+  {{#if @root.request.params.query.id}}
+
+      <p class="mdc-typography--body1">Your interest in this opportunity has been registered.
+        The organisation has been contacted, and will respond to you at the email provided</p>
+
+      {{>social_links opportunity=@root.data.registered_interest_opportunities.current.hits.hits.[0]._source }}
+  {{/if}}
+  {{#compare @root.data.registered_interest_opportunities.current.hits.total "===" 0}}
+    <p class="mdc-typography--body1">
+      You haven't yet registered interest in any current opportunities. To register interest, click the &ensp;<strong><span class="far fa-hand-paper mdc-chip__icon mdc-chip__icon--leading" aria-hidden="true"></span>&ensp;I want to volunteer</strong>&ensp;button.
+    </p>
+  {{/compare}}
+
+  {{#compare @root.data.registered_interest_opportunities.current.hits.total ">" 0}}
+    {{#each @root.data.registered_interest_opportunities.current.hits.hits ~}}
+    <div class="{{#compare _source.Id "===" @root.request.params.query.id}}fade-in{{/compare}} b-margin-full">
+      {{> opportunity_search_result _source action="remove"}}
+    </div>
+    {{/each ~}}
+    <div class="foot">
+      {{> pagination paging=@root.data.registered_interest_opportunities.current.pagination}}
+    </div>
+  {{/compare}}
+</div>
+
+<script>
+  function sqlRemoveInterest(Id){
+      $link = $(this);
+      $.ajax({
+      type : "GET",
+      url: "/remove-from-registered-interest?id=" + Id,
+      success: function(result){
+        window.location.href = $link.attr('href');
+      }
+
+    })
+    return false;
+  }
+</script>

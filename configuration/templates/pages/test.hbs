@@ -1,0 +1,10 @@
+<div class="container-fluid container-content content-page">
+<a class="resp-sharing-button mdc-button mdc-button--raised noext" href="https://facebook.com/sharer/sharer.php?u={{@root.data.primaryResponse.hits.hits.[0]._source.url}}" target="_blank" rel="noopener" aria-label="Share on Facebook">
+  <span class="fab fa-facebook resp-sharing-logo mdc-list-item__graphic" aria-label="Share on Facebook"></span> Share on Facebook
+</a>
+
+<a class="resp-sharing-button mdc-button mdc-button--raised noext" href="https://twitter.com/intent/tweet/?text={{> social_link_text opportunity=@root.data.primaryResponse.hits.hits.[0]._source}}" target="_blank" rel="noopener" aria-label="Share on Twitter">
+  <span class="fab fa-twitter resp-sharing-logo mdc-list-item__graphic" aria-label="Share on Twitter"></span> Share on Twitter
+</a>
+
+</div>

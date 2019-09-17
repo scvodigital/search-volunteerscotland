@@ -1,0 +1,62 @@
+{
+  "name": "notes",
+  "pattern": "/notes",
+  "debug": false,
+  "metaData": {
+    "hideSearch": true,
+    "title": "My notes - Volunteer Scotland Search"
+  },
+  "defaultParams": {
+    "context": "results"
+  },
+  "tasks": [
+    "context.metaData.commonTasks.authRequired",
+    "context.metaData.commonTasks.profileInfoData",
+    "context.metaData.commonTasks.favouritesData",
+
+    {
+      "name": "notes_opportunities",
+      "taskModule": "elasticsearch",
+      "config": {
+        "connectionStringTemplate": "{$../data/elasticsearch-url.txt}",
+        "elasticsearchConfig": {
+          "apiVersion": "5.6"
+        },
+        "queryTemplates": [
+          {
+            "name": "open",
+            "index": "{$../data/elasticsearch-index.txt}",
+            "type": "milo-volunteering-opportunity",
+            "template": ">context.metaData.handlebars.queries.opportunities_notes-open"
+          }
+        ]
+      },
+      "renderer": "handlebars"
+    },
+    {
+      "name": "destination",
+      "taskModule": "renderLayout",
+      "renderer": "handlebars",
+      "config": {
+        "logic": {
+          "if": [
+            "default"
+          ]
+        },
+        "output": "body",
+        "layouts": {
+          "default": {
+            "layout": ">context.metaData.handlebars.layouts.default",
+            "parts": {
+              "head": ">context.metaData.handlebars.templates.pages_page-head-tags",
+              "body": ">context.metaData.handlebars.templates.opportunities_notes",
+              "sidebar": ">context.metaData.handlebars.templates.account_sidebar"
+
+            },
+            "contentType": "text/html"
+          }
+        }
+      }
+    }
+  ]
+}

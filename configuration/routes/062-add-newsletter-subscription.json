@@ -1,0 +1,68 @@
+{
+  "name": "add-newsletter-subscription",
+  "pattern": "/add-newsletter-subscription",
+  "debug": false,
+  "acceptedVerbs": "POST",
+  "defaultParams": {
+    "context": "results"
+  },
+  "tasks": [
+    "context.metaData.commonTasks.authNotRequired",
+    "context.metaData.commonTasks.updateProfile",
+    {
+      "name": "templateOptsOn",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "template": ">context.metaData.handlebars.templates.newsletters_add-subscriptions",
+        "output": "data",
+        "parseJson": true
+      }
+    },
+    {
+      "name": "add-subscriptions",
+      "taskModule": "request",
+      "config": {
+        "optionsTemplates": ">data.templateOptsOn"
+      },
+      "renderer": "handlebars"
+    },
+    {
+      "name": "templateOptsOff",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "template": ">context.metaData.handlebars.templates.newsletters_remove-subscriptions",
+        "output": "data",
+        "parseJson": true
+      }
+    },
+    {
+      "name": "remove-subscriptions",
+      "taskModule": "request",
+      "config": {
+        "optionsTemplates": ">data.templateOptsOff"
+      },
+      "renderer": "handlebars"
+    },
+    {
+      "name": "reroute-redirect",
+      "taskModule": "reroute",
+      "config":
+      {
+        "if":[{"==":[{"var": "request.params.query.redirect"}, "home"]},
+          "redirect-home",
+          null
+        ]}
+    },
+    {
+      "name": "destination",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "body",
+        "template": "Added Subscription"
+      }
+    }
+  ]
+}

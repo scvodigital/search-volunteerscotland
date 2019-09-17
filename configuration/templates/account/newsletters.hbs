@@ -1,0 +1,81 @@
+<div id="detailed-results-container" class="container-content content-newsletters">
+  <h1 class="mdc-typography--headline4 v-margin-full">
+    Newsletters
+    {{#unless @root.request.params.query.newuser ~}}
+      <span class="mdc-typography--body2">&ensp;Sent on a quarterly basis</span>
+    {{/unless ~}}
+  </h1>
+  {{#if @root.request.params.query.newuser ~}}
+    <h2 class="mdc-typography--headline6 v-margin-full">
+      Use the form below to opt in to quarterly email updates or <a href="/">start looking for opportunities</a>.
+    </h2>
+  {{/if ~}}
+  <form id="newsletter-form" method="GET" class="sign-in-form sign-up-form">
+    <div class="mdc-card mdc-elevation--z0">
+      <div class="mdc-text-field mdc-text-field--box mdc-text-field--with-leading-icon" data-mdc-auto-init="MDCTextField">
+        <span class="far fa-key mdc-text-field__icon" tabindex="-1"></span>
+        <input type="text" id="first_name" name="first_name" class="mdc-text-field__input mdc-text-field--fullwidth" value="{{@root.data.profileInfo.profile.first_name}}" data-lpignore="true" autocomplete="off" />
+        <label class="mdc-floating-label mdc-floating-label--float-above" for="first_name">
+          First Name (Optional)
+        </label>
+        <div class="mdc-line-ripple"></div>
+      </div>
+      <p>
+        Check the boxes below to receive regular email updates in areas that interest you.
+      </p>
+      {{#each @root.data.all-newsletter-info.result}}
+      <h2 class="mdc-typography--headline6 v-margin-full">{{Name}}</h2>
+        <div class="mdc-form-field">
+          <div class="mdc-radio">
+            <input class="mdc-radio__native-control" type="radio" id="{{ListID}}-on" name="list-{{ListID}}" value="on" {{#if (contains @root.data.user-newsletter-subscriptions ListID)}}checked{{/if}}>
+            <div class="mdc-radio__background">
+              <div class="mdc-radio__outer-circle"></div>
+              <div class="mdc-radio__inner-circle"></div>
+            </div>
+          </div>
+          <label for="list-{{ListID}}-off">
+            On
+          </label>
+          <div class="mdc-radio">
+            <input class="mdc-radio__native-control" type="radio" id="{{ListID}}-off" name="list-{{ListID}}" value="{{#if (contains @root.data.user-newsletter-subscriptions ListID)}}off{{else}}dud{{/if}}" {{#unless (contains @root.data.user-newsletter-subscriptions ListID)}}checked{{/unless}}>
+            <div class="mdc-radio__background">
+              <div class="mdc-radio__outer-circle"></div>
+              <div class="mdc-radio__inner-circle"></div>
+            </div>
+          </div>
+          <label for="list-{{ListID}}-off">
+            Off
+          </label>
+        </div>
+      {{/each}}
+      <div id="form-section-sign-up-buttons">
+        <button class="mdc-button mdc-button--raised" type="submit" id="newsletter-submit">
+          Submit
+        </button>
+      </div>
+    </div>
+    <div class="card-loader" id="sign-up-loader">
+      <div class="card-loader-background"></div>
+      <div class="card-loader-inner">
+        <span class="far fa-2x fa-spinner-third fa-spin"></span>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var $form = $('#newsletter-form');
+
+    $form.on('submit', function(evt) {
+      evt.preventDefault();
+      var formdata = $form.serialize();
+      $.ajax({
+        url: '/add-newsletter-subscription',
+        type: 'POST',
+        data: formdata, // serializes the form's elements.
+      });
+      volunteerscotland.componentsInitialiser.snackbar.show({message:'Newsletters updated'})
+    })
+  })
+</script>

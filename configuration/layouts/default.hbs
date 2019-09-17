@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  {{!-- <base href="/"> --}}
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-54T7D3G');</script>
+  <!-- End Google Tag Manager -->
+  {{{layoutParts.head}}}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--
+
+  Powered by:
+  ███████╗ ██████╗██╗   ██╗ ██████╗ ██╗  ██████╗  ██████╗ ██╗   ██╗████████╗███████╗██████╗
+  ██╔════╝██╔════╝██║   ██║██╔═══██╗╚██╗ ██╔══██╗██╔═══██╗██║   ██║╚══██╔══╝██╔════╝██╔══██╗
+  ███████╗██║     ██║   ██║██║   ██║ ╚██╗██████╔╝██║   ██║██║   ██║   ██║   █████╗  ██████╔╝
+  ╚════██║██║     ╚██╗ ██╔╝██║   ██║ ██╔╝██╔══██╗██║   ██║██║   ██║   ██║   ██╔══╝  ██╔══██╗
+  ███████║╚██████╗ ╚████╔╝ ╚██████╔╝██╔╝ ██║  ██║╚██████╔╝╚██████╔╝   ██║   ███████╗██║  ██║
+  ╚══════╝ ╚═════╝  ╚═══╝   ╚═════╝ ╚═╝  ╚═╝  ╚═╝ ╚═════╝  ╚═════╝    ╚═╝   ╚══════╝╚═╝  ╚═╝
+
+  -->
+
+  <link rel="shortcut icon" href="{{~>asset_url url='images/icons/favicon.ico'~}}">
+  <link rel="apple-touch-icon" sizes="57x57" href="{{~>asset_url url='images/icons/apple-icon-57x57.png'~}}">
+  <link rel="apple-touch-icon" sizes="60x60" href="{{~>asset_url url='images/icons/apple-icon-60x60.png'~}}">
+  <link rel="apple-touch-icon" sizes="72x72" href="{{~>asset_url url='images/icons/apple-icon-72x72.png'~}}">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{~>asset_url url='images/icons/apple-icon-76x76.png'~}}">
+  <link rel="apple-touch-icon" sizes="114x114" href="{{~>asset_url url='images/icons/apple-icon-114x114.png'~}}">
+  <link rel="apple-touch-icon" sizes="120x120" href="{{~>asset_url url='images/icons/apple-icon-120x120.png'~}}">
+  <link rel="apple-touch-icon" sizes="144x144" href="{{~>asset_url url='images/icons/apple-icon-144x144.png'~}}">
+  <link rel="apple-touch-icon" sizes="152x152" href="{{~>asset_url url='images/icons/apple-icon-152x152.png'~}}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{~>asset_url url='images/icons/apple-icon-180x180.png'~}}">
+  <link rel="icon" type="image/png" sizes="192x192" href="{{~>asset_url url='images/icons/android-icon-192x192.png'~}}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{~>asset_url url='images/icons/favicon-32x32.png'~}}">
+  <link rel="icon" type="image/png" sizes="96x96" href="{{~>asset_url url='images/icons/favicon-96x96.png'~}}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{~>asset_url url='images/icons/favicon-16x16.png'~}}">
+  <link rel="manifest" href="{{~>asset_url url='images/icons/manifest.json'~}}">
+  <meta name="msapplication-TileColor" content="#3c7524">
+  <meta name="msapplication-TileImage" content="{{~>asset_url url='images/icons/ms-icon-144x144.png'~}}">
+  <meta name="theme-color" content="#3c7524">
+  <link rel="search" type="application/opensearchdescription+xml" title="Volunteer Scotland Search" href="{{~>asset_url url='opensearch.xml'~}}" />
+
+  <link rel="canonical" href="https://search.volunteerscotland.net{{request.params.uri.pathname}}" />
+
+  <script>
+  {{#ifAny request.params.query.debug (compare request.url.hostname "volunteerscotland-search.local") ~}}
+  console.log('#### DEBUG MODE ON ####');
+  console.log('Request:', {{{regexReplace (regexReplace (stringify request) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
+  console.log('Route:', {{{regexReplace (regexReplace (stringify route) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
+  console.log('Context:', {{{regexReplace (regexReplace (stringify context) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
+  console.log('Data:', {{{regexReplace (regexReplace (stringify data) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
+  console.log('Menus:', {{{regexReplace (regexReplace (stringify context.metaData.menus) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
+  {{/ifAny ~}}
+  </script>
+
+  <link type="text/css" rel="stylesheet" href="{{~>asset_url url='libraries/leaflet/leaflet.css'~}}" />
+  <link type="text/css" rel="stylesheet" href="{{~>asset_url url='libraries/fontawesome-pro/css/all.min.css'~}}">
+
+  <link type="text/css" rel="stylesheet" href="{{~>asset_url url='main.css'}}">
+</head>
+<body class="mdc-theme--site-bg {{#if request.params.path}}{{replace request.params.path '_' ' '}}{{else}}home{{/if}}">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-54T7D3G"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <volunteerscotland-search-site>
+    <div class="mdc-typography">
+      {{#ifAny request.params.query.debug (compare request.url.hostname "volunteerscotland-search.local") ~}}
+        {{#if errors.[0]}}
+          <div style="z-index:100;position:fixed;top:0;right:0;padding:5px;background-color:#ff0000;color:#ffffff;">
+            Route Task Errors (F12)
+          </div>
+        {{/if}}
+        {{#if logs.[0]}}
+          <div style="z-index:100;position:fixed;bottom:0;right:0;padding:5px;background-color:#0000ff;color:#ffffff;"
+               onclick="document.querySelector('#route-debug-log').style.display='block';">
+            Route Log
+          </div>
+          <div style="z-index:100;position:fixed;bottom:0;left:0;right:0;padding:5px;background-color:#ededed;color:#000000;overflow:auto;height:50vh;display:none;border-top:1px solid #cccccc;" id="route-debug-log">
+            <a style="position:fixed;right:25px;" onclick="document.querySelector('#route-debug-log').style.display='none';">x</a>
+<pre style="white-space: pre-wrap;">
+{{~#each logs}}
+{{{this}}}
+
+{{/each~}}
+</pre>
+          </div>
+        {{/if}}
+      {{/ifAny}}
+      <header class="mdc-top-app-bar" id="top-bar">
+        <div class="container-fluid">
+          <div class="mdc-top-app-bar__row mdc-top-app-bar__upper">
+            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+              {{!-- #unless @root.route.metaData.hideSearch ~}}
+              <!-- <button class="mdc-top-app-bar__navigation-icon hide-lg" id="sidebar-button" title="Search">
+                <span class="far fa-fw fa-2x fa-search"></span>
+              </button> -->
+              {{/unless ~ --}}
+              <span class="mdc-top-app-bar__title">
+                <h1 class="header-text">
+                  <a href="/" class="noext">
+                    <img src="https://storage.googleapis.com/scvo-cms/scvo-cms-content/images/logos/volunteer_scotland_search.png" alt="Volunteer Scotland" />
+                  </a>
+                </h1>
+              </span>
+            </section>
+            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--user mdc-top-app-bar__section--align-end">
+              <button class="mdc-top-app-bar__navigation-icon hide-lg" data-drawer-target="#mobile-menu" aria-label="Menu">
+                <span class="far fa-fw fa-2x fa-bars"></span>
+              </button>
+              {{#>components_tab_bar
+                  extraClasses="mdc-tab-bar__auto-width hide-sm hide-md"
+                  id="upper-tab-bar" ~}}
+                {{#each @root.context.metaData.menus.upper ~}}
+                  {{>components_tab
+                      url=(stripTrailingSlash path)
+                      active=(regexMatch @root.request.url.pathname route "gi")
+                      iconClasses=(if (compare icon "===" "home") "fas fa-home")
+                      label=(if (compare icon "!==" "home") label)}}
+                {{/each ~}}
+              {{/components_tab_bar ~}}
+                {{#>components_anchored_menu
+                    buttonClasses="mdc-theme--on-secondary hide-sm hide-md"
+                    imageUrl=(default @root.data.auth.photoURL false)
+                    imageClasses="r-margin user-avatar"
+                    iconClasses=(if (if @root.data.auth.photoURL false else=true) "fas r-margin fa-user-circle" else=false)
+                    buttonLabel="My Volunteer Account"
+                    arrowClasses="fas fa-fw fa-angle-down" ~}}
+                  {{#if @root.data.auth ~}}
+                    {{#each @root.context.metaData.menus.user-signed-in ~}}
+                      <a class="mdc-list-item {{#if (regexMatch @root.request.url.pathname route "gi")}} mdc-list-item--activated{{/if}}" href="{{stripTrailingSlash path}}" role="menuitem">
+                        {{#if icon ~}}
+                        <span class="far fa-{{icon}} mdc-list-item__graphic" aria-hidden="true"></span>
+                        {{/if ~}}
+                        {{{label}}}
+                      </a>
+                    {{/each ~}}
+                  {{else}}
+                    {{#each @root.context.metaData.menus.user-not-signed-in ~}}
+                      <a class="mdc-list-item {{#if (regexMatch @root.request.url.pathname route "gi")}} mdc-list-item--activated{{/if}}" href="{{stripTrailingSlash path}}" role="menuitem">
+                        {{#if icon ~}}
+                        <span class="far fa-{{icon}} mdc-list-item__graphic" aria-hidden="true"></span>
+                        {{/if ~}}
+                        {{{label}}}
+                      </a>
+                    {{/each ~}}
+                  {{/if ~}}
+                {{/components_anchored_menu ~}}
+            </section>
+          </div>
+          <div class="mdc-top-app-bar__row mdc-top-app-bar__lower hide-sm hide-md">
+            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start mdc-top-app-bar__main">
+              {{#>components_tab_bar
+                  extraClasses="mdc-tab-bar__auto-width"
+                  id="main-tab-bar"}}
+                {{#each @root.context.metaData.menus.main ~}}
+                  {{>components_tab
+                      url=(stripTrailingSlash path)
+                      labelClasses="mdc-theme--on-secondary"
+                      active=(regexMatch @root.request.url.pathname route "gi")
+                      label=label}}
+                {{/each ~}}
+                {{#each @root.context.metaData.menus.main-extra ~}}
+                  {{>components_tab
+                      url=(stripTrailingSlash path)
+                      labelClasses="mdc-theme--on-secondary"
+                      active=(regexMatch @root.request.url.pathname route "gi")
+                      label=label}}
+                {{/each ~}}
+              {{/components_tab_bar}}
+            </section>
+          </div>
+        </div>
+      </header>
+
+      <aside class="mdc-drawer mdc-drawer--modal" id="mobile-menu" data-mdc-auto-init="MDCDrawer">
+        <div class="mdc-drawer__content">
+          <nav class="mdc-list">
+            <a class="mdc-list-item {{#compare @root.request.url.pathname "/"}} mdc-list-item--activated{{/compare}}" href="/" {{#compare @root.request.url.pathname "/"}}aria-selected="true"{{else}}aria-hidden="true"{{/compare}}>
+              <span class="far fa-home mdc-list-item__graphic" aria-hidden="true"></span>
+              Home
+            </a>
+            {{#each @root.context.metaData.menus.main ~}}
+            <a class="mdc-list-item {{#if (regexMatch @root.request.url.pathname route "gi")}} mdc-list-item--activated{{/if}}" href="{{stripTrailingSlash path}}" {{#if (regexMatch @root.request.url.pathname route "gi")}}aria-selected="true"{{else}}aria-hidden="true"{{/if}}>
+              {{#if icon ~}}
+              <span class="far fa-{{icon}} mdc-list-item__graphic" aria-hidden="true"></span>
+              {{/if ~}}
+              {{{label}}}
+            </a>
+            {{/each ~}}
+            {{#each @root.context.metaData.menus.main-extra ~}}
+            <a class="mdc-list-item {{#if (regexMatch @root.request.url.pathname route "gi")}} mdc-list-item--activated{{/if}}" href="{{stripTrailingSlash path}}" {{#if (regexMatch @root.request.url.pathname route "gi")}}aria-selected="true"{{else}}aria-hidden="true"{{/if}}>
+              {{#if icon ~}}
+              <span class="far fa-{{icon}} mdc-list-item__graphic" aria-hidden="true"></span>
+              {{/if ~}}
+              {{{label}}}
+            </a>
+            {{/each ~}}
+            <div role="separator" class="mdc-list-divider"></div>
+            {{#if @root.data.auth ~}}
+            <a class="mdc-list-item mdc-list-item__user" href="#">
+              <span class="mdc-list-item__graphic" aria-hidden="true">
+                <img src="{{@root.data.auth.photoURL}}" />
+              </span>
+              <span class="mdc-list-item__text">{{@root.data.auth.email}}</span>
+            </a>
+            {{#each @root.context.metaData.menus.user-signed-in ~}}
+            {{#compare path "===" "/" ~}}
+            {{else}}
+            <a class="mdc-list-item {{#if (regexMatch @root.request.url.pathname route "gi")}} mdc-list-item--activated{{/if}}"
+               href="{{stripTrailingSlash path}}" {{#if (regexMatch @root.request.url.pathname route "gi")}}aria-selected="true"{{else}}aria-hidden="true"{{/if}}>
+              {{#if icon ~}}
+              <span class="far fa-{{icon}} mdc-list-item__graphic" aria-hidden="true"></span>
+              {{/if ~}}
+              {{{label}}}
+            </a>
+            {{/compare ~}}
+            {{/each ~}}
+            {{else}}
+            <a class="mdc-list-item mdc-list-item__user" href="#">
+              <span class="mdc-list-item__graphic" aria-hidden="true">
+                <span class="fas fa-fw fa-user-circle"></span>
+              </span>
+              <span class="mdc-list-item__text">My Volunteer Account</span>
+            </a>
+            {{#each @root.context.metaData.menus.user-not-signed-in ~}}
+            <a class="mdc-list-item {{#if (regexMatch @root.request.url.pathname route "gi")}} mdc-list-item--activated{{/if}}" href="{{stripTrailingSlash path}}" {{#if (regexMatch @root.request.url.pathname route "gi")}}aria-selected="true"{{else}}aria-hidden="true"{{/if}}>
+              {{#if icon ~}}
+              <span class="far fa-{{icon}} mdc-list-item__graphic" aria-hidden="true"></span>
+              {{/if ~}}
+              {{{label}}}
+            </a>
+            {{/each ~}}
+            {{/if ~}}
+          </nav>
+        </div>
+      </aside>
+
+      <div class="mdc-drawer-scrim"></div>
+
+      <main class="mdc-theme--background {{#if layoutParts.sidebar}}drawer-container-permanent{{else}}drawer-container-temporary{{/if}}">
+        {{#if layoutParts.sidebar ~}}
+        <aside class="mdc-drawer mdc-elevation--z0 mdc-drawer--occasional" id="sidebar-temporary" data-menu-button="#sidebar-button">
+          {{{layoutParts.sidebar}}}
+        </aside>
+        <div class="mdc-drawer-scrim"></div>
+        {{/if}}
+        {{{layoutParts.body}}}
+      </main>
+
+      <footer class="mdc-layout__footer">
+        <div class="footer-main">
+          <div class="container-fluid">
+            <div class="mdc-layout-grid">
+              <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone info">
+                  <h3>Accessibility</h3>
+                  <ul class="mdc-list">
+                    {{#each @root.context.metaData.menus.footer-info ~}}
+                      <li class="mdc-list-item">
+                        <a href="{{path}}">{{{label}}}</a>
+                      </li>
+                    {{/each ~}}
+                  </ul>
+                </div>
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone help">
+                  <h3>Terms & conditions</h3>
+                  <ul class="mdc-list">
+                    {{#each @root.context.metaData.menus.footer-cookies-terms ~}}
+                    <li class="mdc-list-item">
+                      <a href="{{path}}">{{{label}}}</a>
+                    </li>
+                    {{/each ~}}
+                    <div id="google_translate_element"></div>
+                  </ul>
+                </div>
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone contact">
+                  <h3>Contact us</h3>
+                  <ul class="fa-ul">
+                    <!--<li>-->
+                      <!--<span class="fa-li"><span class="fas fa-envelope"></span></span>-->
+                      <!--<a href="https://www.volunteerscotland.net/about-us/contact-us/tick-to-hear-from-us/">Sign up to hear from us</a>-->
+                    <!--</li>-->
+                    {{#each @root.context.metaData.menus.footer-contact ~}}
+                      <li>
+                        {{#if icon}}<span class="fa-li"><span class="far fa-{{icon}}"></span></span>{{/if}}
+                        <a href="{{path}}">{{{label}}}</a>
+                      </li>
+                    {{/each ~}}
+                  </ul>
+                </div>
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone about">
+                  <h3>About</h3>
+                  <p>
+                    This site is run in partnership between <a href="https://www.volunteerscotland.net">Volunteer Scotland</a> and the <a href="https://scvo.org">Scottish Council for Voluntary Organisations</a>.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container-fluid">
+            <div class="mdc-layout-grid">
+              <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-9-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-4-phone">
+                  <p>
+                    &copy; {{momentFormat (moment) "YYYY"}}. Volunteer Development Scotland Ltd. (also known as Volunteer Scotland) is a registered Scottish charity No. <a href="https://www.oscr.org.uk/about-charities/search-the-register/charity-details?number=SC013740">SC013740</a> and a company limited by guarantee, registered in Scotland, No. <a href="https://beta.companieshouse.gov.uk/company/SC106743">SC106743</a>. Our registered Office is Jubilee House, Forthside Way, Stirling. FK8 1QZ.
+                  </p>
+                </div>
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
+                  <a href="https://www.volunteerscotland.net" class="brand-logo vs noext" title="Volunteer Scotland">
+                    <img src="https://www.volunteerscotland.net/media/333407/volunteer_scotland_hi-res_png.png" alt="Volunteer Scotland" />
+                  </a>
+                  <a href="https://scvo.org" class="brand-logo scvo noext" title="Scottish Council for Voluntary Organisations">
+                    <img src="https://storage.googleapis.com/scvo-assets/scvo-frontend/assets/images/logos/scvo.png" alt="Scottish Council for Voluntary Organisations" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <div class="mdc-snackbar mdc-elevation--z10" aria-live="assertive" aria-atomic="true" aria-hidden="true" id="app-snackbar">
+      <div class="mdc-snackbar__text"></div>
+      <div class="mdc-snackbar__action-wrapper">
+        <button type="button" class="mdc-snackbar__action-button"></button>
+      </div>
+    </div>
+  </volunteerscotland-search-site>
+
+  {{#if @root.data.auth}}{{else}}{{> dialog_favourites}}{{> dialog_volunteer}}{{/if}}
+
+  <script type="text/javascript">
+  var $buoop = {required:{e:-3,f:-3,o:-3,s:-1,c:-3},insecure:true,unsupported:true,api:2018.07 };
+  function $buo_f(){
+    var e = document.createElement("script");
+    e.src = "//browser-update.org/update.min.js";
+    document.body.appendChild(e);
+  };
+  try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+  catch(e){window.attachEvent("onload", $buo_f)}
+  </script>
+
+  <script type="text/javascript" src="{{~>asset_url url='main.js'~}}" charset="utf-8"></script>
+  <script>
+    var volunteerscotland = null; readyListeners = [];
+    $(document).ready(function() {
+      volunteerscotland = new VolunteerScotlandSearch.VolunteerScotlandSearch({
+        "apiKey": "AIzaSyAwCMOrTj2eq8tVAdgD3vrgRqz9oIluiYk",
+        "authDomain": "auth.search.volunteerscotland.net",
+        "databaseURL": "https://scvo-volunteerscotland-search.firebaseio.com",
+        "projectId": "scvo-volunteerscotland-search",
+        "storageBucket": "scvo-volunteerscotland-search.appspot.com",
+        "messagingSenderId": "7952458796"
+      });
+      ready = true;
+      readyListeners.forEach(function(listener) {
+        listener();
+      });
+    });
+
+    function registerReadyListener(listener) {
+      if (volunteerscotland) {
+        listener();
+      } else {
+        readyListeners.push(listener);
+      }
+    }
+  </script>
+
+  {{{layoutParts.foot}}}
+</body>
+</html>

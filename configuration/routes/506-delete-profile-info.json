@@ -1,0 +1,29 @@
+{
+  "name": "delete-profile-info",
+  "pattern": "/delete-profile-info",
+  "debug": false,
+  "acceptedVerbs": "POST",
+  "tasks": [
+    "context.metaData.commonTasks.authRequired",
+    {
+      "name": "profile-info",
+      "taskModule": "firebaseRtbSet",
+      "renderer": "handlebars",
+      "config": {
+        "appName": "volunteerscotland-search",
+        "pathTemplate": "/profile-info/{{default data.auth.uid 'no-such-profile'}}/profile",
+        "setOrUpdate": "set",
+        "dataTemplate": "null"
+      }
+    },
+    {
+      "name": "destination",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "body",
+        "template": "Deleted"
+      }
+    }
+  ]
+}

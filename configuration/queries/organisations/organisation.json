@@ -1,0 +1,58 @@
+{
+  "size": 1,
+  "_source": [
+    "Id",
+    "slug",
+    "charity_number",
+    "title",
+    "title_slug",
+    "alias",
+    "description",
+    "description_html",
+    "email",
+    "goodhq_organisation",
+    "location_street",
+    "location_city",
+    "location_region",
+    "location_postcode",
+    "geo",
+    "geo_coords",
+    "main_activities_global",
+    "main_activities_global_slugs",
+    "region_group",
+    "region_group_slug",
+    "phone",
+    "postcode",
+    "facebook",
+    "facebook_url",
+    "telephone",
+    "twitter",
+    "twitter_url",
+    "linkedin",
+    "linkedin_url",
+    "website",
+    "website_url",
+    "rendered.json_ld",
+    "rendered.charity_info"
+  ],
+  "query": {
+    "bool": {
+      "filter": [
+        {{>queries_organisation_common_filters @root.request.params.query}}
+      ],
+      "should": [
+        {
+          "term": {
+            "Id": "{{@root.request.params.id}}"
+          }
+        },
+        {
+          "term": {
+            "slug": "{{@root.request.params.id}}"
+          }
+        }
+      ],
+      "minimum_should_match": 1
+    }
+  }
+}

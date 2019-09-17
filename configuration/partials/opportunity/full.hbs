@@ -1,0 +1,380 @@
+<div class="{{#compare view 'widget'}}x-padding-full{{else}}mdc-card{{/compare}} content-primary full" data-opportunity-id="{{Id}}" data-opportunity-layout="Full" data-opportunity-context="{{default viewContext "Vacancy Page"}}">
+  {{> opportunity_key_info type="full"}}
+  <hr class="mdc-list-divider" />
+  <div class="content-primary-info-container">
+    {{#unless (compare view 'widget') ~}}
+    <div class="mdc-layout-grid">
+      <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone action">
+          {{#>components_tab_bar id="opportunity-tab-bar" defaultTabIdentifier="hash"}}
+          {{>components_tab iconClasses="far fa-list-ul fa-fw" label="Information" active=true tabName="information"}}
+          {{#if geo_coords}}
+          {{>components_tab iconClasses="far fa-map-marker-alt fa-fw" label="Location" active=false tabName="location"}}
+          {{/if}}
+          {{>components_tab iconClasses="far fa-edit fa-fw" label="Notes" active=false tabName="notes"}}
+          {{/components_tab_bar}}
+        </div>
+      </div>
+    </div>
+    {{/unless ~}}
+    <hr class="mdc-list-divider" />
+    <div{{#unless (compare view 'widget')}} class="panels" for="opportunity-tab-bar"{{/unless}}>
+      <div{{#unless (compare view 'widget')}} class="panel panel--active mdc-card--full-content" role="tabpanel" aria-hidden="false" data-tab-name="information"{{/unless}}>
+        {{#ifAny activities.length themes.length end_date (compare start_date ">" (moment)) ~}}
+        <div class="key-info-extra">
+          <ul class="fa-ul">
+            {{#compare (length activities) ">" 0 ~}}
+            <li class="mdc-card__info--content-primary-work-type reference mdc-typography--body1">
+              {{#unless (compare view 'widget') ~}}
+              <span class="fa-li"><span class="far fa-briefcase fa-fw" title="Activites"></span></span>
+              {{/unless ~}}
+              {{#each activities}}
+              <a href="{{#compare ../view 'widget'}}#{{/compare}}/search?activities={{urlencode (slugify (replace this "/" "-"))}}{{#compare ../view 'widget'}}&view=widget{{/compare}}">{{{this}}}</a>{{#unless @last}}, {{/unless}}
+              {{/each}}
+            </li>
+            {{/compare ~}}
+            {{#compare (length themes) ">" 0 ~}}
+            <li class="mdc-card__info--content-primary-client-group mdc-typography--body1">
+              {{#unless (compare view 'widget') ~}}
+              <span class="fa-li"><span class="far fa-users fa-fw" title="Themes"></span></span>
+              {{/unless ~}}
+              {{#each themes ~}}
+              <a href="{{#compare ../view 'widget'}}#{{/compare}}/search?themes={{urlencode (slugify (replace this "/" "-"))}}{{#compare ../view 'widget'}}&view=widget{{/compare}}">{{{this}}}</a>{{#unless @last}}, {{/unless}}
+              {{/each ~}}
+            </li>
+            {{/compare ~}}
+            {{#ifAll start_date end_date ~}}
+            <li class="mdc-card__info--content-primary-from mdc-typography--body1">
+              {{#unless (compare view 'widget') ~}}
+              <span class="fa-li"><span class="far fa-calendar-plus fa-fw" title="Start date"></span></span>
+              {{/unless ~}}
+              Opportunity start date: {{momentFormat (moment start_date "x") "Do MMMM YYYY"}}
+            </li>
+            <li class="mdc-card__info--content-primary-from mdc-typography--body1">
+              <span class="fa-li"><span class="far fa-calendar-times fa-fw" title="End date"></span></span>
+              Opportunity end date: {{momentFormat (moment end_date "x") "Do MMMM YYYY"}}
+            </li>
+            {{else}}
+            {{#compare start_date ">" (moment) ~}}
+            <li class="mdc-card__info--content-primary-from mdc-typography--body1">
+              {{#unless (compare view 'widget') ~}}
+              <span class="fa-li"><span class="far fa-calendar-plus fa-fw" title="Start date"></span></span>
+              {{/unless ~}}
+              Opportunity start date: {{momentFormat (moment start_date "x") "Do MMMM YYYY"}}
+            </li>
+            {{/compare ~}}
+            {{/ifAll ~}}
+          </ul>
+        </div>
+        {{/ifAny ~}}
+
+        <div class="detailed-info">
+          {{#ifAny description description_html ~}}
+          <h4 class="mdc-typography--headline6">Description</h4>
+          <p class="mdc-typography--body1">
+            {{#if description_html}}{{{description_html}}}{{else}}{{description}}{{/if}}
+          </p>
+          {{/ifAny ~}}
+          {{#if weblink ~}}
+          <ul class="fa-ul">
+            <li class="mdc-typography--body1">
+              {{#unless (compare view 'widget') ~}}
+              <span class="fa-li"><span class="far fa-link fa-fw" title="Website"></span></span>
+              {{/unless ~}}
+              <a href="{{fixUrl weblink "http"}}"{{#if weblink_tooltip}} title="{{weblink_tooltip}}"{{/if}}>{{#if weblink_title}}{{weblink_title}}{{else}}{{weblink}}{{/if}}</a>
+            </li>
+          </ul>
+          {{/if ~}}
+          {{#if organisation_aims_and_objectives ~}}
+          <h4 class="mdc-typography--headline6">Organisation aims and objectives</h4>
+          <p class="mdc-typography--body1">
+            {{{organisation_aims_and_objectives}}}
+          </p>
+          {{/if ~}}
+          {{#if availability_slugs.length ~}}
+          <h4 class="mdc-typography--headline6">Availability</h4>
+          <p class="mdc-typography--body1">
+            {{>opportunity_timings_display availability=availability_slugs view=view}}
+          </p>
+          {{#if timings_description ~}}
+          <p class="mdc-typography--body1">
+            {{{timings_description}}}
+          </p>
+          {{/if ~}}
+          {{/if ~}}
+          {{#if frequency_commitment_details ~}}
+          <h4 class="mdc-typography--headline6">Frequency and commitment details</h4>
+          <p class="mdc-typography--body1">
+            {{{frequency_commitment_details}}}
+          </p>
+          {{/if ~}}
+          {{#ifAny restriction_details experience_required travel_details minimum_age maximum_age ~}}
+          <h4 class="mdc-typography--headline6">Restrictions</h4>
+          <p class="mdc-typography--body1">
+            {{#if restriction_details ~}}
+            {{#compare restriction_details "!==" "n/a" ~}}
+            {{{restriction_details}}}<br />
+            {{/compare ~}}
+            {{/if ~}}
+            {{#if experience_required ~}}
+            <strong>Experience required: </strong> {{{experience_required}}}<br />
+            {{/if ~}}
+            {{#if travel_details ~}}
+            <strong>Travel details: </strong> {{{travel_details}}}<br />
+            {{/if ~}}
+            {{#if minimum_age ~}}
+            <strong>Minimum age: </strong> {{{minimum_age}}}<br />
+            {{/if ~}}
+            {{#if maximum_age ~}}
+            {{#compare maximum_age "<=" 26}}
+            <strong>Maximum age: </strong> {{{maximum_age}}}<br />
+            {{/compare}}
+            {{/if ~}}
+          </p>
+          {{/ifAny ~}}
+
+          {{#ifAny travel_expenses expenses_paid taster_available taster_details support_options ~}}
+          <h4 class="mdc-typography--headline6">Support</h4>
+          <p class="mdc-typography--body1">
+            {{#if expenses_paid ~}}
+            <strong>Expenses paid: </strong> {{#compare expenses_paid "===" true}}Yes{{else}}No{{/compare}}<br />
+            {{/if ~}}
+            {{#if travel_expenses ~}}
+            <strong>Expenses details: </strong> {{{travel_expenses}}}<br />
+            {{/if ~}}
+            {{#if taster_available ~}}
+            <strong>Taster available: </strong> {{#compare taster_available "===" true}}Yes{{else}}No{{/compare}}<br />
+            {{/if ~}}
+            {{#if taster_details ~}}
+            <strong>Taster details: </strong> {{{taster_details}}}<br />
+            {{/if ~}}
+            {{#if support_options ~}}
+            <strong>Support: </strong>
+            {{#compare (getType support_options) "===" "string" ~}}
+            {{{support_options}}}<br />
+            {{else}}
+            {{#each support_options ~}}
+            {{{this}}}{{#unless @last}}, {{/unless}}<br />
+            {{/each ~}}
+            {{/compare ~}}
+            {{/if ~}}
+          </p>
+          {{/ifAny ~}}
+
+          {{#unless opportunity_contact_email ~}}
+          <p class="mdc-typography--body1">You can't volunteer for this opportunity using this site. {{#if organisation_website}}Please contact the organisation directly using <a href="{{fixUrl organisation_website 'http'}}">{{{organisation_website}}}</a> for more information.{{/if}}</p>
+          {{/unless ~}}
+
+          {{#unless (compare view 'widget') ~}}
+          <div class="mdc-typography--body1 report pull-right">
+            <span class="fas fa-flag fa-fw" title="Report this opportunity"></span>
+            <a href="mailto:milosupport@scvo.org.uk?subject=Report%20opportunity:%20{{urlencode title}}%20({{urlencode milo_ref}})%20via%20Volunteer%20Scotland%20Search&body=I%20would%20like%20to%20report%20this%20opportunity%20for%20the%20following%20reasons:">Report this opportunity</a>
+          </div>
+          {{/unless ~}}
+
+          {{#unless (compare view 'widget') ~}}
+          <div class="mdc-typography--body2 last-modified">
+            <span class="far fa-calendar-alt" aria-hidden="true"></span>
+            <span title="Updated on {{momentFormat (moment date_last_modified "x") "YYYY-MM-DD hh:mm"}}">Last updated {{momentFromNow date_last_modified}}</span>
+          </div>
+          {{/unless ~}}
+        </div>
+      </div>
+
+      {{#unless (compare view 'widget') ~}}
+      <div class="panel mdc-card--full-content" role="tabpanel" aria-hidden="true" data-tab-name="notes">
+        <div class="text-field-container user-notes">
+          {{#if @root.data.auth ~}}
+          <form action="/save-notes" method="POST" data-ajax-form='{"successMessage": "Notes saved","failureMessage": "Failed to save notes","successCallback": "notesSaved","id": "{{Id}}"}'>
+            <div>
+              <textarea class="mdc-text-field__input" data-simple-mde='{
+                "forceSync": true,
+                "toolbar": ["heading-1", "heading-2", "bold", "italic", "|", "unordered-list", "ordered-list", "link"]
+              }' name="notes" id="notes-{{Id}}" data-id="{{Id}}">{{getProperty @root.data.profileInfo.notes Id}}</textarea>
+              <input type="hidden" name="id" value="{{Id}}">
+            </div>
+            <div class="save-button-block">
+              <button type="submit" class="mdc-button mdc-button--raised">
+                <span class="far fa-save mdc-list-item__graphic" aria-hidden="true"></span>
+                Save notes
+              </button>
+              <button type="button" class="mdc-button mdc-button--raised mdc-button--warning" id="delete-notes-{{Id}}" data-id="{{Id}}" data-ajax-button='{"url": "/delete-notes","method": "POST","successMessage": "Notes deleted","failureMessage": "Failed to delete notes","successCallback": "clearNotes","postBody": { "id": "{{Id}}"}}'{{#unless (getProperty @root.data.profileInfo.notes Id)}} disabled{{/unless}}>
+                <span class="far fa-remove mdc-list-item__graphic" aria-hidden="true"></span>
+                Delete notes
+              </button>
+              <div class="mdc-typography--caption">
+                Any notes you write here are private on your account and are not shared with {{organisation_name}}. Read our <a href="/privacy" target="_blank">privacy notice</a>.
+              </div>
+            </div>
+          </form>
+          {{else}}
+          <div class="detailed-info">
+            <p class="mdc-typography--body1">
+              If you <a href="/sign-up">sign up</a>, you can private write notes here.
+              <a href="/sign-in">Sign in</a> if you already have a My Volunteer account.
+            </p>
+          </div>
+          {{/if ~}}
+        </div>
+      </div>
+      {{/unless ~}}
+
+      {{#compare view 'widget' ~}}
+      {{#if @root.request.headers.widget-disable-mva ~}}
+      {{#ifAny opportunity_contact_first_name opportunity_contact_last_name ~}}
+      <p class="t-margin-full mdc-typography--body1">
+        <strong>Contact name:</strong> {{opportunity_contact_first_name}} {{opportunity_contact_last_name}}
+      </p>
+      {{/ifAny}}
+      {{#if opportunity_contact_email ~}}
+      <a href="mailto:{{opportunity_contact_email}}?subject=Re:%20{{milo_ref}}" class="register-interest mdl-button mdl-button--raised mdl-button--colored">
+        <span class="material-icons icon-left" aria-hidden="true">email</span>
+        <span class="underline">I want to volunteer</span>
+      </a>
+      {{else}}
+      {{#if opportunity_contact_phone ~}}
+      <p class="mdc-typography--body1">
+        <strong>Contact phone:</strong> {{{opportunity_contact_phone}}}
+      </p>
+      {{/if ~}}
+      {{/if ~}}
+      {{else}}
+      <a href="https://search.volunteerscotland.net/register-interest/{{Id}}/{{title_slug}}?utm_source={{default (urlencode (replace (replace @root.request.headers.referer 'http://' '') 'https://' '')) 'widget'}}&utm_campaign=search&utm_medium=widget" class="register-interest mdl-button mdl-button--raised mdl-button--colored v-margin-full" target="_blank">
+        <span class="material-icons icon-left" aria-hidden="true">open_in_new</span>
+        <span class="underline">I want to volunteer</span>
+      </a>
+      {{/if ~}}
+      {{/compare ~}}
+
+      <div{{#unless (compare view 'widget')}} class="panel mdc-card--full-content" role="tabpanel" aria-hidden="true" data-tab-name="location"{{/unless}}>
+        <div class="location-info">
+          {{#compare (length (arrayify geo_coords)) ">" 0 ~}}
+          {{#compare view "widget" ~}}
+          <h4 class="mdc-typography--headline6">Location</h4>
+          <div class="map-results v-margin-full" data-component="LeafletMap" data-LeafletMap='{{#json}}
+            {{#json key="points" type="array"}}{{/json}},
+            {{#json key="mapOptions"}}
+              {{{json key="fullscreenControl" value=true}}},
+              {{{json key="scrollWheelZoom" value=false}}},
+              {{{json key="trackResize" value=false}}}
+            {{/json}},
+            {{#json key="initialLatLng"}}
+              {{{json key="lat" value=55.94528820000001}}},
+              {{{json key="lng" value=-3.200755699999945}}}
+            {{/json}},
+            {{{json key="initialZoom" value=9}}},
+            {{#ifAll @root.request.params.query.lat @root.request.params.query.lng @root.request.params.query.distance}}
+              {{#json key="featureGroups" type="array"}}
+                {{#json}}
+                  {{{json key="boundToThis" value=true}}},
+                  {{#json key="features" type="array"}}
+                    {{#json}}
+                      {{{json key="type" value="Circle"}}},
+                      {{#json key="latLng"}}
+                        {{{json key="lat" value=@root.request.params.query.lat}}},
+                        {{{json key="lng" value=@root.request.params.query.lng}}}
+                      {{/json}},
+                      {{#json key="options"}}
+                        {{{json key="radius" value=(multiply @root.request.params.query.distance 1609.344)}}}
+                      {{/json}}
+                    {{/json}}
+                  {{/json}}
+                {{/json}}
+              {{/json}},
+            {{/ifAll}}
+            {{#json key="markerClusterGroups" type="array"}}
+              {{#json}}
+                {{#json key="options"}}
+                  {{{json key="showCoverageOnHover" value=false}}}
+                {{/json}},
+                {{{json key="boundToThis" value=true}}},
+                {{#json key="markers" type="array"}}
+                  {{#each (arrayify geo_coords) ~}}
+                    {{#json}}
+                      {{#json key="latLng"}}
+                        {{{json key="lat" value=lat}}},
+                        {{{json key="lng" value=lon}}}
+                      {{/json}},
+                      {{#json key="popupContent" type="string"~}}
+                        <h4>{{../organisation_name}}</h4>
+                        <p>Postcode: {{itemAt (arrayify (split ../postcode ",")) @index}}</p>
+                        <p>{{../title}}</p>
+                      {{~/json}},
+                      {{#json key="options"}}
+                        {{{json key="title" value=(replace ../title "'" "&apos;")}}}
+                      {{/json}}
+                    {{/json}},
+                  {{/each ~}}
+                {{/json}}
+              {{/json}}
+            {{/json}}
+          {{/json}}'></div>
+          {{else}}
+          <div class="container-content container-map">
+            <div id="map-content-primary" data-map-name="opportunityMap" data-map-clustered-options='{}'>
+              {{#each (arrayify geo_coords) ~}}
+              <marker style="display:none;" data-map="opportunityMap" data-lat="{{lat}}" data-lng="{{lon}}" data-title="{{../organisation_name}} - {{../title}}">
+                <h4 class="mdc-typography--headline7">{{../organisation_name}}</h4>
+                {{#if (itemAt (arrayify (split ../postcode ",")) @index) ~}}
+                <div class="mdc-typography--body2 v-margin">
+                  Postcode: {{itemAt (arrayify (split ../postcode ",")) @index}}
+                </div>
+                {{/if ~}}
+                <p class="mdc-typography--body2">{{../title}}</p>
+              </marker>
+              {{/each ~}}
+            </div>
+          </div>
+          {{/compare ~}}
+          {{#compare advertised_areas.length ">" 0 ~}}
+          <div class="detailed-info">
+            <p class="mdc-typography--body1">
+              This opportunity is also advertised across
+              {{#compare (getType advertised_areas) "string" ~}}
+              {{{advertised_areas}}}.
+              {{else}}
+              {{#each advertised_areas ~}}
+              {{#if @last}} and {{/if}}{{{this}}}{{#unless @last}}{{#compare ../advertised_areas.length ">" 2}},{{/compare}} {{else}}.{{/unless}}
+              {{/each ~}}
+              {{/compare ~}}
+            </p>
+          </div>
+          {{/compare ~}}
+          {{else}}
+          <div class="container-content detailed-info">
+            <p class="mdc-typography--body1">
+              {{#compare advertised_areas.length ">" 0 ~}}
+              This opportunity is not listed at a specific location but is advertised across
+              {{#compare (getType advertised_areas) "string" ~}}
+              {{{advertised_areas}}}.
+              {{else}}
+              {{#each advertised_areas ~}}
+              {{#if @last}} and {{/if}}{{{this}}}{{#unless @last}}{{#compare ../advertised_areas.length ">" 2}},{{/compare}} {{else}}.{{/unless}}
+              {{/each ~}}
+              {{/compare ~}}
+              {{else}}
+              This opportunity is not listed at a specific location.
+              {{/compare ~}}
+            </p>
+          </div>
+          {{/compare ~}}
+        </div>
+      </div>
+    </div>
+
+    {{#unless (compare view 'widget') ~}}
+    {{> opportunity_actions slug=slug Id=Id action="organisation"}}
+    {{/unless ~}}
+  </div>
+</div>
+<script>
+function clearNotes(data) {
+  $('#notes-' + this.request.data.id)[0].mde.value('');
+  this.$button.prop('disabled', true);
+}
+function notesSaved(evt, data) {
+  // console.log('notesSaved Arguments:', arguments);
+  $('#delete-notes-' + data.id).prop('disabled', false);
+}
+window.opportunityId = '{{Id}}';
+</script>

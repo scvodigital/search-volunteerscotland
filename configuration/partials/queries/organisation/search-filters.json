@@ -1,0 +1,32 @@
+{{#ifAny regions location home_based ~}}
+{
+  "bool": {
+    "should": [
+      {{#if regions ~}}
+        {{>queries_terms field="region_group_slug" terms=regions}},
+      {{/if ~}}
+      {{#ifAll location lat lng distance ~}}
+        {
+          "geo_distance": {
+            "distance": "{{default distance "10"}}mi",
+            "geo_coords": {
+              "lat": {{lat}},
+              "lon": {{lng}}
+            }
+          }
+        },
+      {{/ifAll ~}}
+      {{>queries_do_nothing}}
+    ],
+    "minimum_should_match": 2
+  }
+},
+{{/ifAny ~}}
+{{#if organisation_activities ~}}
+  {{>queries_terms field="main_activities_global_slugs" terms=organisation_activities}},
+{{/if ~}}
+{{>queries_bounding_box}},
+{{#if @root.request.headers.widget-tsi ~}}
+{{>queries_term field="tsi_name_slug" term=@root.request.headers.widget-tsi}},
+{{/if ~}}
+{{>queries_do_nothing}}

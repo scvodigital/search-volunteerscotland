@@ -1,0 +1,25 @@
+{
+  "name": "detect-legacy-user",
+  "pattern": "/detect-legacy-user",
+  "debug": false,
+  "tasks": [
+    {
+      "name": "getUser",
+      "taskModule": "firebaseGetUser",
+      "config": {
+        "appName": "volunteerscotland-search",
+        "userIdentifier": ">request.params.query.email"
+      }
+    },
+    {
+      "name": "destination",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "template": "{ \"legacy_user\" : {{#unless @root.data.getUser}}false{{else}}{{{stringify (compare @root.data.getUser.metadata.lastSignInTime '===' null)}}}{{/unless}} }",
+        "output": "body",
+        "parseJson": true
+      }
+    }
+  ]
+}

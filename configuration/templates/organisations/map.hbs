@@ -1,0 +1,51 @@
+<div id="detailed-results-container" class="container-content content-primary-search container-map">
+  <div class="mdc-layout-grid head">
+    <div class="mdc-layout-grid__inner">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone action">
+        {{#> components_tab_bar}}
+          {{> search_button}}
+          {{> components_tab url=(concat "/organisations/search" (if (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null) "") "" else="?") (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)) iconClasses="far fa-list fa-fw" label="List" active=(compare @root.request.url.pathname "===" "/organisations/search")}}
+          {{> components_tab url=(concat "/organisations/map" (if (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null) "") "" else="?") (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)) iconClasses="far fa-map-marker-alt fa-fw" label="Map" active=(compare @root.request.url.pathname "===" "/organisations/map")}}
+        {{/components_tab_bar}}
+      </div>
+    </div>
+  </div>
+
+  {{#if @root.data.search_data.map_results.pagination.totalResults ~}}
+  <div class="card-loader" id="opportunity-map-loader" style="display: flex">
+    <div class="card-loader-inner">
+      <span class="far fa-2x fa-spinner-third fa-spin"></span>
+    </div>
+  </div>
+  <div id="map-full" data-map-name="fullMap" class="grid-content" data-map-clustered-options='{
+   {{#ifAll @root.request.params.query.distance @root.request.params.query.lat @root.request.params.query.lng ~}}
+    "circle": {
+      "lat": {{@root.request.params.query.lat}},
+      "lng": {{@root.request.params.query.lng}},
+      "radius": {{default (multiply @root.request.params.query.distance 1.60934) 0}},
+      "color": "#7BC143"
+    }
+  {{/ifAll ~}}
+  }'>
+    <!-- Markers for map -->
+    {{#each @root.data.search_data.map_results.hits.hits ~}}
+      {{#if _source.geo_coords ~}}
+        {{#each (arrayify _source.geo_coords) ~}}
+          <marker style="display:none;" data-map="fullMap" data-lat="{{lat}}" data-lng="{{lon}}" data-shortlisted="{{#each @root.data.favourites.items}}{{#compare id "===" ../../_source.Id}}true{{/compare}}{{/each}}" data-title="{{../_source.title}}">
+            {{>organisation_map ../_source}}
+          </marker>
+        {{/each}}
+      {{/if}}
+    {{/each}}
+  </div>
+  {{else}}
+    {{> search_info paging=@root.data.search_data.detailed_results.pagination}}
+  {{/if ~}}
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var $loader = $('#opportunity-map-loader');
+    $loader.css('display', 'none');
+  });
+</script>

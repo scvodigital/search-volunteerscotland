@@ -1,0 +1,22 @@
+{
+  "name": "store-profile-info",
+  "pattern": "/store-profile-info",
+  "debug": false,
+  "acceptedVerbs": "POST",
+  "defaultParams": {
+    "context": "results"
+  },
+  "tasks": [
+    "context.metaData.commonTasks.authRequired",
+    "context.metaData.commonTasks.storeProfile",
+    {
+      "name": "destination",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "body",
+        "template": "{\"success\": true}"
+      }
+    }
+  ]
+}

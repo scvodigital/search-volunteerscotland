@@ -1,0 +1,9 @@
+{{#json type='array'}}
+  {{#compare @root.request.body.opportunity_contact_via_organisation "===" "true"~}}
+  "register-interest",
+  {{/compare ~}}
+  {{#compare @root.request.body.opportunity_contact_via_tsi "===" "true"~}}
+  "register-interest-tsi",
+  {{/compare ~}}
+  "user-confirmation"
+{{/json}}

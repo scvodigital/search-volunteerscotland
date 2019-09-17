@@ -1,0 +1,27 @@
+{
+  "name": "toggle-subscription",
+  "pattern": "/toggle-subscription",
+  "debug": false,
+  "acceptedVerbs": "POST",
+  "tasks": [
+    "context.metaData.commonTasks.authRequired",
+    {
+      "name": "notifications",
+      "taskModule": "mysql",
+      "config": {
+        "connectionName": "volunteerscotland_notifications",
+        "queryTemplates": {
+          "toggle_subscription": ">context.metaData.handlebars.queries.notifications_toggle-subscription"
+        }
+      },
+      "renderer": "handlebars"
+    },
+    {
+      "name": "destination",
+      "taskModule": "redirect",
+      "config": {
+        "location": ">request.headers.referer"
+      }
+    }
+  ]
+}

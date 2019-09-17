@@ -1,0 +1,24 @@
+{
+  "name": "redirect-to-registered-interest",
+  "pattern": "/redirect-to-registered-interest",
+  "tasks": [
+    {
+      "name": "generate_url",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "template": "{{#if data.auth}}registered-interest?id={{{request.body.opportunity_id}}}{{else}}register-interest/{{request.body.opportunity_id}}/{{request.body.opportunity_title_slug}}?applied=true{{/if}}"
+      }
+    },
+    {
+      "name": "destination",
+      "taskModule": "redirect",
+      "config": {
+        "location": ">data.generate_url",
+        "statusCode": 302
+      }
+    }
+  ]
+}
+

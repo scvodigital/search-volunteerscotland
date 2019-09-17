@@ -1,0 +1,39 @@
+{
+  "name": "remove-newsletter-subscription",
+  "pattern": "/remove-newsletter-subscription/:list_ids",
+  "debug": false,
+  "acceptedVerbs": "GET",
+  "defaultParams": {
+    "context": "results"
+  },
+  "tasks": [
+    "context.metaData.commonTasks.authNotRequired",
+    {
+      "name": "templateOpts",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "template": ">context.metaData.handlebars.templates.newsletters_remove-subscriptions",
+        "output" : "data",
+        "parseJson" : true
+      }
+    },
+    {
+      "name": "remove-subscription",
+      "taskModule": "request",
+      "config": {
+        "optionsTemplates": ">data.templateOpts"
+      },
+      "renderer": "handlebars"
+    },
+    {
+      "name": "destination",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "body",
+        "template": "Removed Subscription"
+      }
+    }
+  ]
+}

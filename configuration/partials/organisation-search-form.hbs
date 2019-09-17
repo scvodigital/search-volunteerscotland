@@ -1,0 +1,102 @@
+{{#*inline "term_filter"}}
+  <h3 class="mdc-drawer__content-heading cursor-pointer noselect mdc-drawer--occasional-ie11" data-checkbox-collapse-target="#{{../instance_id}}-{{type}}-collapse" role="button" aria-pressed="false" aria-label="Show {{getProperty @root.context.metaData.termTypeLabels (concat type ".plural")}}" tabindex="0">
+    {{getProperty @root.context.metaData.termTypeLabels (concat type ".plural")}}
+    <span class="mdc-icon-toggle pull-right">
+      <span class="far fa-chevron-down" aria-hidden="true"></span>
+    </span>
+  </h3>
+  <div class="mdc-drawer--occasional-ie11 checkbox-toggle-display-checked" id="{{../instance_id}}-{{type}}-collapse" >
+    {{#each (getProperty @root.data.organisationSupplimentary.types.aggregations (concat type "_slugs.buckets")) ~}}
+      {{#if key ~}}
+        {{> term_checkbox slug=key field=../type selected=(getProperty @root.request.params.query ../type) instance_id=../../instance_id value=(lookup (getProperty @root.data.organisationSupplimentary.types.aggregations (concat ../type ".buckets")) @index)}}
+      {{/if ~}}
+    {{/each ~}}
+  </div>
+{{/inline}}
+
+{{#*inline "term_checkbox"}}
+  <div class="mdc-form-field">
+    <div class="mdc-checkbox">
+      <input type="checkbox" class="mdc-checkbox__native-control" id="{{instance_id}}_{{field}}_{{slug}}" name="{{#compare field "===" "type"}}{{field}}{{else}}{{field}}[]{{/compare}}" value="{{slug}}"{{#if (contains (arrayify selected) slug)}} checked{{/if}} />
+      <div class="mdc-checkbox__background">
+        <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+        <path class="mdc-checkbox__checkmark-path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"/></svg>
+        <div class="mdc-checkbox__mixedmark"></div>
+      </div>
+    </div>
+    <label for="{{instance_id}}_{{field}}_{{slug}}">
+      {{{default value.key value}}}
+    </label>
+  </div>
+{{/inline}}
+
+<div class="mdc-drawer__content">
+  <form action="/{{#compare @root.request.url.pathname "organisations/map"}}organisations/map{{else}}organisations/search{{/compare}}" method="GET" class="search-form" novalidate>
+    <div class="h-padding-full">
+      <input type="hidden" name="sort" value="{{@root.request.params.query.sort}}" id="{{instance_id}}-sort">
+      <div class="">
+        <div class="mdc-layout-grid__inner">
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+            <div class="mdc-text-field mdc-text-field--box mdc-text-field--with-leading-icon" data-mdc-auto-init="MDCTextField" style="z-index:5;">
+              <span class="fas fa-map-marker-alt mdc-text-field__icon geo-lookup" tabindex="0" title="Find my location" role="button" style="pointer-events: initial !important;"></span>
+              <input type="text" id="{{instance_id}}-location" name="location" class="mdc-text-field__input mdc-text-field--fullwidth search-location" value="{{#ifAll @root.request.params.query.lat @root.request.params.query.lng}}{{@root.request.params.query.location}}{{/ifAll}}" placeholder="" data-lpignore="true" data-location-search='{
+                  "latSelector": "[name=\"lat\"]",
+                  "lngSelector": "[name=\"lng\"]",
+                  "locationServicesSelector": ".geo-lookup"
+                }'>
+              <label class="mdc-floating-label" for="{{instance_id}}-location">
+                Location
+              </label>
+              <div class="mdc-line-ripple"></div>
+            </div>
+          </div>
+        </div>
+        <div class="mdc-layout-grid__inner">
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+            <div class="mdc-select" data-mdc-auto-init="MDCSelect">
+              <span class="mdc-select__dropdown-icon"></span>
+              <select class="mdc-select__native-control" id="distance" name="distance">
+                {{#each (split "5,10,15,20,25,30,35,40,45,50" ",")}}
+                  <option value="{{this}}" {{#compare (default @root.request.params.query.distance "10") "===" this}}selected{{/compare}}>{{this}} miles</option>
+                {{/each}}
+              </select>
+              <label class="mdc-floating-label mdc-select__label--float-above" for="distance">
+                Within
+              </label>
+              <div class="mdc-line-ripple"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <input type="hidden" name="lat" value="{{@root.request.params.query.lat}}">
+      <input type="hidden" name="lng" value="{{@root.request.params.query.lng}}">
+
+      <!-- <div class="h-padding">
+        <strong>Refine by</strong>
+      </div> -->
+
+      <div class="">
+        <div class="mdc-text-field mdc-text-field--box mdc-text-field--with-trailing-icon" data-mdc-auto-init="MDCTextField">
+          <input type="text" id="{{instance_id}}-keywords" name="keywords" class="mdc-text-field__input mdc-text-field--fullwidth" value="{{@root.request.params.query.keywords}}" data-lpignore="true" autocomplete="off">
+          <label class="mdc-floating-label" for="keywords">
+            Keywords
+          </label>
+          <div class="mdc-line-ripple"></div>
+          <span class="fas fa-search active-search-icon mdc-text-field__icon" role="button" onclick=" $(this).parents('form:first').submit();" style="pointer-events: initial !important; z-index: 500;" tabindex="-1"></span></a>
+        </div>
+      </div>
+
+      {{#each (split "organisation_activities" ",") ~}}
+        {{> term_filter type=this instance_id=instance_id ~}}
+      {{/each ~}}
+
+      <div class="mdc-drawer--occasional-ie11">
+        <button class="mdc-button mdc-button--raised mdc-button--large mdc-button--fullwidth mdc-ripple-surface mdc-ripple-surface--primary" type="submit" id="{{instance_id}}-search-submit" data-mdc-auto-init="MDCRipple">
+          Search
+          <span class="far fa-search fa-fw" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,157 @@
+<div class="{{#compare view 'widget'}}x-padding-full{{else}}mdc-card{{/compare}} full content-secondary" data-organisation-id="{{Id}}">
+  {{#compare view 'widget' ~}}
+  <div class="">
+    {{#ifAny @root.request.params.query.page @root.request.params.query.keywords @root.request.params.query.location @root.request.params.query.organisation_activities ~}}
+    <a href="#/organisations-all/search{{> query_search}}" class="pull-left mdl-button b-margin-full">
+      <span class="material-icons icon-left" aria-hidden="true">arrow_back_ios</span>
+      Back to results
+    </a>
+    {{/ifAny ~}}
+    {{!-- <a href="https://search.volunteerscotland.net/organisation-pdf/{{Id}}/{{title_slug}}?view=widget" class="pull-right mdl-button b-margin-full" download>
+    Print
+    <span class="material-icons icon-right" aria-hidden="true">print</span>
+    </a> --}}
+    <div style="clear:both;" />
+  </div>
+  {{/compare ~}}
+  <div class="mdc-card__info--content-secondary-row">
+    <div class="mdc-card__info--content-secondary">
+      {{#if goodhq_organisation.image_url ~}}
+      <div class="mdc-card__media mdc-card__media--content-secondary">
+        <img src="{{goodhq_organisation.image_url}}" alt="{{title}}" />
+      </div>
+      {{/if ~}}
+      <h2 class="mdc-card__info--content-secondary-title mdc-typography--headline3">
+        {{{title}}}
+      </h2>
+      {{#if rendered.charity_info ~}}
+      {{{rendered.charity_info}}}
+      {{/if ~}}
+
+      <div class="detailed-info">
+        {{#ifAny description description_html ~}}
+        <div class="mdc-typography--body1 v-margin">
+          {{#if description_html}}{{{description_html}}}{{else}}{{{replace (replace description "\r\n" "<br />") "\n" "<br />"}}}{{/if}}
+        </div>
+        {{/ifAny ~}}
+      </div>
+      <div class="key-info-extra">
+        <ul class="fa-ul">
+          {{#compare (length main_activities_global) ">" 0 ~}}
+          <li class="mdc-card__info--content-primary-work-type reference mdc-typography--body1">
+            {{#compare view 'widget' ~}}
+            {{#each main_activities_global ~}}
+            {{{this}}}{{#unless @last}}, {{/unless}}
+            {{/each ~}}
+            {{else}}
+            <span class="fa-li"><span class="far fa-briefcase fa-fw" title="Activities"></span></span>
+            {{#each main_activities_global ~}}
+            <a href="/organisations/search?organisation_activities%5B%5D={{urlencode (slugify (replace this "/" "-"))}}">{{{this}}}</a>{{#unless @last}}, {{/unless}}
+            {{/each ~}}
+            {{/compare}}
+          </li>
+          {{/compare ~}}
+
+          {{#ifAny location_street location_city location_region ~}}
+          <li class="mdc-card__info--content-primary-work-type reference mdc-typography--body1">
+            {{#unless (compare view 'widget') ~}}
+            <span class="fa-li"><span class="far fa-map-marker-alt fa-fw" title="Location"></span></span>
+            {{/unless ~}}
+            {{#if location_street}}{{location_street}}, {{/if}}
+            {{#if location_city}}{{location_city}}, {{/if}}
+            {{#if location_region}}{{replace (replace location_region "City of " "") " City" ""}}, {{/if}}
+            {{#if location_postcode}}{{location_postcode}}{{/if}}
+          </li>
+          {{else}}
+          {{#if geo ~}}
+          <li class="mdc-card__info--content-primary-work-type reference mdc-typography--body1">
+            {{#unless (compare view 'widget') ~}}
+            <span class="fa-li"><span class="far fa-map-marker-alt fa-fw" title="Location"></span></span>
+            {{/unless ~}}
+            {{geo.admin_ward}}, {{replace (replace geo.admin_district "City of " "") " City" ""}}
+          </li>
+          {{/if ~}}
+          {{/ifAny ~}}
+
+          {{#if website ~}}
+          {{#compare website "!==" null ~}}
+          {{#compare website "!==" "http://" ~}}
+          <li class="mdc-card__info--content-secondary-website mdc-typography--body1">
+            {{#unless (compare view 'widget') ~}}
+            <span class="fa-li"><span class="far fa-link fa-fw" title="Website"></span></span>
+            {{/unless ~}}
+            <a href="{{fixUrl website "http"}}">{{website}}</a>
+          </li>
+          {{/compare ~}}
+          {{/compare ~}}
+          {{/if ~}}
+          {{#if twitter ~}}
+          {{#compare twitter "!==" null ~}}
+          {{#compare twitter "!==" "http://" ~}}
+          <li class="mdc-card__info--content-secondary-twitter mdc-typography--body1">
+            {{#unless (compare view 'widget') ~}}
+            <span class="fa-li"><span class="fab fa-twitter fa-fw" title="Twitter"></span></span>
+            {{/unless ~}}
+            <a href="{{#unless (contains twitter "twitter.com")}}https://twitter.com/{{/unless}}{{twitter}}">{{#unless (contains twitter "@")}}@{{/unless}}{{replace twitter "https://twitter.com/" ""}}</a>
+          </li>
+          {{/compare ~}}
+          {{/compare ~}}
+          {{/if ~}}
+          {{#if facebook ~}}
+          {{#compare facebook "!==" null ~}}
+          {{#compare facebook "!==" "http://" ~}}
+          <li class="mdc-card__info--content-secondary-facebook mdc-typography--body1">
+            {{#unless (compare view 'widget') ~}}
+            <span class="fa-li"><span class="fab fa-facebook fa-fw" title="Facebook"></span></span>
+            {{/unless ~}}
+            <a href="{{fixUrl facebook "http"}}">{{facebook}}</a>
+          </li>
+          {{/compare ~}}
+          {{/compare ~}}
+          {{/if ~}}
+          {{#if linkedin ~}}
+          {{#compare linkedin "!==" null ~}}
+          {{#compare linkedin "!==" "http://" ~}}
+          <li class="mdc-card__info--content-secondary-linkedin mdc-typography--body1">
+            {{#unless (compare view 'widget') ~}}
+            <span class="fa-li"><span class="fab fa-linkedin fa-fw" title="LinkedIn"></span></span>
+            {{/unless ~}}
+            <a href="{{fixUrl linkedin "http"}}">{{linkedin}}</a>
+          </li>
+          {{/compare ~}}
+          {{/compare ~}}
+          {{/if ~}}
+
+          {{#if goodhq_organisation ~}}
+          {{#compare goodhq_organisation.xid "!==" null ~}}
+          <li class="mdc-card__info--content-secondary-goodhq mdc-typography--body1">
+            {{#unless (compare view 'widget') ~}}
+            <span class="fa-li"><span class="far fa-heart fa-fw" title="Good HQ"></span></span>
+            {{/unless ~}}
+            <a href="https://goodhq.org/{{goodhq_organisation.xid}}">@{{goodhq_organisation.xid}}</a>
+            {{#compare goodhq_organisation.status "===" "Open" ~}}
+            <a href="https://goodhq.org/{{goodhq_organisation.xid}}?mode=reviews" class="no-underline">{{> goodhq_heart_rating stars=goodhq_organisation.stars}}</a>
+            {{#compare @root.data.goodhq.reviews.hits.total ">" 0 ~}}
+            from <a href="https://goodhq.org/{{goodhq_organisation.xid}}?mode=reviews">{{inflect @root.data.goodhq.reviews.hits.total "review" "reviews" true}}</a> {{#compare @root.data.goodhq.posts.hits.total ">" 0}} and {{/compare ~}}
+            {{/compare ~}}
+            {{#compare @root.data.goodhq.posts.hits.total ">" 0 ~}}
+            <a href="https://goodhq.org/{{goodhq_organisation.xid}}?mode=posts">{{inflect @root.data.goodhq.posts.hits.total "post" "posts" true}}</a>
+            {{/compare ~}}
+            {{/compare ~}}
+            on
+            <a href="https://goodhq.org/{{goodhq_organisation.xid}}">Good HQ</a>
+          </li>
+          {{/compare ~}}
+          {{/if ~}}
+
+          {{#unless (compare view 'widget') ~}}
+          <li class="mdc-card__info--content-secondary-report report mdc-typography--body1">
+            <span class="fa-li"><span class="fas fa-flag fa-fw" title="Report this organisation"></span></span>
+            <a href="mailto:milosupport@scvo.org.uk?subject=Report%20on%20organisation:%20{{urlencode title}},%20via Volunteer%20Scotland%20Search&body=I%20would%20like%20to%20report%20this%20organisation%20for%20the%20following%20reasons:">Report this organisation</a>
+          </li>
+          {{/unless ~}}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

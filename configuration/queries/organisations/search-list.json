@@ -1,0 +1,73 @@
+{
+  "size": 12,
+  "from": {{multiply (subtract (default @root.request.params.query.page 1) 1) 12}},
+  "_source": [
+    "Id",
+    "slug",
+    "charity_number",
+    "title",
+    "title_slug",
+    "alias",
+    "description",
+    "postcode",
+    "og_summary",
+    "goodhq_organisation",
+    "geo",
+    "geo_coords",
+    "has_logo",
+    "logo_url",
+    "facebook",
+    "twitter",
+    "website",
+    "website_url",
+    "rendered.json_ld"
+  ],
+  "query": {
+    "bool": {
+      "filter": [
+        {{>queries_organisation_common_filters @root.request.params.query}},
+        {{>queries_organisation_search_filters @root.request.params.query}}
+      ],
+      "must": [
+        {{>queries_organisation_search_must @root.request.params.query}}
+      ],
+      "must_not": [
+        {{>queries_organisation_search_must_not @root.request.params.query}}
+      ],
+      "should": [
+        {{>queries_organisation_search_should @root.request.params.query}}
+      ],
+      "minimum_should_match": 0
+    }
+  },
+  "sort": [
+    {{#if @root.request.params.query.keywords ~}}
+      {{#compare @root.request.params.query.sort "===" "distance" ~}}
+        {{#ifAll @root.request.params.query.location @root.request.params.query.lat @root.request.params.query.lng ~}}
+          {
+            "_geo_distance": {
+              "geo_coords": {
+                "lat": {{@root.request.params.query.lat}},
+                "lon": {{@root.request.params.query.lng}}
+              },
+              "order": "asc",
+              "unit": "mi",
+              "mode": "min",
+              "distance_type": "arc"
+            }
+          }
+        {{else}}
+          "_score"
+        {{/ifAll ~}}
+      {{else}}
+        {{#compare @root.request.params.query.sort "===" "relevance" ~}}
+          "_score",
+        {{/compare ~}}
+      {{/compare ~}}
+    {{else}}
+      {
+        "date_last_modified": "desc"
+      }
+    {{/if ~}}
+  ]
+}

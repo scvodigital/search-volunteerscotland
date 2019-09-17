@@ -1,0 +1,146 @@
+{
+  "main": [
+    {
+      "label": "Find opportunities",
+      "icon": "search",
+      "path": "/search",
+      "route": "^/(?!searches)(search)|^/map|^/opportunity|^/opportunities-in"
+    },
+    {
+      "label": "Find organisations",
+      "icon": "list-alt",
+      "path": "/organisations/search",
+      "route": "^/organisation"
+    }
+  ],
+  "upper": [
+    {
+      "label": "Home",
+      "icon": "home",
+      "path": "https://www.volunteerscotland.net",
+      "route": "^https://www.volunteerscotland.net"
+    },
+    {
+      "label": "About Us",
+      "icon": "info-circle",
+      "path": "https://www.volunteerscotland.net/about-us",
+      "route": "^https://www.volunteerscotland.net/about-us"
+    }
+  ],
+  "user-not-signed-in": [
+    {
+      "label": "Sign in",
+      "icon": "sign-in-alt",
+      "path": "/sign-in",
+      "route": "^/sign-in"
+    },
+    {
+      "label": "Sign up",
+      "icon": "user-plus",
+      "path": "/sign-up",
+      "route": "^/sign-up"
+    }
+  ],
+  "user-signed-in": [
+    {
+      "label": "My saved searches",
+      "icon": "search-plus",
+      "path": "/searches",
+      "route": "^/searches"
+    },
+    {
+      "label": "My favourites",
+      "icon": "heart",
+      "path": "/favourites",
+      "route": "^/favourites"
+    },
+    {
+      "label": "My notes",
+      "icon": "edit",
+      "path": "/notes",
+      "route": "^/notes"
+    },
+    {
+      "label": "Registered interest",
+      "icon": "envelope-open-text",
+      "path": "/registered-interest",
+      "route": "^/registered-interest"
+    },
+    {
+      "label": "Newsletters",
+      "icon": "newspaper",
+      "path": "/newsletters",
+      "route": "^/newsletters"
+    },
+    {
+      "label": "My account",
+      "icon": "cog",
+      "path": "/account",
+      "route": "^/account"
+    },
+    {
+      "label": "Sign out",
+      "icon": "sign-out-alt",
+      "path": "/sign-out",
+      "route": "^/sign-out"
+    }
+  ],
+  "footer-cookies-terms": [
+    {
+      "label": "Volunteer Scotland Charter",
+      "path": "https://www.volunteerscotland.net/terms-conditions/charter/",
+      "route": "^https://www.volunteerscotland.net/terms-conditions/charter/"
+    },
+    {
+      "label": "Privacy notice",
+      "path": "/privacy",
+      "route": "/privacy"
+    },
+    {
+      "label": "Cookies policy",
+      "path": "/cookies",
+      "route": "^/cookies"
+    },
+    {
+      "label": "Terms &amp; conditions",
+      "path": "https://www.volunteerscotland.net/terms-conditions/",
+      "route": "^https://www.volunteerscotland.net/terms-conditions/"
+    },
+    {
+      "label": "Charter text",
+      "path": "https://www.volunteerscotland.net/terms-conditions/charter-text/",
+      "route": "https://www.volunteerscotland.net/terms-conditions/charter-text/"
+    }
+  ],
+  "footer-contact" : [
+    {
+      "label": "Contact us",
+      "icon": "at",
+      "path": "https://www.volunteerscotland.net/about-us/contact-us/",
+      "route": "^https://www.volunteerscotland.net/about-us/contact-us/"
+    },
+    {
+      "label": "Sign up to hear from us",
+      "icon": "envelope",
+      "path": "https://www.volunteerscotland.net/about-us/contact-us/tick-to-hear-from-us",
+      "route": "^https://www.volunteerscotland.net/about-us/contact-us/tick-to-hear-from-us"
+    }
+  ],
+  "footer-info": [
+    {
+      "label": "Accessibility",
+      "path": "/accessibility",
+      "route": "^/accessibility"
+    },
+    {
+      "label": "Complaints procedure",
+      "path": "https://www.volunteerscotland.net/accessibility/complaints-procedure/",
+      "route": "^https://www.volunteerscotland.net/accessibility/complaints-procedure/"
+    },
+    {
+      "label": "Brand guidelines",
+      "path": "https://www.volunteerscotland.net/accessibility/brand-guidelines/",
+      "route": "^https://www.volunteerscotland.net/accessibility/brand-guidelines/"
+    }
+  ]
+}

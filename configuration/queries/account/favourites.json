@@ -1,0 +1,15 @@
+{
+  "size": 1000,
+  "_source": [
+    "Id",
+    "slug",
+    "title",
+    "organisation_name",
+    "end_date"
+  ],
+  "query": {
+    "ids": {
+      "values": {{{stringify (split (concat (map @root.data.favourites.items.[0] (getProp "value")) "," (getKeys @root.data.profileInfo.notes) "," @root.request.cookies.recently_viewed) ",")}}}
+    }
+  }
+}

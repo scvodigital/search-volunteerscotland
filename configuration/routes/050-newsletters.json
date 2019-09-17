@@ -1,0 +1,44 @@
+{
+  "name": "newsletters",
+  "pattern": "/newsletters",
+  "debug": false,
+  "metaData": {
+    "hideSearch": true,
+    "title": "Newsletters - Volunteer Scotland Search"
+  },
+  "defaultParams": {
+    "context": "results"
+  },
+  "tasks": [
+    "context.metaData.commonTasks.authRequired",
+    "context.metaData.commonTasks.allNewsletterInfo",
+    "context.metaData.commonTasks.profileInfoData",
+    "context.metaData.commonTasks.getRawUserSubscriptions",
+    "context.metaData.commonTasks.userNewsletterSubscriptions",
+    {
+      "name": "destination",
+      "taskModule": "renderLayout",
+      "renderer": "handlebars",
+      "config": {
+        "logic": {
+          "if": [
+            "default"
+          ]
+        },
+        "output": "body",
+        "layouts": {
+          "default": {
+            "layout": ">context.metaData.handlebars.layouts.default",
+            "parts": {
+              "head": ">context.metaData.handlebars.templates.pages_page-head-tags",
+              "body": ">context.metaData.handlebars.templates.account_newsletters",
+              "sidebar": ">context.metaData.handlebars.templates.account_sidebar"
+
+            },
+            "contentType": "text/html"
+          }
+        }
+      }
+    }
+  ]
+}

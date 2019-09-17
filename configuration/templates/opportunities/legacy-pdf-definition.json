@@ -1,0 +1,98 @@
+{
+  "pageSize": "A4",
+  "pageMargins": [30, 120, 30, 100],
+  "styles": {
+    "title": {
+      "fontSize": 20,
+      "bold": true
+    },
+    "subtitle": {
+      "fontSize": 16
+    },
+    "h1": {
+      "fontSize": 18,
+      "bold": true,
+      "margin": [0, 10, 0, 5]
+    },
+    "h2": {
+      "fontSize": 16,
+      "bold": true,
+      "margin": [0, 10, 0, 5]
+    },
+    "h3": {
+      "fontSize": 14,
+      "bold": true
+    }
+  },
+  "content": [
+    {
+      "_map": {
+        "_eval": "data.primaryResponse.hits.hits"
+      },
+      "each(x)": [{
+          "style": "h1",
+          "text": {
+            "_eval": "x._source.title"
+          }
+        },
+        {
+          "style": "h2",
+          "text": "Summary"
+        },
+        {
+          "text": {
+            "_eval": "x._source.description"
+          }
+        }
+      ]
+    },
+    {
+      "columns": [
+        {
+          "width": "33%",
+          "text": [
+            {
+              "text": "Contact Us\n",
+              "fontSize": 14,
+              "bold": true
+            }, {
+              "text": "@scvo.org.uk\n",
+              "link": "mailto:@scvo.org.uk",
+              "fontSize": 10
+            },
+            {
+              "text": "\n",
+              "link": "tel:",
+              "fontSize": 10
+            },
+            {
+              "text": "@",
+              "link": "https://twitter.com/",
+              "fontSize": 10
+            }
+          ]
+        },
+        {
+          "width": "66%",
+          "text": [
+            {
+              "text": "About Us\n",
+              "fontSize": 14,
+              "bold": true
+            },
+            {
+              "text": "Volunteer Scotland Search is run in partnership between Volunteer Scotland and the Scottish Council for Voluntary Organisations.\n",
+              "fontSize": 10
+            },
+            {
+              "text": "This website is maintained by the Scottish Council for Voluntary Organisations the umbrella body for Scotland\"s voluntary sector.\n",
+              "fontSize": 10
+            }
+          ]
+        }
+      ],
+      "margin": [30, 240]
+    }
+
+  ]
+}
