@@ -133,7 +133,7 @@
           </p>
           {{/ifAny ~}}
 
-          {{#ifAny travel_expenses expenses_paid taster_available taster_details support_options ~}}
+          {{#ifAny training_details travel_expenses expenses_paid taster_available taster_details support_options ~}}
           <h4 class="mdc-typography--headline6">Support</h4>
           <p class="mdc-typography--body1">
             {{#if expenses_paid ~}}
@@ -147,6 +147,9 @@
             {{/if ~}}
             {{#if taster_details ~}}
             <strong>Taster details: </strong> {{{taster_details}}}<br />
+            {{/if ~}}
+            {{#if training_details ~}}
+            <strong>Training details: </strong> {{{training_details}}}<br />
             {{/if ~}}
             {{#if support_options ~}}
             <strong>Support: </strong>
