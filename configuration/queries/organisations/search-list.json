@@ -20,6 +20,7 @@
     "twitter",
     "website",
     "website_url",
+    "membership_ref",
     "rendered.json_ld"
   ],
   "query": {

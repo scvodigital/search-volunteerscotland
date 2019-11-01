@@ -11,6 +11,9 @@
       {{/if ~}}
       {{/unless ~}}
       <h3 class="mdc-card__info--content-secondary-title mdc-typography--headline7">
+        {{#if membership_ref ~}}
+        <span class="tsi-member pull-right text-grey far fa-shield-check" title="Member of the local Third Sector Interface"></span>
+        {{/if ~}}
         <a href="{{#compare view 'widget' ~}}#/organisation-all{{else}}/organisation{{/compare}}/{{Id}}/{{title_slug}}{{> query_search}}">{{title}}</a>
       </h3>
       <div class="search-result-article__snippet mdc-typography--body1">

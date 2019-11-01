@@ -24,11 +24,19 @@
       <h2 class="mdc-card__info--content-secondary-title mdc-typography--headline3">
         {{{title}}}
       </h2>
+      {{#if membership_ref ~}}
+      <p class="organisation-type">
+        <small class="organisation-tsi-member">
+          <span class="tsi-member fa-fw far fa-shield-check"></span>
+          <abbr title="Third Sector Interface">TSI</abbr> member
+        </small>
+      </p>
+      {{/if ~}}
       {{#if rendered.charity_info ~}}
       {{{rendered.charity_info}}}
       {{/if ~}}
 
-      <div class="detailed-info">
+      <div class="detailed-info t-margin-full">
         {{#ifAny description description_html ~}}
         <div class="mdc-typography--body1 v-margin">
           {{#if description_html}}{{{description_html}}}{{else}}{{{replace (replace description "\r\n" "<br />") "\n" "<br />"}}}{{/if}}

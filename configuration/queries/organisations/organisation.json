@@ -32,6 +32,7 @@
     "linkedin_url",
     "website",
     "website_url",
+    "membership_ref",
     "rendered.json_ld",
     "rendered.charity_info"
   ],
