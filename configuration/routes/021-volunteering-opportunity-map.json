@@ -2,7 +2,6 @@
   "name": "volunteering_opportunity_map",
   "debug": false,
   "pattern": "/map",
-  "acceptedVerbs": "GET",
   "metaData": {
     "title": "Volunteer Scotland Search",
     "sidebarButton": {
