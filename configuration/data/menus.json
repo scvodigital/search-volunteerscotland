@@ -115,13 +115,13 @@
   "footer-contact" : [
     {
       "label": "Contact us",
-      "icon": "at",
+      "icon": "envelope",
       "path": "https://www.volunteerscotland.net/about-us/contact-us/",
       "route": "^https://www.volunteerscotland.net/about-us/contact-us/"
     },
     {
       "label": "Sign up to hear from us",
-      "icon": "envelope",
+      "icon": "newspaper",
       "path": "https://www.volunteerscotland.net/about-us/contact-us/tick-to-hear-from-us",
       "route": "^https://www.volunteerscotland.net/about-us/contact-us/tick-to-hear-from-us"
     }

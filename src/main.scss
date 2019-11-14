@@ -2727,12 +2727,10 @@ footer.mdc-layout__footer {
     }
   }
   .brand-logo.scvo {
-    filter: invert(100%);
     margin-right: $unit;
   }
   .brand-logo.vs {
-    filter: grayscale(100%);
-    filter: brightness(0%);
+    filter: grayscale(100%)brightness(0%);
   }
   .mdc-layout-grid {
     padding: 0;
