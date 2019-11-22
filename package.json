@@ -1,6 +1,6 @@
 {
   "name": "@scvo/search-volunteerscotland",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Site configuration and assets for search.volunteerscotland.net",
   "main": "index.js",
   "scripts": {
