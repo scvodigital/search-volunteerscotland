@@ -247,6 +247,12 @@
               </div>
               {{/if ~}}
 
+              {{#if organisation_contact_phone ~}}
+              <div class="mdc-typography--body1">
+                <strong>Phone: </strong> {{{organisation_contact_phone}}}
+              </div>
+              {{/if ~}}
+
               {{#if organisation_website ~}}
               <div class="mdc-typography--body1">
                 <strong>Website: </strong> <a href="{{fixUrl organisation_website 'http'}}">{{{organisation_website}}}</a>
@@ -275,6 +281,12 @@
                 {{#if tsi_contact_email ~}}
                   <div class="mdc-typography--body1">
                     <strong>Email: </strong> <a href="mailto:{{{tsi_contact_email}}}">{{{tsi_contact_email}}}</a>
+                  </div>
+                {{/if ~}}
+
+                {{#if tsi_contact_phone ~}}
+                  <div class="mdc-typography--body1">
+                    <strong>Phone: </strong> {{{tsi_contact_phone}}}
                   </div>
                 {{/if ~}}
               </div>
