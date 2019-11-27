@@ -29,6 +29,15 @@
 {{>queries_terms field="availability_slugs" terms=availability}},
 {{/if ~}}
 {{#if @root.request.headers.widget-tsi ~}}
-{{>queries_term field="local_authority_slug" term=(replace (replace @root.request.headers.widget-tsi '-city' '') 'western-isles' 'na-h-eileanan-siar')}},
+{
+  "bool": {
+    "should": [
+      {{>queries_term field="local_authority_slug" term=(replace (replace (replace @root.request.headers.widget-tsi '-city' '') '-islands' '') 'western-isles' 'na-h-eileanan-siar')}},
+      {{>queries_term field="advertised_areas_slugs" term=(replace (replace (replace @root.request.headers.widget-tsi '-city' '') '-islands' '') 'western-isles' 'na-h-eileanan-siar')}},
+      {{>queries_do_nothing}}
+    ],
+    "minimum_should_match": 2
+  }
+},
 {{/if ~}}
 {{>queries_do_nothing}}
