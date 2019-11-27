@@ -29,6 +29,6 @@
 {{>queries_terms field="availability_slugs" terms=availability}},
 {{/if ~}}
 {{#if @root.request.headers.widget-tsi ~}}
-{{>queries_term field="tsi_name_slug" term=@root.request.headers.widget-tsi}},
+{{>queries_term field="local_authority_slug" term=(replace (replace @root.request.headers.widget-tsi '-city' '') 'western-isles' 'na-h-eileanan-siar')}},
 {{/if ~}}
 {{>queries_do_nothing}}
