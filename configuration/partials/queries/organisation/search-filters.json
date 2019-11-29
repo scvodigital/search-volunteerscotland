@@ -27,6 +27,14 @@
 {{/if ~}}
 {{>queries_bounding_box}},
 {{#if @root.request.headers.widget-tsi ~}}
-{{>queries_term field="local_authority_slug" term=(replace (replace @root.request.headers.widget-tsi '-city' '') 'western-isles' 'na-h-eileanan-siar')}},
+{
+  "bool": {
+    "should": [
+      {{>queries_term field="tsi_area_slug" term=@root.request.headers.widget-tsi}},
+      {{>queries_term field="local_authority_slug" term=@root.request.headers.widget-tsi}}
+    ],
+    "minimum_should_match": 1
+  }
+},
 {{/if ~}}
 {{>queries_do_nothing}}

@@ -32,11 +32,11 @@
 {
   "bool": {
     "should": [
-      {{>queries_term field="local_authority_slug" term=(replace (replace (replace @root.request.headers.widget-tsi '-city' '') '-islands' '') 'western-isles' 'na-h-eileanan-siar')}},
-      {{>queries_term field="advertised_areas_slugs" term=(replace (replace (replace @root.request.headers.widget-tsi '-city' '') '-islands' '') 'western-isles' 'na-h-eileanan-siar')}},
-      {{>queries_do_nothing}}
+      {{>queries_term field="tsi_area_slug" term=@root.request.headers.widget-tsi}},
+      {{>queries_term field="local_authority_slug" term=@root.request.headers.widget-tsi}},
+      {{>queries_term field="advertised_areas_slugs" term=@root.request.headers.widget-tsi}}
     ],
-    "minimum_should_match": 2
+    "minimum_should_match": 1
   }
 },
 {{/if ~}}
