@@ -22,6 +22,9 @@
 {{#if services ~}}
 {{>queries_terms field="volunteersearch_support_option_slugs" terms=services}},
 {{/if ~}}
+{{#if age ~}}
+{{>queries_terms field="volunteersearch_age_slugs" terms=age}},
+{{/if ~}}
 {{#if age_groups ~}}
 {{>queries_terms field="volunteersearch_age_group_slugs" terms=age_groups}},
 {{/if ~}}
