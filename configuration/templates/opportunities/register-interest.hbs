@@ -13,7 +13,6 @@
           Thank you for registering interest in this opportunity.
         </div>
 
-
         <p class="mdc-typography--body1 t-margin-full">
           If you want to contact the organisation directly about this opportunity, please use the details below:
         </p>
@@ -27,6 +26,12 @@
         {{#if opportunity_contact_email ~}}
           <div class="mdc-typography--body1">
             <strong>Email:</strong> <a href="mailto:{{{opportunity_contact_email}}}">{{{opportunity_contact_email}}}</a>
+          </div>
+        {{/if ~}}
+
+        {{#if opportunity_contact_phone ~}}
+          <div class="mdc-typography--body1">
+            <strong>Phone:</strong> {{{opportunity_contact_phone}}}</a>
           </div>
         {{/if ~}}
 
