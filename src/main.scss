@@ -562,8 +562,11 @@ footer h3,
     font-weight: $heading-medium-font-weight;
   }
 }
-.mdc-tab__content.bg-error {
+.mdc-tab__content.bg-error,
+.bg-error {
   background-color: $brand-secondary-red;
+  p,
+  a,
   .mdc-tab__text-label {
     color: white!important;
   }
