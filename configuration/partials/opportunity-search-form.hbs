@@ -4,7 +4,7 @@
     <input type="hidden" name="search_la" value="{{@root.request.params.local_authority}}" />
     {{/if ~}}
     <input type="hidden" name="sort" value="{{@root.request.params.query.sort}}" id="{{instance_id}}-sort">
-    <input type="hidden" name="campaign" value="{{@root.request.params.query.sorcampaignt}}" id="{{instance_id}}-campaign">
+    <input type="hidden" name="campaign" value="{{@root.request.params.query.campaign}}" id="{{instance_id}}-campaign">
     {{#if @root.request.params.query.exclude ~}}
     {{#compare @root.request.params.query.exclude "!==" "" ~}}
     <input type="hidden" name="exclude" value="locations">
