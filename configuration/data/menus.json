@@ -9,6 +9,7 @@
     {
       "label": "Coronavirus volunteering",
       "icon": "search",
+      "class": "bg-error",
       "path": "/search?campaign=coronavirus",
       "route": "^$"
     },

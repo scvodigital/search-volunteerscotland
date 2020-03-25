@@ -114,6 +114,7 @@
                 {{#each @root.context.metaData.menus.upper ~}}
                   {{>components_tab
                       url=(stripTrailingSlash path)
+                      contentClasses=class
                       active=(regexMatch @root.request.url.pathname route "gi")
                       iconClasses=(if (compare icon "===" "home") "fas fa-home")
                       label=(if (compare icon "!==" "home") label)}}
@@ -156,6 +157,7 @@
                 {{#each @root.context.metaData.menus.main ~}}
                   {{>components_tab
                       url=(stripTrailingSlash path)
+                      contentClasses=class
                       labelClasses="mdc-theme--on-secondary"
                       active=(regexMatch @root.request.url.pathname route "gi")
                       label=label}}
@@ -163,6 +165,7 @@
                 {{#each @root.context.metaData.menus.main-extra ~}}
                   {{>components_tab
                       url=(stripTrailingSlash path)
+                      contentClasses=class
                       labelClasses="mdc-theme--on-secondary"
                       active=(regexMatch @root.request.url.pathname route "gi")
                       label=label}}
