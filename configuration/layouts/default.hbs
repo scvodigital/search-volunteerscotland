@@ -159,7 +159,7 @@
                       url=(stripTrailingSlash path)
                       contentClasses=class
                       labelClasses="mdc-theme--on-secondary"
-                      active=(regexMatch @root.request.url.pathname route "gi")
+                      active=(regexMatch @root.request.url.path route "gi")
                       label=label}}
                 {{/each ~}}
                 {{#each @root.context.metaData.menus.main-extra ~}}

@@ -4,20 +4,20 @@
       "label": "Find opportunities",
       "icon": "search",
       "path": "/search",
-      "route": "^/(?!searches)(search)|^/map|^/opportunity|^/opportunities-in"
+      "route": "^(?=\\/(search|map|opportunity|opportunities-in)($|\\?|\\/))((?!campaign=(coronavirus|online)).)*$"
     },
     {
       "label": "Coronavirus volunteering",
       "icon": "search",
       "class": "bg-error",
       "path": "/search?campaign=coronavirus",
-      "route": "^$"
+      "route": "campaign=coronavirus"
     },
     {
       "label": "Online volunteering",
       "icon": "search",
       "path": "/search?campaign=online",
-      "route": "^$"
+      "route": "campaign=online"
     },
     {
       "label": "Find organisations",
