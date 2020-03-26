@@ -10,6 +10,25 @@
   }
 },
 {{/if ~}}
+{{#compare campaign "coronavirus" ~}}
+{
+  "bool": {
+    "should": [
+      {{#each (split "coronavirus,corona,covid-19,covid19,covid,coronovirus,pandemic" ",") ~}}
+      {{>queries_query_string
+        querystring=this
+        fields=(split (concat "text_bag_boost^" @root.context.metaData.searchKnobs.textBagBoost ",text_bag") ",")
+      }},
+      {{/each ~}}
+      {{>queries_do_nothing}}
+    ],
+    "minimum_should_match": 2
+  }
+},
+{{/compare ~}}
+{{#compare campaign "online" ~}}
+{{>queries_term field="activities_slugs" term='online-volunteering'}},
+{{/compare ~}}
 {{#if volunteersearch_types ~}}
 {{>queries_terms field="volunteersearch_type_slugs" terms=volunteersearch_types}},
 {{/if ~}}

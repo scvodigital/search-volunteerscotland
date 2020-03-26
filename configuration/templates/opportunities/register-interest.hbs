@@ -1,6 +1,9 @@
 <div id="detailed-results-container" class="container-content content-register-interest">
   {{#compare @root.data.primaryResponse.hits.total ">" 0 ~}}
     {{#with @root.data.primaryResponse.hits.hits.0._source ~}}
+      <p style="background-color:#F5E42A; padding:0.8rem 1rem;">
+        Please note, organisations are currently experiencing a large volume of enquiries from people looking to help out. They may not always be able to meet this demand so please be patient, you may not receive a quick response or be assigned to a role.
+      </p>
       <h2 class="mdc-typography--headline4">
         Register interest
       </h2>
@@ -12,7 +15,6 @@
         <div class="mdc-typography--headline6">
           Thank you for registering interest in this opportunity.
         </div>
-
 
         <p class="mdc-typography--body1 t-margin-full">
           If you want to contact the organisation directly about this opportunity, please use the details below:
@@ -27,6 +29,12 @@
         {{#if opportunity_contact_email ~}}
           <div class="mdc-typography--body1">
             <strong>Email:</strong> <a href="mailto:{{{opportunity_contact_email}}}">{{{opportunity_contact_email}}}</a>
+          </div>
+        {{/if ~}}
+
+        {{#if opportunity_contact_phone ~}}
+          <div class="mdc-typography--body1">
+            <strong>Phone:</strong> {{{opportunity_contact_phone}}}</a>
           </div>
         {{/if ~}}
 
