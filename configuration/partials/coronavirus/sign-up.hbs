@@ -1,0 +1,361 @@
+{{!-- <div class="t-margin-full h-padding-full mdc-card list"> --}}
+  <h3 class="mdc-typography--headline6">
+    Sign up for alerts
+  </h3>
+  <p>
+    While there are limited opportunities available right now to volunteer, you can sign-up to be kept informed of opportunities to get involved in providing help to organisations in your community.
+  </p>
+  <form id="newsletter-coronavirus-form" action="/add-to-newsletter-coronavirus" method="POST" class="t-margin-full">
+    <div class="mdc-layout-grid">
+      <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+          <div class="mdc-text-field mdc-text-field--box" data-mdc-auto-init="MDCTextField">
+            <input id="first_name" name="first_name" class="mdc-text-field__input mdc-text-field--fullwidth">
+            <label class="mdc-floating-label" for="first_name">
+              First name
+            </label>
+          </div>
+        </div>
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+          <div class="mdc-text-field mdc-text-field--box" data-mdc-auto-init="MDCTextField">
+            <input id="last_name" name="last_name" class="mdc-text-field__input mdc-text-field--fullwidth">
+            <label class="mdc-floating-label" for="last_name">
+              Last name
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="mdc-layout-grid__inner t-margin-full">
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+          <div class="mdc-text-field mdc-text-field--box" data-mdc-auto-init="MDCTextField">
+            <input required id="email" name="email"
+            {{>form_validation_attributes @root.context.metaData.accountInfoValidation.email}}
+            class="mdc-text-field__input mdc-text-field--fullwidth">
+            <label class="mdc-floating-label" for="email">
+              Email address
+            </label>
+          </div>
+        </div>
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+          <div class="mdc-text-field mdc-text-field--box mdc-text-field--with-trailing-icon" data-mdc-auto-init="MDCTextField" id="postcode-wrapper">
+            <input required id="location_postcode" name="location_postcode" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="postcode-lookup" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.location_postcode}}
+            class="mdc-text-field__input mdc-text-field--fullwidth">
+            <span class="far fa-fw fa-times mdc-text-field__icon mdc-text-field__icon--trailing" id="postcode-validation-icon"></span>
+            <label class="mdc-floating-label" for="location_postcode">
+              Postcode
+            </label>
+            <div class="form-input-hint" id="postcode-validation-message"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p>
+      I would like to receive email updates on relevant volunteering opportunities
+    </p>
+    <p>
+      I agree my personal information can be shared with my local volunteer centre or Council for the purpose of informing me of relevant volunteering opportunities
+    </p>
+
+    <input type="hidden" name="local_authority" id="local_authority" value="{{@root.data.accountInfo.local_authority}}" />
+    <input type="hidden" name="coordinates" id="coordinates" value="{{@root.data.accountInfo.coordinates}}" />
+    <input type="hidden" name="constituency" id="constituency" value="{{@root.data.accountInfo.constituency}}" />
+    <input type="hidden" name="nuts_3" id="nuts_3" value="{{@root.data.accountInfo.nuts_3}}" />
+    <input type="hidden" name="ward" id="ward" value="{{@root.data.accountInfo.ward}}" />
+    <input type="hidden" name="simd_datazone" id="simd_datazone" value="{{@root.data.accountInfo.simd_datazone}}" />
+    <input type="hidden" name="simd_rank" id="simd_rank" value="{{@root.data.accountInfo.simd_rank}}" />
+
+    <input type="hidden" name="action" value="validate_captcha" />
+    <div class="t-margin text-centre">
+      <button class="mdc-button mdc-button--raised b-margin-full" id="newsletter-coronavirus-submit" onclick="preSubmit()">
+        <span class="far fa-envelope mdc-list-item__graphic" aria-hidden="true"></span>
+        Sign up
+      </button>
+    </div>
+    <p class="caption b-margin-full">
+      This form is protected by <a href="https://www.google.com/recaptcha/intro/v3.html" class="noext">reCAPTCHA</a> and the Google
+      <a href="https://policies.google.com/privacy" class="noext">Privacy Policy</a> and
+      <a href="https://policies.google.com/terms" class="noext">Terms of Service</a> apply.
+    </p>
+  </form>
+{{!-- </div> --}}
+
+<script src="https://www.google.com/recaptcha/api.js?render={{@root.context.metaData.reCapthcaSiteKey2}}"></script>
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $.validator.methods.email = function( value, element ) {
+    return this.optional( element ) || value.match(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)+$/);
+  }
+  $.validator.methods.postcode = function( value, element ) {
+    return this.optional( element ) || /^([A-Z][A-HJ-Y]?\d[A-Z\d]? ?\d[A-Z]{2}|GIR ?0A{2})$/.test( value );
+  }
+  $("#newsletter-coronavirus-form").validate({
+    errorPlacement: function(error, element) {
+      error.insertAfter(element);
+    },
+    rules: {
+      "email": {
+        email: true
+      },
+      "postcode": {
+        postcode: true
+      }
+    },
+    messages: {
+      postcode: {
+        postcode : "This must be a valid postcode"
+      }
+    },
+    submitHandler: function(form) {
+     grecaptcha.ready(function() {
+       grecaptcha.execute('6LdlceIUAAAAAEB_DGTWR7hfR0EfHtl8Rz52pH6l', {action:'validate_captcha'}).then(function(token) {
+         $('<input />').attr("type", "hidden").attr("name", "recaptcha_response").attr("value", token).appendTo('#share');
+         form.submit();
+       });
+     });
+   }
+ });
+});
+</script>
+
+{{{{raw}}}}
+<script data-component-config="postcode-lookup" type="javascript/blocked">
+  {
+    blur: { tasks: ["postcode-lookup"] },
+    keyup: { tasks: ["postcode-lookup"] },
+  }
+</script>
+
+<script data-task="postcode-lookup" type="javascript/blocked">
+{
+  type: "multiTask",
+  config: {
+    tasks: [
+      {
+        type: "switch",
+        config: {
+          which: { __template: "{{#regexMatch (jquery '#location_postcode' 'val') '[a-z]{1,2}[0-9]{1,2}[a-z]?\\s?[0-9][a-z]{2}' 'ig'}}check{{/regexMatch}}" },
+          branches: {
+            default: {
+              tasks: [
+                {
+                  type: "elementManipulator",
+                  config: {
+                    "#postcode-validation-icon": {
+                      addClass: [ "fa-times", "text-error" ],
+                      removeClass: [ "loading", "fa-check", "text-primary", "text-success" ]
+                    },
+                    "#local_authority": {
+                      value: ""
+                    },
+                    "#coordinates": {
+                      value: ""
+                    },
+                    "#constituency": {
+                      value: ""
+                    },
+                    "#nuts_3": {
+                      value: ""
+                    },
+                    "#ward": {
+                      value: ""
+                    },
+                    "#simd_datazone": {
+                      value: ""
+                    },
+                    "#simd_decile": {
+                      value: ""
+                    },
+                    "#simd_quintile": {
+                      value: ""
+                    },
+                    "#simd_vigintile": {
+                      value: ""
+                    },
+                    "#simd_rank": {
+                      value: ""
+                    },
+                    "#postcode-validation-message": {
+                      contents: { __template: "" }
+                    },
+                    "#postcode-wrapper": {
+                      removeClass: [ "has-error" ],
+                    }
+                  }
+                }
+              ]
+            },
+            check: {
+              __doNotCompile: true,
+              tasks: [
+                {
+                  type: "elementManipulator",
+                  config: {
+                    "#postcode-validation-icon": {
+                      addClass: [ "loading", "text-primary" ],
+                      removeClass: [ "fa-check", "fa-times", "text-error", "text-success" ]
+                    }
+                  }
+                },
+                {
+                  name: "postcodeLookup",
+                  type: "request",
+                  config: { url: { __template: "/postcode-lookup?q={{jquery rootElement 'val'}}" } }
+                },
+                {
+                  __doNotCompile: true,
+                  type: "switch",
+                  config: {
+                    which: { __template: "{{#any data.postcodeLookup}}found{{/any}}" },
+                    branches: {
+                      default: {
+                        tasks: [
+                          {
+                            type: "elementManipulator",
+                            config: {
+                              "#local_authority": {
+                                value: ""
+                              },
+                              "#coordinates": {
+                                value: ""
+                              },
+                              "#constituency": {
+                                value: ""
+                              },
+                              "#nuts_3": {
+                                value: ""
+                              },
+                              "#ward": {
+                                value: ""
+                              },
+                              "#simd_datazone": {
+                                value: ""
+                              },
+                              "#simd_rank": {
+                                value: ""
+                              },
+                              "#postcode-validation-message": {
+                                contents: { __template: "" }
+                              },
+                              "#postcode-wrapper": {
+                                removeClass: [ "has-error" ],
+                              },
+                              "#postcode-validation-icon": {
+                                addClass: [ "fa-times", "text-error" ],
+                                removeClass: [ "loading", "fa-check", "text-primary", "text-success" ]
+                              }
+                            }
+                          }
+                        ]
+                      },
+                      found: {
+                        tasks: [
+                          {
+                            __doNotCompile: true,
+                            type: "switch",
+                            config: {
+                              which: { __template: "{{#eq data.postcodeLookup.[0].country 'Scotland'}}scotland{{/eq}}" },
+                              branches: {
+                                default: {
+                                  tasks: [
+                                    {
+                                      type: "elementManipulator",
+                                      config: {
+                                        "#local_authority": {
+                                          value: ""
+                                        },
+                                        "#coordinates": {
+                                          value: ""
+                                        },
+                                        "#constituency": {
+                                          value: ""
+                                        },
+                                        "#nuts_3": {
+                                          value: ""
+                                        },
+                                        "#ward": {
+                                          value: ""
+                                        },
+                                        "#simd_datazone": {
+                                          value: ""
+                                        },
+                                        "#simd_rank": {
+                                          value: ""
+                                        },
+                                        "#postcode-validation-message": {
+                                          contents: { __template: "Please enter a postcode in Scotland" }
+                                        },
+                                        "#postcode-wrapper": {
+                                          addClass: [ "has-error" ],
+                                        },
+                                        "#postcode-validation-icon": {
+                                          addClass: [ "fa-times", "text-error" ],
+                                          removeClass: [ "loading", "fa-check", "text-primary", "text-success" ]
+                                        }
+                                      }
+                                    }
+                                  ]
+                                },
+                                scotland: {
+                                  tasks: [
+                                    {
+                                      type: "elementManipulator",
+                                      config: {
+                                        ">": {
+                                          value: { __template: "{{{data.postcodeLookup.[0].place}}}" }
+                                        },
+                                        "#local_authority": {
+                                          value: { __template: "{{{data.postcodeLookup.[0].local_authority}}}" }
+                                        },
+                                        "#coordinates": {
+                                          value: { __template: "{{{data.postcodeLookup.[0].coordinates}}}" }
+                                        },
+                                        "#constituency": {
+                                          value: { __template: "{{{data.postcodeLookup.[0].constituency}}}" }
+                                        },
+                                        "#nuts_3": {
+                                          value: { __template: "{{data.postcodeLookup.[0].nuts_3}}" }
+                                        },
+                                        "#ward": {
+                                          value: { __template: "{{{data.postcodeLookup.[0].ward}}}" }
+                                        },
+                                        "#simd_datazone": {
+                                          value: { __template: "{{{data.postcodeLookup.[0].simd_datazone}}}" }
+                                        },
+                                        "#simd_rank": {
+                                          value: { __template: "{{{data.postcodeLookup.[0].simd_rank}}}" }
+                                        },
+                                        "#postcode-validation-message": {
+                                          contents: { __template: "" }
+                                        },
+                                        "#postcode-wrapper": {
+                                          removeClass: [ "has-error" ]
+                                        },
+                                        "#postcode-validation-icon": {
+                                          addClass: [ "fa-check", "text-success" ],
+                                          removeClass: [ "loading", "fa-times", "text-primary", "text-error" ]
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "validate-details-form"
+    ]
+  }
+}
+</script>
+{{{{/raw}}}}

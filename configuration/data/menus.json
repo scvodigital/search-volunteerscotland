@@ -7,13 +7,6 @@
       "route": "^(?=\\/(search|map|opportunity|opportunities-in)($|\\?|\\/))((?!campaign=(coronavirus|online)).)*$"
     },
     {
-      "label": "Coronavirus volunteering",
-      "icon": "search",
-      "class": "bg-error",
-      "path": "/search?campaign=coronavirus",
-      "route": "campaign=coronavirus"
-    },
-    {
       "label": "Online volunteering",
       "icon": "search",
       "path": "/search?campaign=online",
@@ -24,6 +17,15 @@
       "icon": "list-alt",
       "path": "/organisations/search",
       "route": "^/organisation"
+    }
+  ],
+  "hidden": [
+    {
+      "label": "Coronavirus volunteering",
+      "icon": "search",
+      "class": "bg-error",
+      "path": "/search?campaign=coronavirus",
+      "route": "campaign=coronavirus"
     }
   ],
   "upper": [
@@ -101,8 +103,8 @@
   "footer-cookies-terms": [
     {
       "label": "Volunteer Scotland Charter",
-      "path": "https://www.volunteerscotland.net/terms-conditions/charter/",
-      "route": "^https://www.volunteerscotland.net/terms-conditions/charter/"
+      "path": "https://www.volunteerscotland.net/terms-conditions/a-volunteer-charter/",
+      "route": "^https://www.volunteerscotland.net/terms-conditions/a-volunteer-charter/"
     },
     {
       "label": "Privacy notice",

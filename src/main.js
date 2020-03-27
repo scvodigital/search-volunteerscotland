@@ -57,15 +57,6 @@ export class VolunteerScotlandSearch {
       .filter(field => { return field.name !== 'keywords'; })
       .map(field => '[name="' + field.name + '"][value="' + field.value + '"]');
 
-    // // Headroom
-    // var header = document.querySelector("header.top-bar-stuck");
-    // var headroom  = new Headroom(header, {
-    //   "offset": 100,
-    //   "tolerance": 5
-    // });
-    // headroom.init();
-
-
     $('.search-form').on('change.acl', (evt) => {
       const hasKeywords = !!$('[name="keywords"]').val();
       const hasLocation = !!$('[name="lat"]').val();
@@ -171,7 +162,6 @@ export class VolunteerScotlandSearch {
     }
   }
 
-
   windowResized() {
     var width = $(window).width();
     var newDisplayMode = null;
@@ -264,6 +254,4 @@ export class VolunteerScotlandSearch {
     currentPage.hide();
     nextPage.show();
   }
-
-
 }

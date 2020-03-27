@@ -62,6 +62,11 @@
   <link type="text/css" rel="stylesheet" href="{{~>asset_url url='libraries/fontawesome-pro/css/all.min.css'~}}">
 
   <link type="text/css" rel="stylesheet" href="{{~>asset_url url='main.css'}}">
+
+  <script type="text/javascript" src="{{~>asset_url url='component-manager.js'~}}"></script>
+  <script type="text/javascript">
+  var jQuery = $;
+  </script>
 </head>
 <body class="mdc-theme--site-bg {{#if request.params.path}}{{replace request.params.path '_' ' '}}{{else}}home{{/if}}">
   <!-- Google Tag Manager (noscript) -->
@@ -332,16 +337,38 @@
 
   {{#if @root.data.auth}}{{else}}{{> dialog_favourites}}{{> dialog_volunteer}}{{/if}}
 
-  <script type="text/javascript">
-  var $buoop = {required:{e:-3,f:-3,o:-3,s:-1,c:-3},insecure:true,unsupported:true,api:2018.07 };
-  function $buo_f(){
-    var e = document.createElement("script");
-    e.src = "//browser-update.org/update.min.js";
-    document.body.appendChild(e);
-  };
-  try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
-  catch(e){window.attachEvent("onload", $buo_f)}
+  {{#each @root.context.metaData.handlebars.frontend.configs ~}}
+  <script data-component-config="{{@key}}" type="javascript/blocked">
+  {{{regexReplace (regexReplace this "^\s*return\s" "igm" "") "([^\\{])({{){2,}" "igm" "$1\\$2"}}}
   </script>
+  {{/each ~}}
+
+  {{#each @root.context.metaData.handlebars.frontend.tasks ~}}
+  <script data-task="{{@key}}" type="javascript/blocked">
+  {{{regexReplace (regexReplace this "^\s*return\s" "igm" "") "([^\\{])({{){2,}" "igm" "$1\\$2"}}}
+  </script>
+  {{/each ~}}
+
+  {{#each @root.context.metaData.handlebars.frontend.partials ~}}
+  <script data-partial="{{@key}}" type="javascript/blocked">
+  {{{this}}}
+  </script>
+  {{/each ~}}
+
+  {{!-- <script type="text/javascript">
+  window.firebaseTaskConfig = {
+    upgradeTokenUrl: '/upgrade-token?token={idToken}',
+    cookieName: 'vs_cookie'
+  };
+  firebase.initializeApp({
+    "apiKey": "AIzaSyAwCMOrTj2eq8tVAdgD3vrgRqz9oIluiYk",
+    "authDomain": "auth.search.volunteerscotland.net",
+    "databaseURL": "https://scvo-volunteerscotland-search.firebaseio.com",
+    "projectId": "scvo-volunteerscotland-search",
+    "storageBucket": "scvo-volunteerscotland-search.appspot.com",
+    "messagingSenderId": "7952458796"
+  });
+  </script> --}}
 
   <script type="text/javascript" src="{{~>asset_url url='main.js'~}}" charset="utf-8"></script>
   <script>
@@ -368,6 +395,17 @@
         readyListeners.push(listener);
       }
     }
+  </script>
+
+  <script type="text/javascript">
+  var $buoop = {required:{e:-3,f:-3,o:-3,s:-1,c:-3},insecure:true,unsupported:true,api:2018.07 };
+  function $buo_f(){
+    var e = document.createElement("script");
+    e.src = "//browser-update.org/update.min.js";
+    document.body.appendChild(e);
+  };
+  try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+  catch(e){window.attachEvent("onload", $buo_f)}
   </script>
 
   {{{layoutParts.foot}}}

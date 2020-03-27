@@ -1,0 +1,106 @@
+{
+  "name": "add-to-newsletter-coronavirus",
+  "pattern": "/add-to-newsletter-coronavirus",
+  "debug": true,
+  "acceptedVerbs": "POST",
+  "tasks": [
+    "context.metaData.commonTasks.authNotRequired",
+    {
+      "name": "recaptcha_secret",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "template": "{:../../secret.json@google_recaptcha_server_key}",
+        "output": "data"
+      }
+    },
+    {
+      "name": "recaptcha_response",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "template": "{{@root.request.body.g-recaptcha-response}}",
+        "output": "data"
+      }
+    },
+    {
+      "name": "ip",
+      "taskModule": "request",
+      "renderer": "handlebars",
+      "config": {
+        "options": {
+          "geobytes": {
+            "url": "http://gd.geobytes.com/GetCityDetails",
+            "json": true
+          }
+        }
+      }
+    },
+    {
+      "name": "recaptcha_template",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "template": ">context.metaData.handlebars.templates.utilities_share-verify",
+        "output": "data",
+        "parseJson": true
+      }
+    },
+    {
+      "name": "verify",
+      "taskModule": "request",
+      "config": {
+        "optionsTemplates": ">data.recaptcha_template"
+      },
+      "renderer": "handlebars"
+    },
+    {
+      "name": "reroute",
+      "taskModule": "reroute",
+      "config": {
+        "if": [
+          { "!=": [{"var": "data.verify.recaptcha.success"}, true] },
+          "five_hundred",
+          false
+        ]
+      }
+    },
+    {
+      "name": "id",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "template": "{{hash (concat (moment null 'X') '-' (hash @root.request.body.email))}}",
+        "output": "data"
+      }
+    },
+    {
+      "name": "save_data",
+      "taskModule": "firebaseRtbSet",
+      "renderer": "handlebars",
+      "config": {
+        "dataTemplate": ">context.metaData.handlebars.templates.utilities_firebase",
+        "setOrUpdate": "set",
+        "appName": "volunteerscotland",
+        "pathTemplate": "/newsletter-coronavirus/{{@root.data.id}}/"
+      }
+    },
+    {
+      "name": "url",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "template": "/search?sort=distance&campaign=coronavirus&location={{@root.request.body.location_postcode}}&distance=10&lat={{itemAt (split @root.request.body.coordinates ',') 0}}&lng={{itemAt (split @root.request.body.coordinates ',') 1}}"
+      }
+    },
+    {
+      "name": "destination",
+      "taskModule": "redirect",
+      "config": {
+        "location": ">data.url",
+        "statusCode": 302
+      }
+    }
+  ]
+}

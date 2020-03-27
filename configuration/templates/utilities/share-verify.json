@@ -1,0 +1,7 @@
+{
+  "recaptcha":{{#blockStringify this}}{
+  "method": "POST",
+  "url": "https://www.google.com/recaptcha/api/siteverify?secret={{@root.data.recaptcha_secret}}&response={{@root.data.recaptcha_response}}&remoteip={{@root.data.ip.geobytes.geobytesremoteip}}",
+  "json": true
+  }{{/blockStringify}}
+}

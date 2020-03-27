@@ -43,6 +43,7 @@ $mdc-theme-primary: $brand-secondary-turquoise;
 $mdc-theme-secondary: $brand-secondary-green;
 
 $unit: 1rem;
+$transition-speed: 0.2s;
 
 
 @import "./node_modules/material-components-web/material-components-web.scss";
@@ -554,9 +555,11 @@ footer h3,
   }
 }
 .mdc-tab__content {
+  transition: background-color $transition-speed;
   .mdc-tab__icon,
   .mdc-tab__text-label {
     opacity: 1;
+    transition: color $transition-speed;
   }
   .mdc-tab__text-label {
     font-weight: $heading-medium-font-weight;
@@ -674,6 +677,14 @@ footer h3,
 }
 #sign-out-loader {
   display: flex;
+}
+.sign-up-form {
+  .mdc-card {
+    max-width: 800px;
+    .mdc-card__info--content-primary .mdc-layout-grid__inner {
+      grid-gap: $unit;
+    }
+  }
 }
 
 .card-loader {
@@ -3673,8 +3684,12 @@ header {
       .mdc-tab {
         font-weight: $heading-font-weight;
         .mdc-tab__text-label {
+          transition: color $transition-speed;
           font-weight: $heading-light-font-weight;
           font-size: 1.4rem;
+        }
+        .mdc-tab__content {
+          transition: background-color $transition-speed;
         }
       }
       .mdc-tab:hover .mdc-tab__text-label,

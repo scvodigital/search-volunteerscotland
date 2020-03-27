@@ -1,4 +1,3 @@
-{{!-- {{#ifAny (compare @root.request.params.query.campaign "coronavirus") (compare @root.route.name "home") ~}} --}}
 <div class="v-padding h-padding-full bg-error">
   <p class="v-margin">
     We all need to stay at home to protect ourselves and others. However, those who are well and not at risk can provide essential support for their family, friends and neighbours who cannot leave the house.
@@ -6,10 +5,9 @@
   <p class="v-margin">
     <a href="https://www.readyscotland.org/coronavirus/helping-in-your-community"><strong>Read more about volunteering during the COVID-19 pandemic</strong></a>
   </p>
-  {{#unless (compare @root.request.params.query.campaign "coronavirus") ~}}
+  {{!-- {{#unless (compare @root.request.params.query.campaign "coronavirus") ~}}
   <p class="v-margin">
     <a href="/search?campaign=coronavirus"><strong>Find coronavirus volunteering opportunities</strong></a>
   </p>
-  {{/unless ~}}
+  {{/unless ~}} --}}
 </div>
-{{!-- {{/ifAny ~}} --}}
