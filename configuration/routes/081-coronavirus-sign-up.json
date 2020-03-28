@@ -1,5 +1,5 @@
 {
-  "name": "add-to-newsletter-coronavirus",
+  "name": "coronavirus-sign-up",
   "pattern": "/coronavirus/sign-up",
   "debug": true,
   "acceptedVerbs": "POST",
@@ -83,6 +83,16 @@
         "setOrUpdate": "set",
         "appName": "volunteerscotland-search",
         "pathTemplate": "/newsletter-coronavirus/{{@root.data.id}}/"
+      }
+    },
+    {
+      "name": "sendEmail",
+      "taskModule": "mailgun",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "parseJson": true,
+        "template": ">context.metaData.handlebars.templates.email_coronavirus-confirmation"
       }
     },
     {

@@ -1,0 +1,17 @@
+[
+  {
+    "from": "Volunteer Scotland <register.interest@volunteerscotland.org.uk>",
+    "h:sender": "Volunteer Scotland <register.interest@volunteerscotland.org.uk>",
+    "to": "{{@root.request.body.first_name}} {{@root.request.body.last_name}} <{{@root.request.body.email}}>",
+    "o:tag": "coronavirus-volunteer",
+    "o:tracking": true,
+    "tag":  "coronavirus-volunteer",
+    "id":  "coronavirus-volunteer",
+    "connectionName": "mg_volunteerscotland",
+    "subject": "Thank you for your interest in volunteering!",
+    "html":
+    {{~#blockStringify this ~}}
+      {{~> emails_confirmation_coronavirus_body ~}}
+    {{~/blockStringify}}
+  }
+]
