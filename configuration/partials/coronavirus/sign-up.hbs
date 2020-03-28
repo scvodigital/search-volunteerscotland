@@ -81,7 +81,7 @@
       </div>
     </div>
     <label for="consent_tsi">
-      I agree my personal information can be shared with my local <a href="https://www.gov.scot/publications/third-sector-interfaces-contact-details/">volunteer centre</a> and Council for the purpose of informing me of relevant volunteering opportunities
+      I agree my personal information can be shared with my local council and <span id="tsi_title">my local <a href="https://www.gov.scot/publications/third-sector-interfaces-contact-details/" target="_blank" class="noext">volunteer centre</a></span> for the purpose of informing me of relevant volunteering opportunities
     </label>
   </div>
 
@@ -208,6 +208,9 @@ $(document).ready(function() {
                     "#simd_rank": {
                       value: ""
                     },
+                    "#tsi_title": {
+                      value: "my local <a href=\"https://www.gov.scot/publications/third-sector-interfaces-contact-details\" target=\"_blank\" class=\"noext\">volunteer centre</a>"
+                    },
                     "#postcode-validation-message": {
                       addClass: [ "hidden" ],
                       contents: { __template: "" }
@@ -268,6 +271,9 @@ $(document).ready(function() {
                               "#simd_rank": {
                                 value: ""
                               },
+                              "#tsi_title": {
+                                value: "my local <a href=\"https://www.gov.scot/publications/third-sector-interfaces-contact-details\" target=\"_blank\" class=\"noext\">volunteer centre</a>"
+                              },
                               "#postcode-validation-message": {
                                 addClass: [ "hidden" ],
                                 contents: { __template: "" }
@@ -317,6 +323,9 @@ $(document).ready(function() {
                                         "#simd_rank": {
                                           value: ""
                                         },
+                                        "#tsi_title": {
+                                          value: "my local <a href=\"https://www.gov.scot/publications/third-sector-interfaces-contact-details\" target=\"_blank\" class=\"noext\">volunteer centre</a>"
+                                        },
                                         "#postcode-validation-message": {
                                           removeClass: [ "hidden" ],
                                           contents: { __template: "This postcode is not in Scotland, we can't match you with a local volunteer centre" }
@@ -360,6 +369,9 @@ $(document).ready(function() {
                                         },
                                         "#simd_rank": {
                                           value: { __template: "{{{data.postcodeLookup.[0].simd_rank}}}" }
+                                        },
+                                        "#tsi_title": {
+                                          contents: { __template: "<strong>{{{data.postcodeLookup.[0].tsi_title}}}</strong>" }
                                         },
                                         "#postcode-validation-message": {
                                           addClass: [ "hidden" ],
