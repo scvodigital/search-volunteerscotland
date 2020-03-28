@@ -110,9 +110,9 @@
               </span>
             </section>
             <section class="mdc-top-app-bar__section mdc-top-app-bar__section--user mdc-top-app-bar__section--align-end">
-              <button class="mdc-top-app-bar__navigation-icon hide-lg" data-drawer-target="#mobile-menu" aria-label="Menu">
+              {{!-- <button class="mdc-top-app-bar__navigation-icon hide-lg" data-drawer-target="#mobile-menu" aria-label="Menu">
                 <span class="far fa-fw fa-2x fa-bars"></span>
-              </button>
+              </button> --}}
               {{#>components_tab_bar
                   extraClasses="mdc-tab-bar__auto-width hide-sm hide-md"
                   id="upper-tab-bar" ~}}
@@ -125,7 +125,7 @@
                       label=(if (compare icon "!==" "home") label)}}
                 {{/each ~}}
               {{/components_tab_bar ~}}
-                {{#>components_anchored_menu
+                {{!-- {{#>components_anchored_menu
                     buttonClasses="mdc-theme--on-secondary hide-sm hide-md"
                     imageUrl=(default @root.data.auth.photoURL false)
                     imageClasses="r-margin user-avatar"
@@ -151,7 +151,7 @@
                       </a>
                     {{/each ~}}
                   {{/if ~}}
-                {{/components_anchored_menu ~}}
+                {{/components_anchored_menu ~}} --}}
             </section>
           </div>
           <div class="mdc-top-app-bar__row mdc-top-app-bar__lower hide-sm hide-md">
