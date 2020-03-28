@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="mdc-layout-grid h-padding-full">
     <div class="mdc-layout-grid__inner">
-      <div class="mdc-layout-grid__cell--span-7-desktop b-margin-full">
+      <div class="mdc-layout-grid__cell--span-7-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone b-margin-full">
         <h1 class="mdc-typography--headline3">Be a coronavirus volunteer in your community</h1>
         <p class="mdc-typography--headline7">
           Thank you for your interest in volunteering in response to the coronavirus crisis.
@@ -15,19 +15,19 @@
         <h2 class="mdc-typography--headline4">Other ways you can help&hellip;</h2>
         <div class="mdc-layout-grid">
           <div class="mdc-layout-grid__inner">
-            <div class="mdc-layout-grid__cell--span-4-desktop bg-blue">
+            <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone bg-blue">
               <h3 class="mdc-typography--headline6">Are you a former NHS employee?</h3>
               <p>
                 Sign-up to return to work to help tackle the coronavirus pandemic
               </p>
             </div>
-            <div class="mdc-layout-grid__cell--span-4-desktop bg-red">
+            <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone bg-red">
               <h3 class="mdc-typography--headline6">Do you want to help in crisis response?</h3>
               <p>
                 <a href="https://reserves.redcross.org.uk">Sign-up to be a Red Cross Community Reserve Volunteer</a>
               </p>
             </div>
-            <div class="mdc-layout-grid__cell--span-4-desktop bg-purple">
+            <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone bg-purple">
               <h3 class="mdc-typography--headline6">Do you want to contribute money to help local organisations?</h3>
               <p>
                 <a href="https://nationalemergenciestrust.org.uk/coronavirus">Donate through the National Emergencies Trust</a>
@@ -36,7 +36,7 @@
           </div>
         </div>
       </div>
-      <div class="mdc-layout-grid__cell--span-5-desktop v-margin-full">
+      <div class="mdc-layout-grid__cell--span-5-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone v-margin-full">
         <div class="bg-grey">
           {{#compare @root.request.url.pathname "/coronavirus/thanks" ~}}
           <h3 class="mdc-typography--headline6">
