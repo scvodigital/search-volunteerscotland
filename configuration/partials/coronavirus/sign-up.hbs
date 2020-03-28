@@ -110,7 +110,7 @@ $(document).ready(function() {
     submitHandler: function(form) {
      grecaptcha.ready(function() {
        grecaptcha.execute('{{@root.context.metaData.reCapthcaSiteKey2}}', {action:'validate_captcha'}).then(function(token) {
-         $('<input />').attr("type", "hidden").attr("name", "recaptcha_response").attr("value", token).appendTo('#share');
+         $('<input />').attr("type", "hidden").attr("name", "recaptcha_response").attr("value", token).appendTo('#newsletter-coronavirus-form');
          form.submit();
        });
      });
