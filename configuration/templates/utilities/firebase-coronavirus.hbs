@@ -3,14 +3,16 @@
   {{#if first_name}}"first_name": {{{safeStringify first_name}}},{{/if}}
   {{#if last_name}}"last_name": {{{safeStringify last_name}}},{{/if}}
   {{#if email}}"email": {{{safeStringify email}}},{{/if}}
-  {{#if first_name}}"postcode": {{{safeStringify location_postcode}}},{{/if}}
-  {{#if first_name}}"local_authority": {{{safeStringify local_authority}}},{{/if}}
-  {{#if first_name}}"coordinates": {{{safeStringify coordinates}}},{{/if}}
-  {{#if first_name}}"constituency": {{{safeStringify constituency}}},{{/if}}
-  {{#if first_name}}"nuts_3": {{{safeStringify nuts_3}}},{{/if}}
-  {{#if first_name}}"ward": {{{safeStringify ward}}},{{/if}}
-  {{#if first_name}}"simd_datazone": {{{safeStringify simd_datazone}}},{{/if}}
-  {{#if first_name}}"simd_rank": {{{safeStringify simd_rank}}},{{/if}}
+  {{#if postcode}}"postcode": {{{safeStringify location_postcode}}},{{/if}}
+  {{#if local_authority}}"local_authority": {{{safeStringify local_authority}}},{{/if}}
+  {{#if coordinates}}"coordinates": {{{safeStringify coordinates}}},{{/if}}
+  {{#if constituency}}"constituency": {{{safeStringify constituency}}},{{/if}}
+  {{#if nuts_3}}"nuts_3": {{{safeStringify nuts_3}}},{{/if}}
+  {{#if ward}}"ward": {{{safeStringify ward}}},{{/if}}
+  {{#if simd_datazone}}"simd_datazone": {{{safeStringify simd_datazone}}},{{/if}}
+  {{#if simd_rank}}"simd_rank": {{{safeStringify simd_rank}}},{{/if}}
+  {{#if consent_volunteering_updates}}"consent_volunteering_updates": {{{safeStringify consent_volunteering_updates}}},{{/if}}
+  {{#if consent_tsi}}"consent_tsi": {{{safeStringify consent_tsi}}},{{/if}}
   {{/with ~}}
   "date_last_modified": {{{safeStringify (moment null "X")}}}
 }

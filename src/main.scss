@@ -566,13 +566,77 @@ footer h3,
   }
 }
 .mdc-tab__content.bg-error,
+.bg-orange,
+.bg-green,
+.bg-red,
+.bg-pink,
+.bg-yellow,
+.bg-turquoise,
+.bg-blue,
+.bg-purple,
 .bg-error {
   background-color: $brand-secondary-red;
+  padding: $unit;
+  h1,
+  h2,
+  h3,
+  h4,
   p,
   a,
   .mdc-tab__text-label {
     color: white!important;
   }
+  h1,
+  h2,
+  h3,
+  h4 {
+    margin-top: 0;
+  }
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+.bg-grey {
+  background-color: $brand-primary-lightgrey;
+  padding: $unit;
+  h3 {
+    margin-top: 0;
+  }
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+#newsletter-coronavirus-form {
+  .mdc-text-field-helper-text {
+    display: block;
+    opacity: 1 !important;
+    color: $brand-secondary-red !important;
+    margin-bottom: $unit;
+  }
+}
+.bg-orange {
+  background-color: $brand-secondary-orange;
+}
+.bg-green {
+  background-color: $brand-secondary-green;
+}
+.bg-red {
+  background-color: $brand-secondary-red;
+}
+.bg-pink {
+  background-color: $brand-secondary-pink;
+}
+.bg-yellow {
+  background-color: $brand-secondary-yellow;
+}
+.bg-turquoise {
+  background-color: $brand-secondary-turquoise;
+}
+.bg-blue {
+  background-color: $brand-secondary-blue;
+}
+.bg-purple {
+  background-color: $brand-secondary-purple;
 }
 
 .mdc-button {
@@ -612,6 +676,7 @@ footer h3,
     }
   }
 }
+.grecaptcha-badge,
 .mdc-dialog__backdrop {
   z-index: 10;
 }
@@ -1586,7 +1651,7 @@ a {
     }
   }
   .panel {
-    display: none;
+    display: none !important;
   }
   .panel.panel--active {
     display: block;
@@ -4044,8 +4109,9 @@ a:hover {
   }
 }
 
+.hidden,
 .popup-pager .map-content:not(:first-child) {
-  display: none;
+  display: none !important;
 }
 
 .search-info {

@@ -44,18 +44,46 @@
             <label class="mdc-floating-label mdc-floating-label--float-above" for="location_postcode">
               Postcode
             </label>
-            <div class="form-input-hint" id="postcode-validation-message"></div>
           </div>
+          <div class="hidden form-input-hint error mdc-text-field-helper-line mdc-text-field-helper-text" id="postcode-validation-message"></div>
         </div>
       </div>
     </div>
 
-    <p>
-      I would like to receive email updates on relevant volunteering opportunities
-    </p>
-    <p>
-      I agree my personal information can be shared with my local volunteer centre or Council for the purpose of informing me of relevant volunteering opportunities
-    </p>
+    <div class="mdc-form-field">
+      <div class="mdc-checkbox">
+        <input type="checkbox" class="mdc-checkbox__native-control" id="consent_volunteering_updates" name="consent_volunteering_updates" value="true" required />
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark"
+          viewBox="0 0 24 24">
+          <path class="mdc-checkbox__checkmark-path"
+          fill="none"
+          stroke="white"
+          d="M1.73,12.91 8.1,19.28 22.79,4.59"/></svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+      </div>
+      <label for="consent_volunteering_updates">
+        I would like to receive email updates on relevant volunteering opportunities
+      </label>
+    </div>
+    <div class="mdc-form-field">
+      <div class="mdc-checkbox">
+        <input type="checkbox" class="mdc-checkbox__native-control" id="consent_tsi" name="consent_tsi" value="true" />
+        <div class="mdc-checkbox__background">
+          <svg class="mdc-checkbox__checkmark"
+          viewBox="0 0 24 24">
+          <path class="mdc-checkbox__checkmark-path"
+          fill="none"
+          stroke="white"
+          d="M1.73,12.91 8.1,19.28 22.79,4.59"/></svg>
+          <div class="mdc-checkbox__mixedmark"></div>
+        </div>
+      </div>
+      <label for="consent_tsi">
+        I agree my personal information can be shared with my local volunteer centre or Council for the purpose of informing me of relevant volunteering opportunities
+      </label>
+    </div>
 
     <input type="hidden" name="local_authority" id="local_authority" value="{{@root.data.accountInfo.local_authority}}" />
     <input type="hidden" name="coordinates" id="coordinates" value="{{@root.data.accountInfo.coordinates}}" />
@@ -72,7 +100,7 @@
         Sign up
       </button>
     </div>
-    <p class="caption b-margin-full">
+    <p class="mdc-typography--body2">
       This form is protected by <a href="https://www.google.com/recaptcha/intro/v3.html" class="noext">reCAPTCHA</a> and the Google
       <a href="https://policies.google.com/privacy" class="noext">Privacy Policy</a> and
       <a href="https://policies.google.com/terms" class="noext">Terms of Service</a> apply.
@@ -92,19 +120,24 @@ $(document).ready(function() {
   }
   $("#newsletter-coronavirus-form").validate({
     errorPlacement: function(error, element) {
-      error.insertAfter(element);
+      error.addClass("mdc-text-field-helper-line mdc-text-field-helper-text").insertAfter(element.parent());
     },
-    rules: {
+    "rules": {
       "email": {
-        email: true
+        "email": true,
+        "required": true
       },
-      "postcode": {
-        postcode: true
+      "location_postcode": {
+        "postcode": true,
+        "required": true
       }
     },
-    messages: {
-      postcode: {
-        postcode : "This must be a valid postcode"
+    "messages": {
+      "email": {
+        "postcode": "Please enter a valid email address"
+      },
+      "location_postcode": {
+        "postcode": "Please enter a valid postcode"
       }
     },
     submitHandler: function(form) {
@@ -177,10 +210,11 @@ $(document).ready(function() {
                       value: ""
                     },
                     "#postcode-validation-message": {
+                      addClass: [ "hidden" ],
                       contents: { __template: "" }
                     },
                     "#postcode-wrapper": {
-                      removeClass: [ "has-error" ],
+                      removeClass: [ "has-error" ]
                     }
                   }
                 }
@@ -236,6 +270,7 @@ $(document).ready(function() {
                                 value: ""
                               },
                               "#postcode-validation-message": {
+                                addClass: [ "hidden" ],
                                 contents: { __template: "" }
                               },
                               "#postcode-wrapper": {
@@ -284,7 +319,8 @@ $(document).ready(function() {
                                           value: ""
                                         },
                                         "#postcode-validation-message": {
-                                          contents: { __template: "Please enter a postcode in Scotland" }
+                                          removeClass: [ "hidden" ],
+                                          contents: { __template: "This postcode is not in Scotland, we can't match you with a local volunteer centre" }
                                         },
                                         "#postcode-wrapper": {
                                           addClass: [ "has-error" ],
@@ -327,6 +363,7 @@ $(document).ready(function() {
                                           value: { __template: "{{{data.postcodeLookup.[0].simd_rank}}}" }
                                         },
                                         "#postcode-validation-message": {
+                                          addClass: [ "hidden" ],
                                           contents: { __template: "" }
                                         },
                                         "#postcode-wrapper": {
