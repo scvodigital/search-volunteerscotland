@@ -1,7 +1,7 @@
 {
   "name": "coronavirus-sign-up",
+  "debug": false,
   "pattern": "/coronavirus/sign-up",
-  "debug": true,
   "acceptedVerbs": "POST",
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",

@@ -1,68 +1,44 @@
-<div class="container-fluid">
-  <div class="mdc-layout-grid h-padding-full">
+<div class="container-fluid container-content v-padding-full h-padding" style="margin: 0 auto;">
+  <h1 class="mdc-typography--headline3">Be a coronavirus volunteer in your community</h1>
+  <p class="mdc-typography--headline7">
+    Thank you for your interest in volunteering in response to the coronavirus crisis.
+  </p>
+  <p>
+    The most important contribution everyone can make is to stay at home to help protect ourselves and others.
+  </p>
+  <p>
+    However, those who are well and not at risk can provide essential support for their family, friends and neighbours who cannot leave the house. Find out how to do that safely on <a href="https://www.readyscotland.org/coronavirus">Ready Scotland</a>.
+  </p>
+  <div class="bg-grey v-margin-full">
+    <h3 class="mdc-typography--headline6">
+      Sign up for volunteering opportunities
+    </h3>
+    {{#compare @root.request.url.pathname "/coronavirus/thanks" ~}}
+    {{> coronavirus_sign_up_thanks}}
+    {{else}}
+    {{> coronavirus_sign_up}}
+    {{/compare ~}}
+  </div>
+  <h2 class="mdc-typography--headline4">Other ways you can help&hellip;</h2>
+  <div class="mdc-layout-grid b-margin-full">
     <div class="mdc-layout-grid__inner">
-      <div class="mdc-layout-grid__cell--span-7-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone b-margin-full">
-        <h1 class="mdc-typography--headline3">Be a coronavirus volunteer in your community</h1>
-        <p class="mdc-typography--headline7">
-          Thank you for your interest in volunteering in response to the coronavirus crisis.
-        </p>
+      <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone bg-blue">
+        <h3 class="mdc-typography--headline6">Are you a former NHS employee?</h3>
         <p>
-          The most important contribution everyone can make is to stay at home to help protect ourselves and others.
+          Sign-up to return to work to help tackle the coronavirus pandemic
         </p>
-        <p>
-          However, those who are well and not at risk can provide essential support for their family, friends and neighbours who cannot leave the house. Find out how to do that safely on <a href="https://www.readyscotland.org/coronavirus">Ready Scotland</a>.
-        </p>
-        <h2 class="mdc-typography--headline4">Other ways you can help&hellip;</h2>
-        <div class="mdc-layout-grid">
-          <div class="mdc-layout-grid__inner">
-            <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone bg-blue">
-              <h3 class="mdc-typography--headline6">Are you a former NHS employee?</h3>
-              <p>
-                Sign-up to return to work to help tackle the coronavirus pandemic
-              </p>
-            </div>
-            <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone bg-red">
-              <h3 class="mdc-typography--headline6">Do you want to help in crisis response?</h3>
-              <p>
-                <a href="https://reserves.redcross.org.uk">Sign-up to be a Red Cross Community Reserve Volunteer</a>
-              </p>
-            </div>
-            <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone bg-purple">
-              <h3 class="mdc-typography--headline6">Do you want to contribute money to help local organisations?</h3>
-              <p>
-                <a href="https://nationalemergenciestrust.org.uk/coronavirus">Donate through the National Emergencies Trust</a>
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
-      <div class="mdc-layout-grid__cell--span-5-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone v-margin-full">
-        <div class="bg-grey">
-          {{#compare @root.request.url.pathname "/coronavirus/thanks" ~}}
-          <h3 class="mdc-typography--headline6">
-            Sign up for alerts
-          </h3>
-          <p>
-            Thank you for your interest in volunteering!
-          </p>
-          <p>
-            Over the coming weeks, we’ll send you email updates to let you know what specific opportunities there are to help organisations in your community.
-          </p>
-          <p>
-            There are so many offers of help, it might not be possible to find a role for everyone, so do not be discouraged if you don’t hear about any suitable opportunities immediately. Over time, there will be more ways to help.
-          </p>
-          <p>
-            Remember you are making a contribution to keeping everyone safe by staying at home and following <a href="https://nhsinform.scot/coronavirus">government guidelines</a>.
-          </p>
-          {{#if @root.request.params.query.la ~}}
-          <p>
-            As you opted to share your personal information with your local volunteer centre and {{#compare @root.request.params.query.la "Na h-Eileanan Siar"}}Comhairle nan Eilean Siar{{else}}{{@root.request.params.query.la}} Council{{/compare}}, they may also contact you to let you know about other ways you can help.
-          </p>
-          {{/if ~}}
-          {{else}}
-          {{> coronavirus_sign_up}}
-          {{/compare ~}}
-        </div>
+      <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone bg-red">
+        <h3 class="mdc-typography--headline6">Do you want to help in crisis response?</h3>
+        <p>
+          <a href="https://reserves.redcross.org.uk">Sign-up to be a Red Cross Community Reserve Volunteer</a>
+        </p>
+      </div>
+      <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone bg-purple">
+        <h3 class="mdc-typography--headline6">Do you want to contribute money to help local organisations?</h3>
+        <p>
+          <a href="https://nationalemergenciestrust.org.uk/coronavirus">Donate through the National Emergencies Trust</a>
+        </p>
       </div>
     </div>
   </div>

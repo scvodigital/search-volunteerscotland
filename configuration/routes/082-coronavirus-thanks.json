@@ -1,5 +1,6 @@
 {
   "name": "coronavirus-thanks",
+  "debug": false,
   "pattern": "/coronavirus/thanks",
   "metaData": {
     "hideSearch": true,
