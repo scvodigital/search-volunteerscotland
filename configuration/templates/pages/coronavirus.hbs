@@ -37,28 +37,12 @@
         </div>
       </div>
       <div class="mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone v-margin-full">
-        <div class="bg-grey">
-          {{#compare @root.request.url.pathname "/coronavirus/thanks" ~}}
+        <div class="bg-grey b-margin-full">
           <h3 class="mdc-typography--headline6">
             Sign up for alerts
           </h3>
-          <p>
-            Thank you for your interest in volunteering!
-          </p>
-          <p>
-            Over the coming weeks, we’ll send you email updates to let you know what specific opportunities there are to help organisations in your community.
-          </p>
-          <p>
-            There are so many offers of help, it might not be possible to find a role for everyone, so do not be discouraged if you don’t hear about any suitable opportunities immediately. Over time, there will be more ways to help.
-          </p>
-          <p>
-            Remember you are making a contribution to keeping everyone safe by staying at home and following <a href="https://nhsinform.scot/coronavirus">government guidelines</a>.
-          </p>
-          {{#if @root.request.params.query.la ~}}
-          <p>
-            As you opted to share your personal information with your local volunteer centre and {{#compare @root.request.params.query.la "Na h-Eileanan Siar"}}Comhairle nan Eilean Siar{{else}}{{@root.request.params.query.la}} Council{{/compare}}, they may also contact you to let you know about other ways you can help.
-          </p>
-          {{/if ~}}
+          {{#compare @root.request.url.pathname "/coronavirus/thanks" ~}}
+          {{> coronavirus_sign_up_thanks}}
           {{else}}
           {{> coronavirus_sign_up}}
           {{/compare ~}}

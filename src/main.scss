@@ -613,6 +613,13 @@ footer h3,
     color: $brand-secondary-red !important;
     margin-bottom: $unit;
   }
+  .mdc-text-field--inner {
+    width: 100%;
+  }
+  #consent_volunteering_updates-error {
+    margin-left: 2.5rem;
+    margin-top: -.5rem;
+  }
 }
 .bg-orange {
   background-color: $brand-secondary-orange;
@@ -3785,6 +3792,11 @@ header {
         // .mdc-button:hover {
         //   border-bottom-color: $brand-primary-black;
         // }
+      }
+    }
+    .mdc-top-app-bar__upper {
+      .mdc-tab__text-label {
+        padding: 0;
       }
     }
     .mdc-top-app-bar__section {

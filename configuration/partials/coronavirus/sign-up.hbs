@@ -1,33 +1,30 @@
-{{!-- <div class="t-margin-full h-padding-full mdc-card list"> --}}
-  <h3 class="mdc-typography--headline6">
-    Sign up for alerts
-  </h3>
-  <p>
-    While there are limited opportunities available right now to volunteer, you can sign-up to be kept informed of opportunities to get involved in providing help to organisations in your community.
-  </p>
-  <form id="newsletter-coronavirus-form" action="/coronavirus/sign-up" method="POST" class="t-margin-full">
-    <div class="mdc-layout-grid">
-      <div class="mdc-layout-grid__inner">
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
-          <div class="mdc-text-field mdc-text-field--box" data-mdc-auto-init="MDCTextField">
-            <input id="first_name" name="first_name" class="mdc-text-field__input mdc-text-field--fullwidth">
-            <label class="mdc-floating-label mdc-floating-label--float-above" for="first_name">
-              First name
-            </label>
-          </div>
-        </div>
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
-          <div class="mdc-text-field mdc-text-field--box" data-mdc-auto-init="MDCTextField">
-            <input id="last_name" name="last_name" class="mdc-text-field__input mdc-text-field--fullwidth">
-            <label class="mdc-floating-label mdc-floating-label--float-above" for="last_name">
-              Last name
-            </label>
-          </div>
+<p>
+  While there are limited opportunities available right now to volunteer, you can sign-up to be kept informed of opportunities to get involved in providing help to organisations in your community.
+</p>
+<form id="newsletter-coronavirus-form" action="/coronavirus/sign-up" method="POST" class="t-margin-full">
+  <div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+        <div class="mdc-text-field mdc-text-field--box" data-mdc-auto-init="MDCTextField">
+          <input id="first_name" name="first_name" class="mdc-text-field__input mdc-text-field--fullwidth">
+          <label class="mdc-floating-label mdc-floating-label--float-above" for="first_name">
+            First name
+          </label>
         </div>
       </div>
-      <div class="mdc-layout-grid__inner t-margin-full">
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
-          <div class="mdc-text-field mdc-text-field--box" data-mdc-auto-init="MDCTextField">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+        <div class="mdc-text-field mdc-text-field--box" data-mdc-auto-init="MDCTextField">
+          <input id="last_name" name="last_name" class="mdc-text-field__input mdc-text-field--fullwidth">
+          <label class="mdc-floating-label mdc-floating-label--float-above" for="last_name">
+            Last name
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="mdc-layout-grid__inner t-margin-full">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+        <div class="mdc-text-field mdc-text-field--box" data-mdc-auto-init="MDCTextField">
+          <div class="mdc-text-field--inner">
             <input required id="email" name="email"
             {{>form_validation_attributes @root.context.metaData.accountInfoValidation.email}}
             class="mdc-text-field__input mdc-text-field--fullwidth">
@@ -36,8 +33,10 @@
             </label>
           </div>
         </div>
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
-          <div class="mdc-text-field mdc-text-field--box mdc-text-field--with-trailing-icon" data-mdc-auto-init="MDCTextField" id="postcode-wrapper">
+      </div>
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+        <div class="mdc-text-field mdc-text-field--box mdc-text-field--with-trailing-icon" data-mdc-auto-init="MDCTextField" id="postcode-wrapper">
+          <div class="mdc-text-field--inner">
             <input required id="location_postcode" name="location_postcode" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="postcode-lookup" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.location_postcode}}
             class="mdc-text-field__input mdc-text-field--fullwidth">
             <span class="far fa-fw fa-times mdc-text-field__icon mdc-text-field__icon--trailing" id="postcode-validation-icon"></span>
@@ -45,68 +44,68 @@
               Postcode
             </label>
           </div>
-          <div class="hidden form-input-hint error mdc-text-field-helper-line mdc-text-field-helper-text" id="postcode-validation-message"></div>
         </div>
+        <div class="hidden form-input-hint error mdc-text-field-helper-line mdc-text-field-helper-text" id="postcode-validation-message"></div>
       </div>
     </div>
+  </div>
 
-    <div class="mdc-form-field">
-      <div class="mdc-checkbox">
-        <input type="checkbox" class="mdc-checkbox__native-control" id="consent_volunteering_updates" name="consent_volunteering_updates" value="true" required />
-        <div class="mdc-checkbox__background">
-          <svg class="mdc-checkbox__checkmark"
-          viewBox="0 0 24 24">
-          <path class="mdc-checkbox__checkmark-path"
-          fill="none"
-          stroke="white"
-          d="M1.73,12.91 8.1,19.28 22.79,4.59"/></svg>
-          <div class="mdc-checkbox__mixedmark"></div>
-        </div>
+  <div class="mdc-form-field">
+    <div class="mdc-checkbox">
+      <input type="checkbox" class="mdc-checkbox__native-control" id="consent_volunteering_updates" name="consent_volunteering_updates" value="true" required />
+      <div class="mdc-checkbox__background">
+        <svg class="mdc-checkbox__checkmark"
+        viewBox="0 0 24 24">
+        <path class="mdc-checkbox__checkmark-path"
+        fill="none"
+        stroke="white"
+        d="M1.73,12.91 8.1,19.28 22.79,4.59"/></svg>
+        <div class="mdc-checkbox__mixedmark"></div>
       </div>
-      <label for="consent_volunteering_updates">
-        I would like to receive email updates on relevant volunteering opportunities from Volunteer Scotland
-      </label>
     </div>
-    <div class="mdc-form-field">
-      <div class="mdc-checkbox">
-        <input type="checkbox" class="mdc-checkbox__native-control" id="consent_tsi" name="consent_tsi" value="true" />
-        <div class="mdc-checkbox__background">
-          <svg class="mdc-checkbox__checkmark"
-          viewBox="0 0 24 24">
-          <path class="mdc-checkbox__checkmark-path"
-          fill="none"
-          stroke="white"
-          d="M1.73,12.91 8.1,19.28 22.79,4.59"/></svg>
-          <div class="mdc-checkbox__mixedmark"></div>
-        </div>
+    <label for="consent_volunteering_updates">
+      I would like to receive email updates on relevant volunteering opportunities from Volunteer Scotland
+    </label>
+  </div>
+  <div class="mdc-form-field">
+    <div class="mdc-checkbox">
+      <input type="checkbox" class="mdc-checkbox__native-control" id="consent_tsi" name="consent_tsi" value="true" />
+      <div class="mdc-checkbox__background">
+        <svg class="mdc-checkbox__checkmark"
+        viewBox="0 0 24 24">
+        <path class="mdc-checkbox__checkmark-path"
+        fill="none"
+        stroke="white"
+        d="M1.73,12.91 8.1,19.28 22.79,4.59"/></svg>
+        <div class="mdc-checkbox__mixedmark"></div>
       </div>
-      <label for="consent_tsi">
-        I agree my personal information can be shared with my local <a href="https://www.gov.scot/publications/third-sector-interfaces-contact-details/">volunteer centre</a> and Council for the purpose of informing me of relevant volunteering opportunities
-      </label>
     </div>
+    <label for="consent_tsi">
+      I agree my personal information can be shared with my local <a href="https://www.gov.scot/publications/third-sector-interfaces-contact-details/">volunteer centre</a> and Council for the purpose of informing me of relevant volunteering opportunities
+    </label>
+  </div>
 
-    <input type="hidden" name="local_authority" id="local_authority" value="{{@root.data.accountInfo.local_authority}}" />
-    <input type="hidden" name="coordinates" id="coordinates" value="{{@root.data.accountInfo.coordinates}}" />
-    <input type="hidden" name="constituency" id="constituency" value="{{@root.data.accountInfo.constituency}}" />
-    <input type="hidden" name="nuts_3" id="nuts_3" value="{{@root.data.accountInfo.nuts_3}}" />
-    <input type="hidden" name="ward" id="ward" value="{{@root.data.accountInfo.ward}}" />
-    <input type="hidden" name="simd_datazone" id="simd_datazone" value="{{@root.data.accountInfo.simd_datazone}}" />
-    <input type="hidden" name="simd_rank" id="simd_rank" value="{{@root.data.accountInfo.simd_rank}}" />
+  <input type="hidden" name="local_authority" id="local_authority" value="{{@root.data.accountInfo.local_authority}}" />
+  <input type="hidden" name="coordinates" id="coordinates" value="{{@root.data.accountInfo.coordinates}}" />
+  <input type="hidden" name="constituency" id="constituency" value="{{@root.data.accountInfo.constituency}}" />
+  <input type="hidden" name="nuts_3" id="nuts_3" value="{{@root.data.accountInfo.nuts_3}}" />
+  <input type="hidden" name="ward" id="ward" value="{{@root.data.accountInfo.ward}}" />
+  <input type="hidden" name="simd_datazone" id="simd_datazone" value="{{@root.data.accountInfo.simd_datazone}}" />
+  <input type="hidden" name="simd_rank" id="simd_rank" value="{{@root.data.accountInfo.simd_rank}}" />
 
-    <input type="hidden" name="action" value="validate_captcha" />
-    <div class="t-margin text-centre">
-      <button class="mdc-button mdc-button--raised b-margin-full" id="newsletter-coronavirus-submit">
-        <span class="far fa-envelope mdc-list-item__graphic" aria-hidden="true"></span>
-        Sign up
-      </button>
-    </div>
-    <p class="mdc-typography--body2">
-      This form is protected by <a href="https://www.google.com/recaptcha/intro/v3.html" class="noext">reCAPTCHA</a> and the Google
-      <a href="https://policies.google.com/privacy" class="noext">Privacy Policy</a> and
-      <a href="https://policies.google.com/terms" class="noext">Terms of Service</a> apply.
-    </p>
-  </form>
-{{!-- </div> --}}
+  <input type="hidden" name="action" value="validate_captcha" />
+  <div class="t-margin text-centre">
+    <button class="mdc-button mdc-button--raised b-margin-full" id="newsletter-coronavirus-submit">
+      <span class="far fa-envelope mdc-list-item__graphic" aria-hidden="true"></span>
+      Sign up
+    </button>
+  </div>
+  <p class="mdc-typography--body2">
+    This form is protected by <a href="https://www.google.com/recaptcha/intro/v3.html" class="noext">reCAPTCHA</a> and the Google
+    <a href="https://policies.google.com/privacy" class="noext">Privacy Policy</a> and
+    <a href="https://policies.google.com/terms" class="noext">Terms of Service</a> apply.
+  </p>
+</form>
 
 <script src="https://www.google.com/recaptcha/api.js?render={{@root.context.metaData.reCapthcaSiteKey2}}"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
@@ -120,7 +119,7 @@ $(document).ready(function() {
   }
   $("#newsletter-coronavirus-form").validate({
     errorPlacement: function(error, element) {
-      error.addClass("mdc-text-field-helper-line mdc-text-field-helper-text").insertAfter(element.parent());
+      error.addClass("mdc-text-field-helper-line mdc-text-field-helper-text").insertAfter(element.parent().parent());
     },
     "rules": {
       "email": {
