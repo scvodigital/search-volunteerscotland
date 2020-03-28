@@ -1,6 +1,6 @@
 {
   "name": "add-to-newsletter-coronavirus",
-  "pattern": "/add-to-newsletter-coronavirus",
+  "pattern": "/coronavirus/sign-up",
   "debug": true,
   "acceptedVerbs": "POST",
   "tasks": [
@@ -79,9 +79,9 @@
       "taskModule": "firebaseRtbSet",
       "renderer": "handlebars",
       "config": {
-        "dataTemplate": ">context.metaData.handlebars.templates.utilities_firebase",
+        "dataTemplate": ">context.metaData.handlebars.templates.utilities_firebase-coronavirus",
         "setOrUpdate": "set",
-        "appName": "volunteerscotland",
+        "appName": "volunteerscotland-search",
         "pathTemplate": "/newsletter-coronavirus/{{@root.data.id}}/"
       }
     },
@@ -91,7 +91,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "data",
-        "template": "/search?sort=distance&campaign=coronavirus&location={{@root.request.body.location_postcode}}&distance=10&lat={{itemAt (split @root.request.body.coordinates ',') 0}}&lng={{itemAt (split @root.request.body.coordinates ',') 1}}"
+        "template": "/coronavirus/thanks?la={{@root.request.body.local_authority}}{{!--/search?sort=distance&campaign=coronavirus&location={{@root.request.body.location_postcode}}&distance=10&lat={{itemAt (split @root.request.body.coordinates ',') 0}}&lng={{itemAt (split @root.request.body.coordinates ',') 1}}--}}"
       }
     },
     {

@@ -37,7 +37,16 @@
         </div>
       </div>
       <div class="mdc-layout-grid__cell--span-5-desktop">
+        {{#compare @root.request.url.pathname "/coronavirus/thanks" ~}}
+        <h3 class="mdc-typography--headline6">
+          Sign up for alerts
+        </h3>
+        <p>
+          Thank you!
+        </p>
+        {{else}}
         {{> coronavirus_sign_up}}
+        {{/compare ~}}
       </div>
     </div>
   </div>

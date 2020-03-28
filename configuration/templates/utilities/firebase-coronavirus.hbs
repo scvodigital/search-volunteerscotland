@@ -1,0 +1,16 @@
+{
+  {{#with @root.request.body ~}}
+  {{#if first_name}}"first_name": {{{safeStringify first_name}}},{{/if}}
+  {{#if last_name}}"last_name": {{{safeStringify last_name}}},{{/if}}
+  {{#if email}}"email": {{{safeStringify email}}},{{/if}}
+  {{#if first_name}}"postcode": {{{safeStringify location_postcode}}},{{/if}}
+  {{#if first_name}}"local_authority": {{{safeStringify local_authority}}},{{/if}}
+  {{#if first_name}}"coordinates": {{{safeStringify coordinates}}},{{/if}}
+  {{#if first_name}}"constituency": {{{safeStringify constituency}}},{{/if}}
+  {{#if first_name}}"nuts_3": {{{safeStringify nuts_3}}},{{/if}}
+  {{#if first_name}}"ward": {{{safeStringify ward}}},{{/if}}
+  {{#if first_name}}"simd_datazone": {{{safeStringify simd_datazone}}},{{/if}}
+  {{#if first_name}}"simd_rank": {{{safeStringify simd_rank}}},{{/if}}
+  {{/with ~}}
+  "date_last_modified": {{{safeStringify (moment null "X")}}}
+}
