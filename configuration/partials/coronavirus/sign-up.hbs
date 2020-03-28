@@ -11,7 +11,7 @@
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
           <div class="mdc-text-field mdc-text-field--box" data-mdc-auto-init="MDCTextField">
             <input id="first_name" name="first_name" class="mdc-text-field__input mdc-text-field--fullwidth">
-            <label class="mdc-floating-label" for="first_name">
+            <label class="mdc-floating-label mdc-floating-label--float-above" for="first_name">
               First name
             </label>
           </div>
@@ -19,7 +19,7 @@
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
           <div class="mdc-text-field mdc-text-field--box" data-mdc-auto-init="MDCTextField">
             <input id="last_name" name="last_name" class="mdc-text-field__input mdc-text-field--fullwidth">
-            <label class="mdc-floating-label" for="last_name">
+            <label class="mdc-floating-label mdc-floating-label--float-above" for="last_name">
               Last name
             </label>
           </div>
@@ -31,7 +31,7 @@
             <input required id="email" name="email"
             {{>form_validation_attributes @root.context.metaData.accountInfoValidation.email}}
             class="mdc-text-field__input mdc-text-field--fullwidth">
-            <label class="mdc-floating-label" for="email">
+            <label class="mdc-floating-label mdc-floating-label--float-above" for="email">
               Email address
             </label>
           </div>
@@ -41,7 +41,7 @@
             <input required id="location_postcode" name="location_postcode" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="postcode-lookup" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.location_postcode}}
             class="mdc-text-field__input mdc-text-field--fullwidth">
             <span class="far fa-fw fa-times mdc-text-field__icon mdc-text-field__icon--trailing" id="postcode-validation-icon"></span>
-            <label class="mdc-floating-label" for="location_postcode">
+            <label class="mdc-floating-label mdc-floating-label--float-above" for="location_postcode">
               Postcode
             </label>
             <div class="form-input-hint" id="postcode-validation-message"></div>
@@ -67,7 +67,7 @@
 
     <input type="hidden" name="action" value="validate_captcha" />
     <div class="t-margin text-centre">
-      <button class="mdc-button mdc-button--raised b-margin-full" id="newsletter-coronavirus-submit" onclick="preSubmit()">
+      <button class="mdc-button mdc-button--raised b-margin-full" id="newsletter-coronavirus-submit">
         <span class="far fa-envelope mdc-list-item__graphic" aria-hidden="true"></span>
         Sign up
       </button>
@@ -109,7 +109,7 @@ $(document).ready(function() {
     },
     submitHandler: function(form) {
      grecaptcha.ready(function() {
-       grecaptcha.execute('6LdlceIUAAAAAEB_DGTWR7hfR0EfHtl8Rz52pH6l', {action:'validate_captcha'}).then(function(token) {
+       grecaptcha.execute('{{@root.context.metaData.reCapthcaSiteKey2}}', {action:'validate_captcha'}).then(function(token) {
          $('<input />').attr("type", "hidden").attr("name", "recaptcha_response").attr("value", token).appendTo('#share');
          form.submit();
        });

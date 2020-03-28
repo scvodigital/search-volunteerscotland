@@ -20,7 +20,7 @@
         "output": "body",
         "layouts": {
           "default": {
-            "layout": ">context.metaData.handlebars.layouts.default",
+            "layout": ">context.metaData.handlebars.layouts.coronavirus",
             "parts": {
               "head": ">context.metaData.handlebars.templates.pages_page-head-tags",
               "body": ">context.metaData.handlebars.templates.pages_coronavirus",

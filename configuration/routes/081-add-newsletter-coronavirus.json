@@ -19,7 +19,7 @@
       "taskModule": "render",
       "renderer": "handlebars",
       "config": {
-        "template": "{{@root.request.body.g-recaptcha-response}}",
+        "template": "{{@root.request.body.recaptcha_response}}",
         "output": "data"
       }
     },
