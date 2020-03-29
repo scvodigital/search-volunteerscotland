@@ -596,6 +596,10 @@ footer h3,
     margin-bottom: 0;
   }
 }
+.mdc-tab__content.bg-error,
+.bg-error {
+  padding: 0;
+}
 .bg-grey {
   background-color: $brand-primary-lightgrey;
   padding: $unit;

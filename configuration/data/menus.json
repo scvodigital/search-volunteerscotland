@@ -7,8 +7,15 @@
       "route": "^(?=\\/(search|map|opportunity|opportunities-in)($|\\?|\\/))((?!campaign=(coronavirus|online)).)*$"
     },
     {
+      "label": "Coronavirus volunteering",
+      "icon": "virus",
+      "class": "bg-error",
+      "path": "/coronavirus",
+      "route": "^/coronavirus"
+    },
+    {
       "label": "Online volunteering",
-      "icon": "search",
+      "icon": "wifi",
       "path": "/search?campaign=online",
       "route": "campaign=online"
     },
