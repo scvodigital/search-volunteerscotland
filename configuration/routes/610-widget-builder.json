@@ -1,6 +1,6 @@
 {
   "name": "widget_builder",
-  "debug": true,
+  "debug": false,
   "pattern": "/widget",
   "metaData": {
     "hideSearch": true,

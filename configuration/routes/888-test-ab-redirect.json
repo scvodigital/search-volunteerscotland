@@ -1,7 +1,7 @@
 {
   "name": "test-ab-redirect",
   "pattern": "/test-ab/redirect/:id(/:junk)",
-  "debug": true,
+  "debug": false,
   "metaData": {
     "title": "Volunteer Scotland Search",
     "sidebarButton": {

@@ -1,6 +1,6 @@
 {
   "name": "volunteering_opportunity",
-  "debug": true,
+  "debug": false,
   "pattern": {
     "slug": "/opportunity/:id(/:junk)",
     "id": "/opp/:id"

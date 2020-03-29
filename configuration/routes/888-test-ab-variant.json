@@ -1,7 +1,7 @@
 {
   "name": "test-ab-variant",
   "pattern": "/test-ab/variant/:id(/:junk)",
-  "debug": true,
+  "debug": false,
   "metaData": {
     "title": "Volunteer Scotland Search",
     "sidebarButton": {

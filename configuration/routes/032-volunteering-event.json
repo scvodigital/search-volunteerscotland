@@ -4,7 +4,7 @@
     "slug": "/event/:id(/:junk)",
     "id": "/e/:id"
   },
-  "debug": true,
+  "debug": false,
   "metaData": {
     "title": "Volunteer Scotland Search",
     "sidebarButton": {

@@ -1,7 +1,7 @@
 {
   "name": "volunteering_event_search",
   "pattern": "/events/search",
-  "debug": true,
+  "debug": false,
   "metaData": {
     "title": "Volunteer Scotland Search",
     "sidebarButton": {

@@ -1,7 +1,7 @@
 {
   "name": "test-ab-modify",
   "pattern": "/test-ab/modify/:id(/:junk)",
-  "debug": true,
+  "debug": false,
   "metaData": {
     "title": "Volunteer Scotland Search",
     "sidebarButton": {
