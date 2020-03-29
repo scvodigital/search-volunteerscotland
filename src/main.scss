@@ -3743,6 +3743,9 @@ header {
           font-weight: $heading-font-weight;
           opacity: 1;
         }
+        .mdc-tab__text-label {
+          padding: 0;
+        }
       }
       .mdc-tab:hover {
         background-color: $brand-secondary-darkturquoise !important;

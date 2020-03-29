@@ -4,7 +4,6 @@
   "pattern": "/coronavirus/sign-up",
   "acceptedVerbs": "POST",
   "tasks": [
-    "context.metaData.commonTasks.authNotRequired",
     {
       "name": "recaptcha_secret",
       "taskModule": "render",

@@ -125,33 +125,6 @@
                       label=(if (compare icon "!==" "home") label)}}
                 {{/each ~}}
               {{/components_tab_bar ~}}
-                {{!-- {{#>components_anchored_menu
-                    buttonClasses="mdc-theme--on-secondary hide-sm hide-md"
-                    imageUrl=(default @root.data.auth.photoURL false)
-                    imageClasses="r-margin user-avatar"
-                    iconClasses=(if (if @root.data.auth.photoURL false else=true) "fas r-margin fa-user-circle" else=false)
-                    buttonLabel="My Volunteer Account"
-                    arrowClasses="fas fa-fw fa-angle-down" ~}}
-                  {{#if @root.data.auth ~}}
-                    {{#each @root.context.metaData.menus.user-signed-in ~}}
-                      <a class="mdc-list-item {{#if (regexMatch @root.request.url.pathname route "gi")}} mdc-list-item--activated{{/if}}" href="{{stripTrailingSlash path}}" role="menuitem">
-                        {{#if icon ~}}
-                        <span class="far fa-{{icon}} mdc-list-item__graphic" aria-hidden="true"></span>
-                        {{/if ~}}
-                        {{{label}}}
-                      </a>
-                    {{/each ~}}
-                  {{else}}
-                    {{#each @root.context.metaData.menus.user-not-signed-in ~}}
-                      <a class="mdc-list-item {{#if (regexMatch @root.request.url.pathname route "gi")}} mdc-list-item--activated{{/if}}" href="{{stripTrailingSlash path}}" role="menuitem">
-                        {{#if icon ~}}
-                        <span class="far fa-{{icon}} mdc-list-item__graphic" aria-hidden="true"></span>
-                        {{/if ~}}
-                        {{{label}}}
-                      </a>
-                    {{/each ~}}
-                  {{/if ~}}
-                {{/components_anchored_menu ~}} --}}
             </section>
           </div>
           <div class="mdc-top-app-bar__row mdc-top-app-bar__lower hide-sm hide-md">
@@ -204,42 +177,6 @@
               {{{label}}}
             </a>
             {{/each ~}}
-            <div role="separator" class="mdc-list-divider"></div>
-            {{#if @root.data.auth ~}}
-            <a class="mdc-list-item mdc-list-item__user" href="#">
-              <span class="mdc-list-item__graphic" aria-hidden="true">
-                <img src="{{@root.data.auth.photoURL}}" />
-              </span>
-              <span class="mdc-list-item__text">{{@root.data.auth.email}}</span>
-            </a>
-            {{#each @root.context.metaData.menus.user-signed-in ~}}
-            {{#compare path "===" "/" ~}}
-            {{else}}
-            <a class="mdc-list-item {{#if (regexMatch @root.request.url.pathname route "gi")}} mdc-list-item--activated{{/if}}"
-               href="{{stripTrailingSlash path}}" {{#if (regexMatch @root.request.url.pathname route "gi")}}aria-selected="true"{{else}}aria-hidden="true"{{/if}}>
-              {{#if icon ~}}
-              <span class="far fa-{{icon}} mdc-list-item__graphic" aria-hidden="true"></span>
-              {{/if ~}}
-              {{{label}}}
-            </a>
-            {{/compare ~}}
-            {{/each ~}}
-            {{else}}
-            <a class="mdc-list-item mdc-list-item__user" href="#">
-              <span class="mdc-list-item__graphic" aria-hidden="true">
-                <span class="fas fa-fw fa-user-circle"></span>
-              </span>
-              <span class="mdc-list-item__text">My Volunteer Account</span>
-            </a>
-            {{#each @root.context.metaData.menus.user-not-signed-in ~}}
-            <a class="mdc-list-item {{#if (regexMatch @root.request.url.pathname route "gi")}} mdc-list-item--activated{{/if}}" href="{{stripTrailingSlash path}}" {{#if (regexMatch @root.request.url.pathname route "gi")}}aria-selected="true"{{else}}aria-hidden="true"{{/if}}>
-              {{#if icon ~}}
-              <span class="far fa-{{icon}} mdc-list-item__graphic" aria-hidden="true"></span>
-              {{/if ~}}
-              {{{label}}}
-            </a>
-            {{/each ~}}
-            {{/if ~}}
           </nav>
         </div>
       </aside>
@@ -335,8 +272,6 @@
       </div>
     </div>
   </volunteerscotland-search-site>
-
-  {{#if @root.data.auth}}{{else}}{{> dialog_favourites}}{{> dialog_volunteer}}{{/if}}
 
   {{#each @root.context.metaData.handlebars.frontend.configs ~}}
   <script data-component-config="{{@key}}" type="javascript/blocked">

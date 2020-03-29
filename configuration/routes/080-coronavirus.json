@@ -7,7 +7,6 @@
     "title": "Be a coronavirus volunteer in your community – Volunteer Scotland"
   },
   "tasks": [
-    "context.metaData.commonTasks.authNotRequired",
     {
       "name": "destination",
       "taskModule": "renderLayout",
