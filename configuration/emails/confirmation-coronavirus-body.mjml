@@ -13,21 +13,22 @@
             <p>Hello {{@root.request.body.first_name}},</p>
 
             <p>
-              Thank you for your interest in volunteering during the coronavirus crisis.
+              Thank you for your interest in volunteering in response to coronavirus.
             </p>
             <p>
               Over the coming weeks, we’ll send you email updates to let you know what specific opportunities there are to help organisations in your community.
             </p>
             <p>
-              There are so many offers of help, it might not be possible to find a role for everyone, so do not be discouraged if you don’t hear about any suitable opportunities immediately. Over time, there will be more ways to help.
+              There are so many offers of help, it might not be possible to find a role for everyone, so don’t be discouraged if you don’t hear about any suitable opportunities immediately. Over time, there will be more ways to help.
             </p>
             <p>
-              For now, the most important contribution you can make during the crisis is to:
+              Remember you are making a contribution to keeping everyone safe by staying at home and following <a href="https://nhsinform.scot/coronavirus">government guidelines</a>.
             </p>
-            <ul>
-              <li>Follow <a href="https://www.nhsinform.scot/coronavirus">government guidelines</a> and stay at home in order to protect yourself and others</li>
-              <li>Provide help to your family, friends and neighbours if they need it, following <a href="https://www.readyscotland.org/coronavirus">safety guidelines</a></li>
-            </ul>
+            {{#if @root.request.body.consent_tsi ~}}
+            <p>
+              As you opted to share your personal information with {{@root.request.body.tsi}} and {{@root.request.body.council}}, they may also contact you to let you know about other ways you can help.
+            </p>
+            {{/if ~}}
             <p>
               Thank you
             </p>
