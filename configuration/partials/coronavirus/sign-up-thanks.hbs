@@ -12,14 +12,6 @@
 </p>
 {{#if @root.request.params.query.la ~}}
 <p class="mdc-typography--body1">
-  As you opted to share your personal information with 
-  {{~#with (getProperty @root.context.metaData.tsiList @root.request.params.query.la) ~}}
-  {{~#each contacts ~}}
-  {{~#if (regexMatch ../../_source.place pattern "gi") ~}}
-  {{title}}
-  {{~/if ~}}
-  {{~/each ~}}
-  {{~/with ~}}
-  and {{~#with (getProperty @root.context.metaData.tsiList @root.request.params.query.la) ~}}{{council}}{{~/with ~}}, they may also contact you to let you know about other ways you can help.
+  As you opted to share your personal information with your local volunteer centre and {{#with (getProperty @root.context.metaData.tsiList @root.request.params.query.la)}}{{council}}{{/with }}, they may also contact you to let you know about other ways you can help.
 </p>
 {{/if ~}}
