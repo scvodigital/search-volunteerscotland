@@ -606,6 +606,22 @@ footer h3,
     margin-bottom: 0;
   }
 }
+.bg-blue.link-block:hover {
+  background-color: $brand-secondary-darkblue;
+}
+.bg-red.link-block:hover {
+  background-color: $brand-secondary-darkred;
+}
+.bg-purple.link-block:hover {
+  background-color: $brand-secondary-darkpurple;
+}
+.link-block:hover {
+  transition: background-color $transition-speed ease-in-out;
+  text-decoration: none;
+  .hover-underline {
+    text-decoration: underline;
+  }
+}
 #newsletter-coronavirus-form {
   .mdc-text-field-helper-text {
     display: block;
