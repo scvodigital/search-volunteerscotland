@@ -12,6 +12,6 @@
 </p>
 {{#if @root.request.params.query.la ~}}
 <p class="mdc-typography--body1">
-  As you opted to share your personal information with your local volunteer centre{{#if (getProperty @root.context.metaData.tsiList @root.request.params.query.la)}} and {{#with (getProperty @root.context.metaData.tsiList @root.request.params.query.la)}}{{council}}{{/with}}{{/if}}, they may also contact you to let you know about other ways you can help.
+  As you opted to share your personal information with your local volunteer centre{{#if (getProperty @root.context.metaData.tsiList @root.request.params.query.la)}} and {{#with (getProperty @root.context.metaData.tsiList @root.request.params.query.la)}}{{council}}{{/with}}{{else}} and council{{/if}}, they may also contact you to let you know about other ways you can help.
 </p>
 {{/if ~}}
