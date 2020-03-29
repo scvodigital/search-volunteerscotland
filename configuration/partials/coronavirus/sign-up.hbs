@@ -45,7 +45,7 @@
             </label>
           </div>
         </div>
-        <div class="hidden form-input-hint error mdc-text-field-helper-line mdc-text-field-helper-text" id="postcode-validation-message"></div>
+        <div class="hidden form-input-hint error mdc-text-field-helper-line mdc-text-field-helper-text" id="postcode-validation-country"></div>
       </div>
     </div>
   </div>
@@ -228,7 +228,7 @@ $(document).ready(function() {
                     "#council_title": {
                       value: "council"
                     },
-                    "#postcode-validation-message": {
+                    "#postcode-validation-country": {
                       addClass: [ "hidden" ],
                       contents: { __template: "" }
                     },
@@ -300,7 +300,7 @@ $(document).ready(function() {
                               "#council_title": {
                                 value: "council"
                               },
-                              "#postcode-validation-message": {
+                              "#postcode-validation-country": {
                                 addClass: [ "hidden" ],
                                 contents: { __template: "" }
                               },
@@ -361,7 +361,7 @@ $(document).ready(function() {
                                         "#council_title": {
                                           value: "council"
                                         },
-                                        "#postcode-validation-message": {
+                                        "#postcode-validation-country": {
                                           removeClass: [ "hidden" ],
                                           contents: { __template: "This postcode is not in Scotland, we can't match you with a local volunteer centre" }
                                         },
@@ -417,8 +417,11 @@ $(document).ready(function() {
                                         "#council_title": {
                                           contents: { __template: "<strong>{{{data.postcodeLookup.[0].council}}}</strong>" }
                                         },
-                                        "#postcode-validation-message": {
+                                        "#postcode-validation-country": {
                                           addClass: [ "hidden" ],
+                                          contents: { __template: "" }
+                                        },
+                                        "#location_postcode-error": {
                                           contents: { __template: "" }
                                         },
                                         "#postcode-wrapper": {
