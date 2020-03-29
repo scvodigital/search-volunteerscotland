@@ -1,6 +1,6 @@
 {{~#with @root.request.body ~}}
 INSERT INTO newsletter_coronavirus (
-  consent_tsi, consent_volunteering_updates, constituency, latitude, longotude,
+  consent_tsi, consent_volunteering_updates, constituency, latitude, longitude,
   email, first_name, last_name, local_authority, location_postcode, nuts_3, simd_datazone,
   simd_rank, ward
 ) VALUES (
@@ -29,7 +29,7 @@ ON DUPLICATE KEY UPDATE
   consent_volunteering_updates = VALUES (consent_volunteering_updates),
   constituency = VALUES (constituency),
   latitude = VALUES (latitude),
-  longotude = VALUES (longotude),
+  longitude = VALUES (longitude),
   first_name = VALUES (first_name),
   last_name = VALUES (last_name),
   local_authority = VALUES (local_authority),
