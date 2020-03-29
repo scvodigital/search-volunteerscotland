@@ -56,7 +56,7 @@
     },
     {
       "name": "reroute",
-      "taskModule": "reroute",
+      "taskModule": "request",
       "config": {
         "if": [
           { "!=": [{"var": "data.verify.recaptcha.success"}, true] },
@@ -76,14 +76,14 @@
     },
     {
       "name": "save_data",
-      "taskModule": "firebaseRtbSet",
-      "renderer": "handlebars",
+      "taskModule": "mysql",
       "config": {
-        "dataTemplate": ">context.metaData.handlebars.templates.utilities_firebase-coronavirus",
-        "setOrUpdate": "set",
-        "appName": "volunteerscotland-search",
-        "pathTemplate": "/newsletter-coronavirus/{{@root.data.id}}/"
-      }
+        "connectionName": "coronavirus",
+        "queryTemplates": {
+          "toggle_subscription": ">context.metaData.handlebars.queries.utilities_coronavirus"
+        }
+      },
+      "renderer": "handlebars"
     },
     {
       "name": "sendEmail",
