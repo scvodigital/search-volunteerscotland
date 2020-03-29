@@ -4,7 +4,7 @@
   "pattern": "/coronavirus/thanks",
   "metaData": {
     "hideSearch": true,
-    "title": "Coronavirus volunteering – Volunteer Scotland"
+    "title": "Be a coronavirus volunteer in your community – Volunteer Scotland"
   },
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
