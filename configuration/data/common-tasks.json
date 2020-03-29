@@ -90,6 +90,11 @@
 		"name": "termsMaps",
 		"taskModule": "render",
 		"renderer": "handlebars",
+		"cache": {
+			"keyProperties": ["$always"],
+			"partition": "{{request.url.host}}",
+			"ttl": 86400
+		},
 		"config": {
 			"template": ">context.metaData.handlebars.partials.terms_maps",
 			"output": "data",
@@ -121,6 +126,11 @@
 	"opportunitySupplimentary": {
 		"name": "opportunitySupplimentary",
 		"taskModule": "elasticsearch",
+		"cache": {
+			"keyProperties": ["$always"],
+			"partition": "{{request.url.host}}",
+			"ttl": 86400
+		},
 		"config": {
 			"connectionStringTemplate": "{$./elasticsearch-url.txt}",
 			"elasticsearchConfig": {

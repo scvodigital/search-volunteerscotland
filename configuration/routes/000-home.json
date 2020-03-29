@@ -1,7 +1,7 @@
 {
   "name": "home",
   "pattern": "/",
-  "debug": false,
+  "debug": true,
   "metaData": {
     "hideSearch": true,
     "title": "Volunteer Scotland Search | Help Make a Difference through Volunteering"
@@ -15,6 +15,11 @@
     {
       "name": "opportunitySupplimentary",
       "taskModule": "elasticsearch",
+      "cache": {
+        "keyProperties": ["$always", "data.auth.email"],
+        "partition": "{{request.url.host}}",
+        "ttl": 600
+      },
       "config": {
         "connectionStringTemplate": "{$../data/elasticsearch-url.txt}",
         "elasticsearchConfig": {
@@ -53,6 +58,11 @@
     {
       "name": "posts",
       "taskModule": "elasticsearch",
+      "cache": {
+        "keyProperties": ["$always"],
+        "partition": "{{request.url.host}}",
+        "ttl": 86400
+      },
       "config": {
         "connectionStringTemplate": "{$../data/elasticsearch-url.txt}",
         "elasticsearchConfig": {

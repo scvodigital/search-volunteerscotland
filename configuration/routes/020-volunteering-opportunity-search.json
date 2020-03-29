@@ -22,6 +22,11 @@
     {
       "name": "location_data",
       "taskModule": "elasticsearch",
+      "cache": {
+        "keyProperties": ["request.fullUrl", "data.auth.email"],
+        "partition": "{{request.url.host}}",
+        "ttl": 600
+      },
       "config": {
         "connectionStringTemplate": "{$../data/elasticsearch-url.txt}",
         "elasticsearchConfig": {
@@ -41,6 +46,11 @@
     {
       "name": "search_data",
       "taskModule": "elasticsearch",
+      "cache": {
+        "keyProperties": ["request.fullUrl", "data.auth.email", "$wut"],
+        "partition": "{{request.url.host}}",
+        "ttl": 600
+      },
       "config": {
         "connectionStringTemplate": "{$../data/elasticsearch-url.txt}",
         "elasticsearchConfig": {

@@ -1,7 +1,7 @@
 {
   "name": "browse",
   "pattern": "/browse",
-  "debug": false,
+  "debug": true,
   "metaData": {
     "title": "Volunteer Scotland Search",
     "sidebarButton": {
@@ -15,6 +15,11 @@
     {
       "name": "opportunitySupplimentary",
       "taskModule": "elasticsearch",
+      "cache": {
+        "keyProperties": ["request.fullUrl"],
+        "partition": "{{request.url.host}}",
+        "ttl": 86400
+      },
       "config": {
         "connectionStringTemplate": "{$../data/elasticsearch-url.txt}",
         "elasticsearchConfig": {

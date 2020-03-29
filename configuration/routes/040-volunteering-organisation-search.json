@@ -19,6 +19,11 @@
     {
       "name": "search_data",
       "taskModule": "elasticsearch",
+      "cache": {
+        "keyProperties": ["request.fullUrl"],
+        "partition": "{{request.url.host}}",
+        "ttl": 600
+      },
       "config": {
         "connectionStringTemplate": "{$../data/elasticsearch-url.txt}",
         "elasticsearchConfig": {
