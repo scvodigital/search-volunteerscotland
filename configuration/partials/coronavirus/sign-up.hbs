@@ -112,7 +112,7 @@
   </p>
 </form>
 
-<script src="https://www.google.com/recaptcha/api.js?render={{@root.context.metaData.reCapthcaSiteKey2}}"></script>
+<script src="https://www.google.com/recaptcha/api.js?render={{@root.context.metaData.reCaptchaSiteKey2}}"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -146,7 +146,7 @@ $(document).ready(function() {
     },
     submitHandler: function(form) {
      grecaptcha.ready(function() {
-       grecaptcha.execute('{{@root.context.metaData.reCapthcaSiteKey2}}', {action:'validate_captcha'}).then(function(token) {
+       grecaptcha.execute('{{@root.context.metaData.reCaptchaSiteKey2}}', {action:'validate_captcha'}).then(function(token) {
          $('<input />').attr("type", "hidden").attr("name", "recaptcha_response").attr("value", token).appendTo('#newsletter-coronavirus-form');
          form.submit();
        });
