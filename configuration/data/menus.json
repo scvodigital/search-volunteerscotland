@@ -14,12 +14,6 @@
       "route": "^/coronavirus"
     },
     {
-      "label": "Online volunteering",
-      "icon": "wifi",
-      "path": "/search?campaign=online",
-      "route": "campaign=online"
-    },
-    {
       "label": "Find organisations",
       "icon": "list-alt",
       "path": "/organisations/search",
@@ -27,6 +21,12 @@
     }
   ],
   "hidden": [
+    {
+      "label": "Online volunteering",
+      "icon": "wifi",
+      "path": "/search?campaign=online",
+      "route": "campaign=online"
+    },
     {
       "label": "Coronavirus volunteering",
       "icon": "search",
