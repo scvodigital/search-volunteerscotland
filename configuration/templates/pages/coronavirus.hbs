@@ -1,17 +1,17 @@
 <div class="container-fluid container-content v-padding-full h-padding" style="margin: 0 auto;">
   <h1 class="mdc-typography--headline3">Be a coronavirus volunteer in your community</h1>
-  <p class="mdc-typography--headline7">
+  <div class="mdc-typography--headline7">
     Thank you for your interest in volunteering in response to the coronavirus crisis.
-  </p>
-  <p>
+  </div>
+  <p class="mdc-typography--body1">
     The most important contribution everyone can make is to stay at home to help protect ourselves and others.
   </p>
-  <p>
+  <p class="mdc-typography--body1">
     However, those who are well and not at risk can provide essential support for their family, friends and neighbours who cannot leave the house. Find out how to do that safely on <a href="https://www.readyscotland.org/coronavirus">Ready Scotland</a>.
   </p>
   <div class="bg-grey v-margin-full">
     <h3 class="mdc-typography--headline6">
-      Sign up for volunteering opportunities
+      Sign up to volunteer for organisations in your community
     </h3>
     {{#compare @root.request.url.pathname "/coronavirus/thanks" ~}}
     {{> coronavirus_sign_up_thanks}}
@@ -19,24 +19,30 @@
     {{> coronavirus_sign_up}}
     {{/compare ~}}
   </div>
+
+  <h2 class="mdc-typography--headline4">Stay safe</h2>
+  <p class="mdc-typography--body1">
+    Remember, the most important contribution everyone can make is to stay at home to help protect ourselves and others. Those who are well and not at risk can provide essential support for their family, friends and neighbours who cannot leave the house. Find out how to do that safely on <a href="https://www.readyscotland.org/coronavirus">Ready Scotland</a>.
+  </p>
+
   <h2 class="mdc-typography--headline4">Other ways you can help&hellip;</h2>
   <div class="mdc-layout-grid b-margin-full">
     <div class="mdc-layout-grid__inner">
       <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone bg-blue">
         <h3 class="mdc-typography--headline6">Are you a former NHS employee?</h3>
-        <p>
+        <p class="mdc-typography--body1">
           Sign-up to return to work to help tackle the coronavirus pandemic
         </p>
       </div>
       <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone bg-red">
         <h3 class="mdc-typography--headline6">Do you want to help in crisis response?</h3>
-        <p>
+        <p class="mdc-typography--body1">
           <a href="https://reserves.redcross.org.uk">Sign-up to be a Red Cross Community Reserve Volunteer</a>
         </p>
       </div>
       <div class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone bg-purple">
         <h3 class="mdc-typography--headline6">Do you want to contribute money to help local organisations?</h3>
-        <p>
+        <p class="mdc-typography--body1">
           <a href="https://nationalemergenciestrust.org.uk/coronavirus">Donate through the National Emergencies Trust</a>
         </p>
       </div>

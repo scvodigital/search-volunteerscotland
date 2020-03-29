@@ -38,12 +38,15 @@
     {{#if _source.simd_rank ~}}
     "simd_rank": {{{stringify _source.simd_rank}}},
     {{/if ~}}
-    "tsi_title": "{{~#with (getProperty @root.context.metaData.tsiList (slugify (replace (replace (replace (replace (default _source.district _source.county) " and " " & ") " Islands" "") "City of " "") " City" ""))) ~}}
+    "tsi": "{{~#with (getProperty @root.context.metaData.tsiList (slugify (replace (replace (replace (replace (default _source.district _source.county) " and " " & ") " Islands" "") "City of " "") " City" ""))) ~}}
     {{~#each contacts ~}}
       {{~#if (regexMatch ../../_source.place pattern "gi") ~}}
         {{title}}
       {{~/if ~}}
     {{~/each ~}}
+    {{~/with ~}}",
+    "council": "{{~#with (getProperty @root.context.metaData.tsiList (slugify (replace (replace (replace (replace (default _source.district _source.county) " and " " & ") " Islands" "") "City of " "") " City" ""))) ~}}
+    {{council}}
     {{~/with ~}}",
     {{#ifAll _source.point.lat _source.point.lon ~}}
     "coordinates": {{{stringify (concat _source.point.lat "," _source.point.lon)}}},

@@ -101,7 +101,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "data",
-        "template": "/coronavirus/thanks{{#if @root.request.body.consent_tsi}}?la={{@root.request.body.local_authority}}{{/if}}{{!--/search?sort=distance&campaign=coronavirus&location={{@root.request.body.location_postcode}}&distance=10&lat={{itemAt (split @root.request.body.coordinates ',') 0}}&lng={{itemAt (split @root.request.body.coordinates ',') 1}}--}}"
+        "template": "/coronavirus/thanks{{#ifAll @root.request.body.consent_tsi @root.request.body.local_authority}}?la={{slugify @root.request.body.local_authority}}{{/ifAll}}{{!--/search?sort=distance&campaign=coronavirus&location={{@root.request.body.location_postcode}}&distance=10&lat={{itemAt (split @root.request.body.coordinates ',') 0}}&lng={{itemAt (split @root.request.body.coordinates ',') 1}}--}}"
       }
     },
     {

@@ -1,17 +1,25 @@
-<p>
-  Thank you for your interest in volunteering!
+<p class="mdc-typography--body1">
+  <strong>Thank you for your interest in volunteering in response to coronavirus</strong>
 </p>
-<p>
+<p class="mdc-typography--body1">
   Over the coming weeks, we’ll send you email updates to let you know what specific opportunities there are to help organisations in your community.
 </p>
-<p>
-  There are so many offers of help, it might not be possible to find a role for everyone, so do not be discouraged if you don’t hear about any suitable opportunities immediately. Over time, there will be more ways to help.
+<p class="mdc-typography--body1">
+  There are so many offers of help, it might not be possible to find a role for everyone, so don’t be discouraged if you don’t hear about any suitable opportunities immediately. Over time, there will be more ways to help.
 </p>
-<p>
+<p class="mdc-typography--body1">
   Remember you are making a contribution to keeping everyone safe by staying at home and following <a href="https://nhsinform.scot/coronavirus">government guidelines</a>.
 </p>
 {{#if @root.request.params.query.la ~}}
-<p>
-  As you opted to share your personal information with your local volunteer centre and {{#compare @root.request.params.query.la "Na h-Eileanan Siar"}}Comhairle nan Eilean Siar{{else}}{{@root.request.params.query.la}} Council{{/compare}}, they may also contact you to let you know about other ways you can help.
+<p class="mdc-typography--body1">
+  As you opted to share your personal information with 
+  {{~#with (getProperty @root.context.metaData.tsiList @root.request.params.query.la) ~}}
+  {{~#each contacts ~}}
+  {{~#if (regexMatch ../../_source.place pattern "gi") ~}}
+  {{title}}
+  {{~/if ~}}
+  {{~/each ~}}
+  {{~/with ~}}
+  and {{~#with (getProperty @root.context.metaData.tsiList @root.request.params.query.la) ~}}{{council}}{{~/with ~}}, they may also contact you to let you know about other ways you can help.
 </p>
 {{/if ~}}

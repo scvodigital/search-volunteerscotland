@@ -1,5 +1,5 @@
-<p>
-  While there are limited opportunities available right now to volunteer, you can sign-up to be kept informed of opportunities to get involved in providing help to organisations in your community.
+<p class="mdc-typography--body1">
+  Sign-up to be kept informed of volunteering opportunities to help organisations in your community. While there are limited opportunities available right now we expect this to increase.
 </p>
 <form id="newsletter-coronavirus-form" action="/coronavirus/sign-up" method="POST" class="t-margin-full">
   <div class="mdc-layout-grid">
@@ -81,17 +81,19 @@
       </div>
     </div>
     <label for="consent_tsi">
-      I agree my personal information can be shared with my local council and <span id="tsi_title">my local <a href="https://www.gov.scot/publications/third-sector-interfaces-contact-details/" target="_blank" class="noext">volunteer centre</a></span> for the purpose of informing me of relevant volunteering opportunities
+      I agree my personal information can be shared with <span id="tsi_title">my local <a href="https://www.gov.scot/publications/third-sector-interfaces-contact-details/" target="_blank" class="noext">volunteer centre</a></span> and <span id="council_title">council</span> for the purpose of informing me of relevant volunteering opportunities
     </label>
   </div>
 
-  <input type="hidden" name="local_authority" id="local_authority" value="{{@root.data.accountInfo.local_authority}}" />
-  <input type="hidden" name="coordinates" id="coordinates" value="{{@root.data.accountInfo.coordinates}}" />
-  <input type="hidden" name="constituency" id="constituency" value="{{@root.data.accountInfo.constituency}}" />
-  <input type="hidden" name="nuts_3" id="nuts_3" value="{{@root.data.accountInfo.nuts_3}}" />
-  <input type="hidden" name="ward" id="ward" value="{{@root.data.accountInfo.ward}}" />
-  <input type="hidden" name="simd_datazone" id="simd_datazone" value="{{@root.data.accountInfo.simd_datazone}}" />
-  <input type="hidden" name="simd_rank" id="simd_rank" value="{{@root.data.accountInfo.simd_rank}}" />
+  <input type="hidden" name="local_authority" id="local_authority" />
+  <input type="hidden" name="coordinates" id="coordinates" />
+  <input type="hidden" name="constituency" id="constituency" />
+  <input type="hidden" name="nuts_3" id="nuts_3" />
+  <input type="hidden" name="ward" id="ward" />
+  <input type="hidden" name="simd_datazone" id="simd_datazone" />
+  <input type="hidden" name="simd_rank" id="simd_rank" />
+  <input type="hidden" name="tsi" id="tsi" />
+  <input type="hidden" name="council" id="council" />
 
   <input type="hidden" name="action" value="validate_captcha" />
   <div class="t-margin text-centre">
@@ -208,8 +210,20 @@ $(document).ready(function() {
                     "#simd_rank": {
                       value: ""
                     },
+                    "#simd_rank": {
+                      value: ""
+                    },
+                    "#tsi": {
+                      value: ""
+                    },
+                    "#council": {
+                      value: ""
+                    },
                     "#tsi_title": {
                       value: "my local <a href=\"https://www.gov.scot/publications/third-sector-interfaces-contact-details\" target=\"_blank\" class=\"noext\">volunteer centre</a>"
+                    },
+                    "#council_title": {
+                      value: "council"
                     },
                     "#postcode-validation-message": {
                       addClass: [ "hidden" ],
@@ -271,8 +285,17 @@ $(document).ready(function() {
                               "#simd_rank": {
                                 value: ""
                               },
+                              "#tsi": {
+                                value: ""
+                              },
+                              "#council": {
+                                value: ""
+                              },
                               "#tsi_title": {
                                 value: "my local <a href=\"https://www.gov.scot/publications/third-sector-interfaces-contact-details\" target=\"_blank\" class=\"noext\">volunteer centre</a>"
+                              },
+                              "#council_title": {
+                                value: "council"
                               },
                               "#postcode-validation-message": {
                                 addClass: [ "hidden" ],
@@ -323,8 +346,17 @@ $(document).ready(function() {
                                         "#simd_rank": {
                                           value: ""
                                         },
+                                        "#tsi": {
+                                          value: ""
+                                        },
+                                        "#council": {
+                                          value: ""
+                                        },
                                         "#tsi_title": {
                                           value: "my local <a href=\"https://www.gov.scot/publications/third-sector-interfaces-contact-details\" target=\"_blank\" class=\"noext\">volunteer centre</a>"
+                                        },
+                                        "#council_title": {
+                                          value: "council"
                                         },
                                         "#postcode-validation-message": {
                                           removeClass: [ "hidden" ],
@@ -370,8 +402,17 @@ $(document).ready(function() {
                                         "#simd_rank": {
                                           value: { __template: "{{{data.postcodeLookup.[0].simd_rank}}}" }
                                         },
+                                        "#tsi": {
+                                          value: { __template: "{{{data.postcodeLookup.[0].tsi}}}" }
+                                        },
+                                        "#council": {
+                                          value: { __template: "{{{data.postcodeLookup.[0].council}}}" }
+                                        },
                                         "#tsi_title": {
-                                          contents: { __template: "<strong>{{{data.postcodeLookup.[0].tsi_title}}}</strong>" }
+                                          contents: { __template: "<strong>{{{data.postcodeLookup.[0].tsi}}}</strong>" }
+                                        },
+                                        "#council_title": {
+                                          contents: { __template: "<strong>{{{data.postcodeLookup.[0].council}}}</strong>" }
                                         },
                                         "#postcode-validation-message": {
                                           addClass: [ "hidden" ],
