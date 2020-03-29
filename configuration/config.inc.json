@@ -17,7 +17,6 @@
     "accountInfoValidation": "{:./data/account-info-validation.json}",
     "tsiList": "{:./data/info-volunteering-organisations.json}",
     "reCaptchaSiteKey": "6Ld7L5IUAAAAAGg1Luu1I9njFa2m-BALdtHja-cp",
-    "reCapthcaSiteKey2": "6LcejOQUAAAAAGrTsG3DGiDtiK4FGAjLvVXa2gcn",
     "elasticsearchUrl": "{$./data/elasticsearch-url.txt}",
     "searchKnobs": "{:./data/search-knobs.json}",
     "termTypeLabels": "{:./data/term-type-labels.json}",
