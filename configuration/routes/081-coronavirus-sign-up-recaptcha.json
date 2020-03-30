@@ -1,0 +1,115 @@
+{
+  "name": "coronavirus-sign-up-recaptcha",
+  "debug": false,
+  "pattern": "/coronavirus/sign-up-recaptcha",
+  "acceptedVerbs": "POST",
+  "tasks": [
+    {
+      "name": "recaptcha_secret",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "template": "{:../../secret.json@google_recaptcha_server_key}",
+        "output": "data"
+      }
+    },
+    {
+      "name": "recaptcha_response",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "template": "{{@root.request.body.recaptcha_response}}",
+        "output": "data"
+      }
+    },
+    {
+      "name": "ip",
+      "taskModule": "request",
+      "renderer": "handlebars",
+      "config": {
+        "options": {
+          "geobytes": {
+            "url": "http://gd.geobytes.com/GetCityDetails",
+            "json": true
+          }
+        }
+      }
+    },
+    {
+      "name": "recaptcha_template",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "template": ">context.metaData.handlebars.templates.utilities_share-verify",
+        "output": "data",
+        "parseJson": true
+      }
+    },
+    {
+      "name": "verify",
+      "taskModule": "request",
+      "config": {
+        "optionsTemplates": ">data.recaptcha_template"
+      },
+      "renderer": "handlebars"
+    },
+    {
+      "name": "reroute",
+      "taskModule": "request",
+      "config": {
+        "if": [
+          { "!=": [{"var": "data.verify.recaptcha.success"}, true] },
+          "five_hundred",
+          false
+        ]
+      }
+    },
+    {
+      "name": "id",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "template": "{{hash (concat (moment null 'X') '-' (hash @root.request.body.email))}}",
+        "output": "data"
+      }
+    },
+    {
+      "name": "save_data",
+      "taskModule": "mysql",
+      "config": {
+        "connectionName": "coronavirus",
+        "queryTemplates": {
+          "toggle_subscription": ">context.metaData.handlebars.queries.utilities_coronavirus"
+        }
+      },
+      "renderer": "handlebars"
+    },
+    {
+      "name": "sendEmail",
+      "taskModule": "mailgun",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "parseJson": true,
+        "template": ">context.metaData.handlebars.templates.email_coronavirus-confirmation"
+      }
+    },
+    {
+      "name": "url",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "template": "/coronavirus/thanks{{#ifAll @root.request.body.consent_tsi @root.request.body.local_authority}}?la={{slugify @root.request.body.local_authority}}{{/ifAll}}{{!--/search?sort=distance&campaign=coronavirus&location={{@root.request.body.location_postcode}}&distance=10&lat={{itemAt (split @root.request.body.coordinates ',') 0}}&lng={{itemAt (split @root.request.body.coordinates ',') 1}}--}}"
+      }
+    },
+    {
+      "name": "destination",
+      "taskModule": "redirect",
+      "config": {
+        "location": ">data.url",
+        "statusCode": 302
+      }
+    }
+  ]
+}
