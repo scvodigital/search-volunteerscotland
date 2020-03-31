@@ -1,0 +1,48 @@
+{
+  "name": "coronavirus_admin",
+  "debug": true,
+  "pattern": "/coronavirus/admin",
+  "metaData": {
+    "hideSearch": true,
+    "title": "Be a coronavirus volunteer in your community – Volunteer Scotland"
+  },
+  "tasks": [
+    "context.metaData.commonTasks.authRequired",
+    "context.metaData.commonTasks.profileInfoData",
+    {
+      "name": "reroute",
+      "taskModule": "reroute",
+      "config": {
+        "if": [
+          { "!=": [{"var": "data.profileInfo.profile.coronavirus_admin"}, true] },
+          "sign_out",
+          false
+        ]
+      }
+    },
+    {
+      "name": "destination",
+      "taskModule": "renderLayout",
+      "renderer": "handlebars",
+      "config": {
+        "logic": {
+          "if": [
+            "default"
+          ]
+        },
+        "output": "body",
+        "layouts": {
+          "default": {
+            "layout": ">context.metaData.handlebars.layouts.coronavirus",
+            "parts": {
+              "head": ">context.metaData.handlebars.templates.pages_page-head-tags",
+              "body": ">context.metaData.handlebars.templates.pages_coronavirus-admin",
+              "foot": ""
+            },
+            "contentType": "text/html"
+          }
+        }
+      }
+    }
+  ]
+}

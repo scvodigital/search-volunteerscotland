@@ -55,7 +55,7 @@
     },
     {
       "name": "reroute",
-      "taskModule": "request",
+      "taskModule": "reroute",
       "config": {
         "if": [
           { "!=": [{"var": "data.verify.recaptcha.success"}, true] },
