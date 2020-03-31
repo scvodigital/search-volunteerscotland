@@ -21,6 +21,17 @@
       }
     },
     {
+      "name": "results",
+      "taskModule": "mysql",
+      "config": {
+        "connectionName": "coronavirus",
+        "queryTemplates": {
+          "records": ">context.metaData.handlebars.queries.utilities_coronavirus-admin"
+        }
+      },
+      "renderer": "handlebars"
+    },
+    {
       "name": "destination",
       "taskModule": "renderLayout",
       "renderer": "handlebars",
