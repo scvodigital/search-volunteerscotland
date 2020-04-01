@@ -29,11 +29,11 @@
       <th class="text-left r-padding-full"><strong>Sign-ups</strong></th>
       {{!-- <th class="text-left r-padding-full"><strong>Download</strong></th> --}}
     </tr>
-    {{#each @root.data.councils.records ~}}
+    {{#each @root.data.database.councils ~}}
     <tr>
       <td class="text-left r-padding-full">{{{council}}}</td>
       <td class="text-left r-padding-full">{{submissions}}</td>
-      <td class="text-left r-padding-full"><a href="{{@root.request.url.pathname}}?council={{urlencode council}}" class="mdc-button mdc-button--raised mdc-button--primary"><span class="far fa-file-csv r-margin-full"></span> Download CSV</a></td>
+      <td class="text-left r-padding-full"><a href="{{@root.request.url.pathname}}/download?council={{urlencode council}}&from_date={{#unless @root.request.params.query.from_date}}2020-03-29{{else}}{{@root.request.params.query.from_date}}{{/unless}}" class="mdc-button mdc-button--raised mdc-button--primary"><span class="far fa-file-csv r-margin-full"></span> Download CSV</a></td>
     </tr>
     {{/each ~}}
   </table>
