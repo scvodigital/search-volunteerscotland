@@ -7,7 +7,8 @@
     <div class="mdc-layout-grid__inner">
       <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
         <p class="mdc-typography--body1">
-          All coronavirus volunteer sign-ups with sharing consent given, by area.
+          All coronavirus volunteer sign-ups, nationally:<br />
+          <a href="{{@root.request.url.pathname}}/download-national?from_date={{#unless @root.request.params.query.from_date}}2020-03-29{{else}}{{@root.request.params.query.from_date}}{{/unless}}" class="mdc-button mdc-button--raised mdc-button--primary t-margin"><span class="far fa-file-csv r-margin-full"></span> Download CSV</a>
         </p>
       </div>
       <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
@@ -23,6 +24,9 @@
       </div>
     </div>
   </div>
+  <p class="mdc-typography--body1">
+    All coronavirus volunteer sign-ups with sharing consent given, by area:
+  </p>
   <table class="b-margin-full">
     <tr>
       <th class="text-left r-padding-full"><strong>Local authority</strong></th>

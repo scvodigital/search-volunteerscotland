@@ -1,0 +1,42 @@
+{
+  "name": "coronavirus_admin_download_national",
+  "debug": true,
+  "pattern": "/coronavirus/admin/download-national",
+  "tasks": [
+    "context.metaData.commonTasks.authRequired",
+    "context.metaData.commonTasks.profileInfoData",
+    {
+      "name": "reroute",
+      "taskModule": "reroute",
+      "config": {
+        "if": [
+          { "!=": [{"var": "data.profileInfo.profile.coronavirus_admin"}, true] },
+          "sign_out",
+          false
+        ]
+      }
+    },
+    {
+      "name": "database",
+      "taskModule": "mysql",
+      "config": {
+        "connectionName": "coronavirus",
+        "queryTemplates": {
+          "results": ">context.metaData.handlebars.queries.utilities_coronavirus-admin-national-results"
+        }
+      },
+      "renderer": "handlebars"
+    },
+    {
+      "name": "destination",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "template": ">context.metaData.handlebars.templates.utilities_coronavirus-national-csv",
+        "output": "body",
+        "filename": "coronavirus-volunteers_national_from-{{@root.request.params.query.from_date}}_generated-{{momentFormat (moment (dateMath 'now') 'x') 'YYYY-MM-DD-HH-mm-ss'}}.csv",
+        "contentType": "text/csv"
+      }
+    }
+  ]
+}
