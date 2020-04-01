@@ -2,6 +2,8 @@
 <div class="container-content">
   {{#compare @root.data.primaryResponse.hits.total ">" 0 ~}}
   <div class="content-primary">
+    {{> coronavirus_delay}}
+    
     {{#each @root.data.primaryResponse.hits.hits ~}}
       {{> opportunity_full _source view="website"}}
     {{/each ~}}
