@@ -16,7 +16,8 @@
     "organisation_name_slug",
     "title",
     "travel_expenses",
-    "opportunity_contact_email"
+    "opportunity_contact_email",
+    "external_application_link"
   ],
   "query": {
     "function_score": {

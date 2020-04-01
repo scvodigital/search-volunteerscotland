@@ -64,7 +64,8 @@
     "volunteersearch_age_group",
     "volunteersearch_age_group_slugs",
     "volunteersearch_support_option",
-    "volunteersearch_support_option_slugs"
+    "volunteersearch_support_option_slugs",
+    "external_application_link"
   ],
   "query": {
     "bool": {

@@ -93,7 +93,8 @@
     "weblink",
     "weblink_title",
     "weblink_tooltip",
-    "organisation_website"
+    "organisation_website",
+    "external_application_link"
   ],
   "query": {
     "bool": {

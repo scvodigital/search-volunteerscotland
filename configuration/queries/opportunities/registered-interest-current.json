@@ -15,7 +15,8 @@
     "organisation_id",
     "organisation_name_slug",
     "opportunity_contact_email",
-    "url"
+    "url",
+    "external_application_link"
   ],
   "query": {
     "bool": {
