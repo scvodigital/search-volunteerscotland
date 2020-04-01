@@ -21,12 +21,12 @@
       }
     },
     {
-      "name": "results",
+      "name": "councils",
       "taskModule": "mysql",
       "config": {
         "connectionName": "coronavirus",
         "queryTemplates": {
-          "records": ">context.metaData.handlebars.queries.utilities_coronavirus-admin"
+          "records": ">context.metaData.handlebars.queries.utilities_coronavirus-admin-councils"
         }
       },
       "renderer": "handlebars"
