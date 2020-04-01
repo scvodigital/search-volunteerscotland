@@ -8,7 +8,7 @@ SELECT
   simd_rank,
   ward,
   tsi,
-  CASE WHEN consent_tsi = 1 THEN 'Yes' ELSE 'NO' END AS consent_tsi,
+  CASE WHEN consent_tsi = 1 THEN 'Yes' ELSE 'No' END AS consent_tsi,
   date_last_modified
 FROM newsletter_coronavirus
 WHERE
