@@ -34,7 +34,7 @@
       "config": {
         "template": ">context.metaData.handlebars.templates.utilities_coronavirus-csv",
         "output": "body",
-        "filename": "coronavirus-volunteers_{{slugify @root.request.params.query.council}}_from-{{@root.request.params.query.from_date}}_generated-{{momentFormat (moment (dateMath 'now') 'x') 'YYYY-MM-DD-HH-mm-ss'}}.csv",
+        "filename": "coronavirus-volunteers_{{slugify (replace @root.request.params.query.council '&amp;' '')}}_from-{{@root.request.params.query.from_date}}_generated-{{momentFormat (moment (dateMath 'now') 'x') 'YYYY-MM-DD-HH-mm-ss'}}.csv",
         "contentType": "text/csv"
       }
     }
