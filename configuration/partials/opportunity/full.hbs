@@ -108,7 +108,7 @@
             {{{frequency_commitment_details}}}
           </p>
           {{/if ~}}
-          {{#ifAny restriction_details experience_required travel_details minimum_age maximum_age ~}}
+          {{#ifAny (ifAll restriction_details (compare restriction_details "!==" "n/a")) experience_required travel_details minimum_age (ifAll maximum_age (compare maximum_age "<=" 26)) ~}}
           <h4 class="mdc-typography--headline6">Restrictions</h4>
           <p class="mdc-typography--body1">
             {{#if restriction_details ~}}
