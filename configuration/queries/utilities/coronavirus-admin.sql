@@ -1,1 +1,1 @@
-SELECT DISTINCT tsi, COUNT(email) AS submissions FROM newsletter_coronavirus WHERE consent_volunteering_updates = true AND consent_tsi = true AND location_postcode != '' AND tsi != '' GROUP BY tsi ORDER BY tsi ASC;
+SELECT DISTINCT council, COUNT(email) AS submissions FROM newsletter_coronavirus WHERE consent_volunteering_updates = true AND consent_tsi = true AND location_postcode != '' AND council != '' GROUP BY council ORDER BY council ASC;

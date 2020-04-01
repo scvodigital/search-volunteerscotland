@@ -1,20 +1,22 @@
 <div class="container-fluid container-content v-padding-full h-padding" style="margin: 0 auto;">
   <h1 class="mdc-typography--headline3">Be a coronavirus volunteer in your community</h1>
   <div class="mdc-typography--headline7 b-margin">
-    Admin
+    Administrative access
   </div>
   <p class="mdc-typography--body1">
-    All sign-ups with TSI/VC sharing consent set:
+    All coronavirus volunteer sign-ups with sharing consent given, by area:
   </p>
-  <table>
+  <table class="b-margin-full">
     <tr>
-      <th class="text-left"><strong>TSI/VC</strong></th>
-      <th class="text-left"><strong>Sign-ups</strong></th>
+      <th class="text-left r-padding-full"><strong>Local authority</strong></th>
+      <th class="text-left r-padding-full"><strong>Sign-ups</strong></th>
+      {{!-- <th class="text-left r-padding-full"><strong>Download</strong></th> --}}
     </tr>
     {{#each @root.data.results.records ~}}
     <tr>
-      <td class="text-left">{{{tsi}}}</td>
-      <td class="text-left">{{submissions}}</td>
+      <td class="text-left r-padding-full">{{{council}}}</td>
+      <td class="text-left r-padding-full">{{submissions}}</td>
+      <td class="text-left r-padding-full"><a href="{{@root.request.url.pathname}}?council={{urlencode council}}" class="mdc-button mdc-button--raised mdc-button--primary"><span class="far fa-file-csv r-margin-full"></span> Download CSV</a></td>
     </tr>
     {{/each ~}}
   </table>
