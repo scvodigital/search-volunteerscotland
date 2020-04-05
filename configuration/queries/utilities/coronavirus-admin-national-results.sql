@@ -7,6 +7,7 @@ SELECT
   simd_datazone,
   simd_rank,
   ward,
+  council,
   tsi,
   CASE WHEN consent_tsi = 1 THEN 'Yes' ELSE 'No' END AS consent_tsi,
   date_last_modified
