@@ -1,4 +1,5 @@
 SELECT
+  date_last_modified,
   first_name,
   last_name,
   email,
@@ -9,11 +10,11 @@ SELECT
   ward,
   council,
   tsi,
-  CASE WHEN consent_tsi = 1 THEN 'Yes' ELSE 'No' END AS consent_tsi,
-  date_last_modified
+  CASE WHEN consent_tsi = 1 THEN 'Yes' ELSE 'No' END AS consent_tsi
 FROM newsletter_coronavirus
 WHERE
-  consent_volunteering_updates = true AND
+  consent_volunteering_updates = true
+AND
   CAST(date_last_modified AS date) between
     '{{#unless @root.request.params.query.from_date}}2020-03-29{{else}}{{@root.request.params.query.from_date}}{{/unless}}' AND
     CURDATE()
