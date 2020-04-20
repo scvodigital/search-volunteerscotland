@@ -510,6 +510,11 @@
             "key": "charity-shops-retail"
           },
           {
+            "label": "Community Engagement",
+            "textBag": "Community Engagement",
+            "key": "community-engagement"
+          },
+          {
             "label": "Conservation / Gardening",
             "textBag": "Conservation Gardening allotment garden",
             "key": "conservation-gardening"
