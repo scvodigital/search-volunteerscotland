@@ -3,6 +3,7 @@ SELECT
   first_name,
   last_name,
   email,
+  location_postcode,
   constituency,
   nuts_3,
   simd_datazone,
