@@ -1,13 +1,18 @@
 <div class="v-padding h-padding-full bg-error">
-  <p class="v-margin">
-    We all need to stay at home to protect ourselves and others. However, those who are well and not at risk can provide essential support for their family, friends and neighbours who cannot leave the house.
+  <p class="v-margin mdc-typography--body1">
+    <strong>Stay safe.</strong> Remember the most important contribution everyone can make is to stay at home to help protect ourselves and others. Those who are well and not at risk can provide essential support for their <a href="https://www.readyscotland.org/coronavirus/helping-your-neighbours-friends-and-family"><strong>family, friends and neighbours</strong></a>
   </p>
-  <p class="v-margin">
+  {{#unless (contains @root.request.params.uri.query "campaign=coronavirus") ~}}
+  <p class="v-margin mdc-typography--body1">
+    <a href="/search?campaign=coronavirus"><strong>View current opportunities to apply for</strong></a>
+  </p>
+  {{/unless ~}}
+  {{!-- <p class="v-margin">
     <a href="https://www.readyscotland.org/coronavirus"><strong>Read more about volunteering during the COVID-19 pandemic</strong></a>
   </p>
   <p class="v-margin">
     <a href="/coronavirus"><strong>Be a coronavirus volunteer in your community</strong></a>
-  </p>
+  </p> --}}
   {{!-- {{#unless (compare @root.request.params.query.campaign "coronavirus") ~}}
   <p class="v-margin">
     <a href="/search?campaign=coronavirus"><strong>Find coronavirus volunteering opportunities</strong></a>

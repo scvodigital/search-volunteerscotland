@@ -1,15 +1,15 @@
 {
-  "name": "redirect-home",
-  "pattern": "/redirect-home",
+  "name": "coronavirus-redirect",
+  "debug": false,
+  "pattern": "_disabled_/coronavirus",
   "tasks": [
     {
       "name": "destination",
       "taskModule": "redirect",
       "config": {
-        "location": "/",
+        "location": "/search?campaign=coronavirus",
         "statusCode": 302
       }
     }
   ]
 }
-
