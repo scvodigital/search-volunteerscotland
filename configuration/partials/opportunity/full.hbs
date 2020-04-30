@@ -1,4 +1,10 @@
 <div class="{{#compare view 'widget'}}x-padding-full{{else}}mdc-card{{/compare}} content-primary full" data-opportunity-id="{{Id}}" data-opportunity-layout="Full" data-opportunity-context="{{default viewContext "Vacancy Page"}}">
+  <div class="hide-sm">
+    <div class="b-margin-full">
+      {{> coronavirus_delay}}
+    </div>
+  </div>
+
   {{> opportunity_key_info type="full"}}
   <hr class="mdc-list-divider" />
   <div class="content-primary-info-container">
@@ -181,6 +187,12 @@
             <span title="Updated on {{momentFormat (moment date_last_modified "x") "YYYY-MM-DD hh:mm"}}">Last updated {{momentFromNow date_last_modified}}</span>
           </div>
           {{/unless ~}}
+
+          <div class="hide-md hide-lg">
+            <div class="t-margin-full">
+              {{> coronavirus_delay}}
+            </div>
+          </div>
         </div>
       </div>
 
@@ -229,6 +241,7 @@
         <strong>Contact name:</strong> {{opportunity_contact_first_name}} {{opportunity_contact_last_name}}
       </p>
       {{/ifAny}}
+
       {{#if opportunity_contact_email ~}}
       <a href="mailto:{{opportunity_contact_email}}?subject=Re:%20{{milo_ref}}" class="register-interest mdl-button mdl-button--raised mdl-button--colored">
         <span class="material-icons icon-left" aria-hidden="true">email</span>

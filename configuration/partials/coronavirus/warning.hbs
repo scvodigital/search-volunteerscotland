@@ -1,3 +1,4 @@
+{{#unless (contains @root.request.params.uri.pathname "/opportunity/") ~}}
 <div class="v-padding h-padding-full bg-error">
   <p class="v-margin mdc-typography--body1">
     <strong>Stay safe.</strong> Remember the most important contribution everyone can make is to stay at home to help protect ourselves and others. Those who are well and not at risk can provide essential support for their <a href="https://www.readyscotland.org/coronavirus/helping-your-neighbours-friends-and-family"><strong>family, friends and neighbours</strong></a>
@@ -19,3 +20,4 @@
   </p>
   {{/unless ~}} --}}
 </div>
+{{/unless ~}}
