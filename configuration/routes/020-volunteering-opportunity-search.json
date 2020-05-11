@@ -1,6 +1,6 @@
 {
   "name": "volunteering_opportunity_search",
-  "debug": false,
+  "debug": true,
   "pattern": "/search",
   "metaData": {
     "title": "Volunteer Scotland Search",
@@ -23,7 +23,7 @@
       "name": "location_data",
       "taskModule": "elasticsearch",
       "cache": {
-        "keyProperties": ["request.fullUrl", "data.auth.email"],
+        "keyProperties": ["request.fullUrl", "data.auth.email", "request.headers.widget-tsi"],
         "partition": "{{request.url.host}}",
         "ttl": 600
       },
@@ -47,7 +47,7 @@
       "name": "search_data",
       "taskModule": "elasticsearch",
       "cache": {
-        "keyProperties": ["request.fullUrl", "data.auth.email", "$wut"],
+        "keyProperties": ["request.fullUrl", "data.auth.email", "request.headers.widget-tsi", "$wut"],
         "partition": "{{request.url.host}}",
         "ttl": 600
       },

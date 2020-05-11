@@ -20,7 +20,7 @@
       "name": "search_data",
       "taskModule": "elasticsearch",
       "cache": {
-        "keyProperties": ["request.fullUrl"],
+        "keyProperties": ["request.fullUrl", "request.headers.widget-tsi"],
         "partition": "{{request.url.host}}",
         "ttl": 600
       },
