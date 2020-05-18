@@ -255,7 +255,7 @@
       {{/if ~}}
       {{/if ~}}
       {{else}}
-      <a href="https://search.volunteerscotland.net/register-interest/{{Id}}/{{title_slug}}?utm_source={{default (urlencode (replace (replace @root.request.headers.referer 'http://' '') 'https://' '')) 'widget'}}&utm_campaign=search&utm_medium=widget" class="register-interest mdl-button mdl-button--raised mdl-button--colored v-margin-full" target="_blank">
+      <a href="{{#if external_application_link}}{{fixUrl external_application_link}}{{else}}https://search.volunteerscotland.net/register-interest/{{Id}}/{{title_slug}}?utm_source={{default (urlencode (replace (replace @root.request.headers.referer 'http://' '') 'https://' '')) 'widget'}}&utm_campaign=search&utm_medium=widget{{/if}}" class="register-interest mdl-button mdl-button--raised mdl-button--colored v-margin-full" target="_blank">
         <span class="material-icons icon-left" aria-hidden="true">open_in_new</span>
         <span class="underline">I want to volunteer</span>
       </a>
