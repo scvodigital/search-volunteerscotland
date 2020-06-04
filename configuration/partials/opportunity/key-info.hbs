@@ -59,13 +59,6 @@
     </div>
     {{/compare ~}}
     {{/unless ~}}
-    {{#if goodhq_organisation.image_url ~}}
-    <div class="mdc-card__media mdc-card__media--content-secondary pull-right">
-      <a href="/organisation/{{organisation_id}}/{{organisation_name_slug}}{{> query_search}}">
-        <img src="{{goodhq_organisation.image_url}}" alt="{{organisation_name}}" />
-      </a>
-    </div>
-    {{/if ~}}
     {{/compare ~}}
     <h2 class="mdc-card__info--content-primary-title mdc-typography--headline6">
       {{#compare type 'full' ~}}

@@ -10,7 +10,6 @@
     "themes_slugs",
     "date_last_modified",
     "description",
-    "goodhq_organisation.image_url",
     "geo_coords",
     "geo_opportunity_info",
     "postcode",
