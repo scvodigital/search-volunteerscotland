@@ -10,7 +10,7 @@
       "label": "Coronavirus volunteering",
       "icon": "virus",
       "class": "bg-error",
-      "path": "/coronavirus",
+      "path": "/search?campaign=coronavirus",
       "route": "^/coronavirus|campaign=coronavirus"
     },
     {

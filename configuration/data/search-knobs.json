@@ -1,9 +1,9 @@
 {
 	"dateLastModified": {
 		"function": "gauss",
-		"scale": "10d",
-		"decay": 0.95,
-		"offset": "60d"
+		"scale": "7d",
+		"decay": 0.8,
+		"offset": "30d"
 	},
 	"distance": {
 		"function": "gauss",

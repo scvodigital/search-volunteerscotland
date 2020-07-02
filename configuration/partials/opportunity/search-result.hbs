@@ -12,6 +12,12 @@
     {{> opportunity_description limit="6rem" description=description}}
   {{/compare ~}}
   {{#unless (compare view 'widget') ~}}
+  <div class="mdc-typography--body2 last-modified search-result-article__snippet">
+    <span class="far fa-calendar-alt" aria-hidden="true"></span>
+    <span title="Updated on {{momentFormat (moment date_last_modified "x") "YYYY-MM-DD hh:mm"}}">Last updated {{momentFromNow date_last_modified}}</span>
+  </div>
+  {{/unless ~}}
+  {{#unless (compare view 'widget') ~}}
   {{> opportunity_actions slug=slug Id=Id home_based=home_based distance=distance action=action}}
   {{/unless ~}}
 </div>
