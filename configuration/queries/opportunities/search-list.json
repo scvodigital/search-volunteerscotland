@@ -106,9 +106,9 @@
         {{/unless}}
       ]
     }
-  }
-  {{#if @root.request.params.query.sort}},
+  },
   "sort": [
+    {{#if @root.request.params.query.sort}}
     {{#switch @root.request.params.query.sort}}
       {{#case "distance"}}
         {{#ifAll @root.request.params.query.lat @root.request.params.query.lng}}
@@ -137,6 +137,13 @@
         }
       {{/case}}
     {{/switch}}
+    {{else}}
+    {
+      "_score": "desc"
+    },
+    {
+      "date_last_modified": "desc"
+    }
+    {{/if}}
   ]
-  {{/if}}
 }
