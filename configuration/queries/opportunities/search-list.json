@@ -136,6 +136,14 @@
           "date_last_modified": "asc"
         }
       {{/case}}
+      {{#case "relevance"}}
+        {
+          "_score": "desc"
+        },
+        {
+          "date_last_modified": "desc"
+        }
+      {{/case}}
     {{/switch}}
     {{else}}
     {
