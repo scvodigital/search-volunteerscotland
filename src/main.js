@@ -62,7 +62,9 @@ export class VolunteerScotlandSearch {
       const hasLocation = !!$('[name="lat"]').val();
 
       if (hasLocation && !hasKeywords) {
-        $('[name="sort"]').val('distance');
+        // Sort by distance on location searches by default
+        // $('[name="sort"]').val('distance');
+        $('[name="sort"]').val(this.initialSort);
       } else {
         $('[name="sort"]').val(this.initialSort);
       }
