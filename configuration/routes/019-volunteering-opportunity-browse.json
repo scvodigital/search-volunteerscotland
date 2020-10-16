@@ -21,7 +21,7 @@
         "ttl": 86400
       },
       "config": {
-        "connectionStringTemplate": "{$../data/elasticsearch-url.txt}",
+        "connectionStringTemplate": "{$../data/elasticsearch-legacy-url.txt}",
         "elasticsearchConfig": {
           "apiVersion": "5.6"
         },

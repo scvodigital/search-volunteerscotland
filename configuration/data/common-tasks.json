@@ -127,7 +127,7 @@
 			"ttl": 86400
 		},
 		"config": {
-			"connectionStringTemplate": "{$./elasticsearch-url.txt}",
+			"connectionStringTemplate": "{$./elasticsearch-legacy-url.txt}",
 			"elasticsearchConfig": {
 				"apiVersion": "5.6"
 			},
@@ -144,7 +144,7 @@
 		"name": "eventSupplimentary",
 		"taskModule": "elasticsearch",
 		"config": {
-			"connectionStringTemplate": "{$./elasticsearch-url.txt}",
+			"connectionStringTemplate": "{$./elasticsearch-legacy-url.txt}",
 			"elasticsearchConfig": {
 				"apiVersion": "5.6"
 			},
@@ -161,7 +161,7 @@
 		"name": "organisationSupplimentary",
 		"taskModule": "elasticsearch",
 		"config": {
-			"connectionStringTemplate": "{$./elasticsearch-url.txt}",
+			"connectionStringTemplate": "{$./elasticsearch-legacy-url.txt}",
 			"elasticsearchConfig": {
 				"apiVersion": "5.6"
 			},
@@ -185,7 +185,7 @@
 		"name": "organisationsWithOpportunities",
 		"taskModule": "elasticsearch",
 		"config": {
-			"connectionStringTemplate": "{$./elasticsearch-url.txt}",
+			"connectionStringTemplate": "{$./elasticsearch-legacy-url.txt}",
 			"elasticsearchConfig": {
 				"apiVersion": "5.6"
 			},
