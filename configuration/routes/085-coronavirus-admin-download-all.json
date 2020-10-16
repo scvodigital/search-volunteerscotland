@@ -1,6 +1,6 @@
 {
   "name": "coronavirus_admin_download_national",
-  "debug": true,
+  "debug": false,
   "pattern": "/coronavirus/admin/download-national",
   "tasks": [
     "context.metaData.commonTasks.authRequired",

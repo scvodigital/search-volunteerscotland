@@ -1,6 +1,6 @@
 {
   "name": "coronavirus_admin",
-  "debug": true,
+  "debug": false,
   "pattern": "/coronavirus/admin",
   "metaData": {
     "hideSearch": true,
