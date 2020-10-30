@@ -4,4 +4,28 @@
     "boost": {{{stringify @root.context.metaData.searchKnobs.geoCoordBoost}}}
   }
 },
+{{#ifAll location @root.data.location_data.la_point ~}}
+{
+  "terms": {
+    "advertised_areas": [
+      {{#each @root.data.location_data.la_results.aggregations.local_authority_areas.buckets}}
+        {{{stringify (replace (replace (replace key " and " " & ") "City of " "") " City" "")}}}
+        {{#unless @last}},{{/unless}}
+      {{/each}}
+    ],
+    "boost": -2
+  }
+},
+{
+  "terms": {
+    "advertised_areas": [
+      {{#each @root.data.location_data.la_point.aggregations.local_authority_areas.buckets}}
+        {{{stringify (replace (replace (replace key " and " " & ") "City of " "") " City" "")}}}
+        {{#unless @last}},{{/unless}}
+      {{/each}}
+    ],
+    "boost": 2
+  }
+},
+{{/ifAll}}
 {{>queries_do_nothing}}

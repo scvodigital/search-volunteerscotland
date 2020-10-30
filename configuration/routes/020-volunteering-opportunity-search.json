@@ -1,6 +1,6 @@
 {
   "name": "volunteering_opportunity_search",
-  "debug": false,
+  "debug": true,
   "pattern": "/search",
   "metaData": {
     "title": "Volunteer Scotland Search",
@@ -38,6 +38,12 @@
             "index": "geo_lookup",
             "type": "es_district",
             "template": ">context.metaData.handlebars.queries.opportunities_local-authority-areas"
+          },
+          {
+            "name": "la_point",
+            "index": "geo_lookup",
+            "type": "es_district",
+            "template": ">context.metaData.handlebars.queries.opportunities_local-authority-area"
           }
         ]
       },
