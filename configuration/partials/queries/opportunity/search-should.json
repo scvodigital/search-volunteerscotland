@@ -13,7 +13,7 @@
         {{#unless @last}},{{/unless}}
       {{/each}}
     ],
-    "boost": -5
+    "boost": -10
   }
 },
 {
@@ -24,7 +24,7 @@
         {{#unless @last}},{{/unless}}
       {{/each}}
     ],
-    "boost": 10
+    "boost": 20
   }
 },
 {{/ifAll}}
