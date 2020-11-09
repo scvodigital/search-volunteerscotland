@@ -77,32 +77,31 @@
       },
       "boost_mode": "multiply",
       "functions" : [
-        {{!-- If we are sorting there is no need to do scoring --}}
+        {
+          "{{@root.context.metaData.searchKnobs.dateLastModified.function}}": {
+            "date_last_modified": {
+              "scale": {{{stringify @root.context.metaData.searchKnobs.dateLastModified.scale}}},
+              "offset": {{{stringify @root.context.metaData.searchKnobs.dateLastModified.offset}}},
+              "decay": {{{stringify @root.context.metaData.searchKnobs.dateLastModified.decay}}}
+            }
+          }
+        }
         {{#unless @root.request.params.query.sort}}
+        {{#ifAll @root.request.params.query.lat @root.request.params.query.lng}},
           {
-            "{{@root.context.metaData.searchKnobs.dateLastModified.function}}": {
-              "date_last_modified": {
-                "scale": {{{stringify @root.context.metaData.searchKnobs.dateLastModified.scale}}},
-                "offset": {{{stringify @root.context.metaData.searchKnobs.dateLastModified.offset}}},
-                "decay": {{{stringify @root.context.metaData.searchKnobs.dateLastModified.decay}}}
+            "{{@root.context.metaData.searchKnobs.distance.function}}": {
+              "geo_coords": {
+                "origin": {
+                  "lat": {{@root.request.params.query.lat}},
+                  "lon": {{@root.request.params.query.lng}}
+                },
+                "scale": {{{stringify @root.context.metaData.searchKnobs.distance.scale}}},
+                "offset": {{{stringify @root.context.metaData.searchKnobs.distance.offset}}},
+                "decay": {{{stringify @root.context.metaData.searchKnobs.distance.decay}}}
               }
             }
           }
-          {{#ifAll @root.request.params.query.lat @root.request.params.query.lng}},
-            {
-              "{{@root.context.metaData.searchKnobs.distance.function}}": {
-                "geo_coords": {
-                  "origin": {
-                    "lat": {{@root.request.params.query.lat}},
-                    "lon": {{@root.request.params.query.lng}}
-                  },
-                  "scale": {{{stringify @root.context.metaData.searchKnobs.distance.scale}}},
-                  "offset": {{{stringify @root.context.metaData.searchKnobs.distance.offset}}},
-                  "decay": {{{stringify @root.context.metaData.searchKnobs.distance.decay}}}
-                }
-              }
-            }
-          {{/ifAll}}
+        {{/ifAll}}
         {{/unless}}
       ]
     }
