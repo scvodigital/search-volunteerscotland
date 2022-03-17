@@ -6,6 +6,7 @@
     "title_slug",
     "description",
     "title",
+    "date_last_modified",
     "geo_coords",
     "organisation_slug",
     "organisation_name",
