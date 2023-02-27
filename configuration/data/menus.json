@@ -7,13 +7,6 @@
       "route": "^(?=\\/(search|map|opportunity|opportunities-in)($|\\?|\\/))((?!campaign=(coronavirus|online)).)*$"
     },
     {
-      "label": "Coronavirus volunteering",
-      "icon": "virus",
-      "class": "bg-error",
-      "path": "/search?campaign=coronavirus",
-      "route": "^/coronavirus|campaign=coronavirus"
-    },
-    {
       "label": "Find organisations",
       "icon": "list-alt",
       "path": "/organisations/search",

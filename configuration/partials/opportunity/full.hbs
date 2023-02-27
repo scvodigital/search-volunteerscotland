@@ -181,12 +181,12 @@
           </div>
           {{/unless ~}}
 
-          {{#unless (compare view 'widget') ~}}
+          {{!-- {{#unless (compare view 'widget') ~}}
           <div class="mdc-typography--body2 last-modified">
             <span class="far fa-calendar-alt" aria-hidden="true"></span>
             <span title="Updated on {{momentFormat (moment date_last_modified "x") "YYYY-MM-DD hh:mm"}}">Last updated {{momentFromNow date_last_modified}}</span>
           </div>
-          {{/unless ~}}
+          {{/unless ~}} --}}
 
           <div class="hide-md hide-lg">
             <div class="t-margin-full">
