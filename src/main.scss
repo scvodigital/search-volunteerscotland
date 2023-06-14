@@ -4728,7 +4728,7 @@ ul.hearts li.filled span.icon-heart:before {
 .new-site-banner {
   background-color: #7c4192;
   .new-site-banner-inner {
-    background-size: contain;
+    background-size: 90%;
     background-repeat: no-repeat;
     background-position-x: right;
     background-position-y: bottom;
@@ -4779,6 +4779,9 @@ ul.hearts li.filled span.icon-heart:before {
       background-size: 150%;
       background-position-x: right;
       .new-site-banner-content {
+        padding-top: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
         .new-site-banner-title {
           font-size: 2.3rem;
         }
@@ -4796,6 +4799,9 @@ ul.hearts li.filled span.icon-heart:before {
   .new-site-banner {
     .new-site-banner-inner {
       .new-site-banner-content {
+        padding-top: .75rem;
+        padding-left: .75rem;
+        padding-right: .75rem;
         .new-site-banner-title {
           font-size: 1.2rem;
         }
