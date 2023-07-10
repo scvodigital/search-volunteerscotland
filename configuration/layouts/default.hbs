@@ -45,7 +45,7 @@
   <meta name="theme-color" content="#3c7524">
   <link rel="search" type="application/opensearchdescription+xml" title="Volunteer Scotland Search" href="{{~>asset_url url='opensearch.xml'~}}" />
 
-  <link rel="canonical" href="https://search.volunteerscotland.net{{request.params.uri.pathname}}" />
+  <link rel="canonical" href="https://volunteer.scot{{replace (replace (replace request.params.uri.pathname '/event' '/events') '/organisation' '/organisations') '/opportunity' '/search'}}" />
 
   <script>
   {{#ifAny request.params.query.debug (compare request.url.hostname "volunteerscotland-search.local") ~}}

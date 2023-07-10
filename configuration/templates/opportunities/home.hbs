@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Flex">
 
-<!-- <div class="new-site-banner">
+<div class="new-site-banner">
   <div class="container-fluid new-site-banner-inner" style="background-image: url('{{~>asset_url url='images/vs-new-site-large.png'~}}');">
     <div class="mdc-layout-grid">
       <div class="mdc-layout-grid__inner">
@@ -16,11 +16,12 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>
 
 <div class="container-fluid home-banner">
-  <div class="banner-search overlay" style="background-image: url('https://storage.googleapis.com/volunteerscotland-search/vs-search-homepage-image.jpg');">
-    <div class="content page-content" disabled-style="padding: 1rem 0 !important; background-color: #f5f5f5;">
+  <div class="banner-search overlay">
+    {{!-- style="background-image: url('https://storage.googleapis.com/volunteerscotland-search/vs-search-homepage-image.jpg');" --}}
+    <div class="content page-content" style="padding: 1rem 0 !important; background-color: #f5f5f5;">
       <div class="search-content">
         <form id="search-view" class="search-form" action="/search" method="GET">
           <input type="hidden" name="lat" value="{{@root.request.params.query.lat}}" id="location-lat" />
