@@ -1,7 +1,7 @@
 <div id="detailed-results-container" class="container-content content-register-interest">
   {{#compare @root.data.primaryResponse.hits.total ">" 0 ~}}
     {{#with @root.data.primaryResponse.hits.hits.0._source ~}}
-      {{> coronavirus_delay}}
+      {{!-- {{> coronavirus_delay}} --}}
 
       <h2 class="mdc-typography--headline4">
         Register interest
@@ -168,25 +168,33 @@
                 </div>
               </div>
 
-              <input type="hidden" name="email-register-interest" value="{{removeEntities organisation_contact_email}}">
-              <input type="hidden" name="email-register-interest-tsi" value="{{removeEntities tsi_contact_email}}">
+              {{!-- <input type="hidden" name="email-register-interest" value="{{removeEntities organisation_contact_email}}"> --}}
+              <input type="hidden" name="email-register-interest" value="{{organisation_contact_email}}">
+              {{!-- <input type="hidden" name="email-register-interest-tsi" value="{{removeEntities tsi_contact_email}}"> --}}
+              <input type="hidden" name="email-register-interest-tsi" value="{{tsi_contact_email}}">
 
               <input type="hidden" name="tsi_name" value="{{tsi_name}}">
               <input type="hidden" name="organisation_name" value="{{organisation_name}}">
 
               <input type="hidden" name="opportunity_contact_first_name" value="{{opportunity_contact_first_name}}">
-              <input type="hidden" name="opportunity_contact_last_name" value="{{removeEntities opportunity_contact_last_name}}">
+              {{!-- <input type="hidden" name="opportunity_contact_last_name" value="{{removeEntities opportunity_contact_last_name}}"> --}}
+              <input type="hidden" name="opportunity_contact_last_name" value="{{opportunity_contact_last_name}}">
               <input type="hidden" name="opportunity_contact_phone" value="{{opportunity_contact_phone}}">
-              <input type="hidden" name="opportunity_contact_email" value="{{removeEntities opportunity_contact_email}}">
+              {{!-- <input type="hidden" name="opportunity_contact_email" value="{{removeEntities opportunity_contact_email}}"> --}}
+              <input type="hidden" name="opportunity_contact_email" value="{{opportunity_contact_email}}">
               <input type="hidden" name="organisation_contact_first_name" value="{{organisation_contact_first_name}}">
-              <input type="hidden" name="organisation_contact_last_name" value="{{removeEntities organisation_contact_last_name}}">
+              {{!-- <input type="hidden" name="organisation_contact_last_name" value="{{removeEntities organisation_contact_last_name}}"> --}}
+              <input type="hidden" name="organisation_contact_last_name" value="{{organisation_contact_last_name}}">
               <input type="hidden" name="organisation_contact_phone" value="{{organisation_contact_phone}}">
-              <input type="hidden" name="organisation_contact_email" value="{{removeEntities organisation_contact_email}}">
+              {{!-- <input type="hidden" name="organisation_contact_email" value="{{removeEntities organisation_contact_email}}"> --}}
+              <input type="hidden" name="organisation_contact_email" value="{{organisation_contact_email}}">
 
               <input type="hidden" name="tsi_contact_first_name" value="{{tsi_contact_first_name}}">
-              <input type="hidden" name="tsi_contact_last_name" value="{{removeEntities tsi_contact_last_name}}">
+              {{!-- <input type="hidden" name="tsi_contact_last_name" value="{{removeEntities tsi_contact_last_name}}"> --}}
+              <input type="hidden" name="tsi_contact_last_name" value="{{tsi_contact_last_name}}">
               <input type="hidden" name="tsi_contact_phone" value="{{tsi_contact_phone}}">
-              <input type="hidden" name="tsi_contact_email" value="{{removeEntities tsi_contact_email}}">
+              {{!-- <input type="hidden" name="tsi_contact_email" value="{{removeEntities tsi_contact_email}}"> --}}
+              <input type="hidden" name="tsi_contact_email" value="{{tsi_contact_email}}">
 
               <input type="hidden" name="opportunity_contact_via_tsi" value="{{opportunity_contact_via_tsi}}">
               <input type="hidden" name="opportunity_contact_via_organisation" value="{{opportunity_contact_via_organisation}}">
@@ -195,7 +203,6 @@
               <input type="hidden" name="opportunity_title" value="{{title}}">
               <input type="hidden" name="opportunity_minimum_age" value="{{minimum_age}}">
               <input type="hidden" name="opportunity_maximum_age" value="{{maximum_age}}">
-              {{!-- <input type="hidden" name="opportunity_slug" value="{{slug}}"> --}}
               <input type="hidden" name="opportunity_title_slug" value="{{title_slug}}">
               <input type="hidden" name="opportunity_id" value="{{Id}}">
 
@@ -227,8 +234,8 @@
                 <span class="far fa-hand-paper mdc-list-item__graphic" aria-hidden="true"></span>
                 Register interest
               </button>
-            {{/if ~}}
-          </form>
+            </form>
+          {{/if ~}}
         {{/unless ~}}
 
         <div class="mdc-layout-grid">
