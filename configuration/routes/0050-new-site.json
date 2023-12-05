@@ -1,8 +1,8 @@
 {
   "name": "redirect_new_site",
   "pattern": {
-    "root": "_disabled_/",
-    "page": "_disabled_(/:one)(/:two)(/:three)(:/four)(:/five)(:/six)(:/seven)(:/eight)"
+    "root": "/",
+    "page": "(/:one)(/:two)(/:three)(:/four)(:/five)(:/six)(:/seven)(:/eight)"
   },
   "tasks": [
     {
