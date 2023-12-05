@@ -1,12 +1,29 @@
 {
   "name": "home",
-  "pattern": "_disabled_/",
+  "pattern": "/",
   "debug": false,
   "metaData": {
     "hideSearch": true,
     "title": "Volunteer Scotland Search | Help Make a Difference through Volunteering"
   },
   "tasks": [
+    {
+      "name": "url",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "template": "https://volunteer.scot"
+      }
+    },
+    {
+      "name": "destination",
+      "taskModule": "redirect",
+      "config": {
+        "location": ">data.url",
+        "statusCode": 301
+      }
+    },
     "context.metaData.commonTasks.authNotRequired",
     "context.metaData.commonTasks.registeredInterestData",
     "context.metaData.commonTasks.favouritesData",
