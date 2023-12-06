@@ -14,15 +14,6 @@
     }
   },
   "tasks": [
-    {
-      "name": "url",
-      "taskModule": "render",
-      "renderer": "handlebars",
-      "config": {
-        "output": "data",
-        "template": "https://volunteer.scot/organisations{{#if request.params.id}}/{{request.params.id}}{{/if}}{{#if request.params.junk}}/{{request.params.junk}}{{/if}}"
-      }
-    },
     "context.metaData.commonTasks.authNotRequired",
     "context.metaData.commonTasks.favouritesData",
     "context.metaData.commonTasks.organisationsWithOpportunities",
